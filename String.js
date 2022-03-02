@@ -133,5 +133,28 @@ console.log(Atway);  //t
 
 
 /**********************************************************************String.prototype.charAt()*********************************/
+const x1 = "The quick brown fox jumps over the lazy dog.";
+
+const indtex = 5;
+//start se
+console.log(`The character at index ${index} is ${x1.charAt(index)}`);  //The character at index 5 is u
+
+let x3 = "The quick brown fox jumps over the lazy dog.";
+console.log(x3.charAt(x3.length-2));  //g
+
+
+
+function test(string){
+  if (string.charAt(0) === "C" ||string.charAt(0) === "F") {
+      return console.log(`Your name is ${string}`);
+  }else{
+      return console.log("Your name is not valid");
+  }
+};
+
+test("Chandan");
+test("Ravi");
+test("Fareen");
+test("Manoj");
 
 
