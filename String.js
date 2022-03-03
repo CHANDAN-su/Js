@@ -157,4 +157,196 @@ test("Ravi");
 test("Fareen");
 test("Manoj");
 
+/*************************String.prototype.charCodeAt()*******************/
+/*
+Syntax
+charCodeAt(index)
+*/
 
+console.log("String.prototype.charCodeAt()");
+
+let str = 'The quick brown fox jumps over the lazy dog.';
+let index2 = 10;
+
+console.log(`The character code ${str.charCodeAt(index2)} is equal to ${str.charAt(index2)} `);  //The character code 98 is equal to b 
+
+console.log("ABC".charCodeAt(0)); //65
+console.log("ABC".charCodeAt(1)); //66
+console.log("ABC".charCodeAt(2));  //67
+
+
+
+/************************************************String.prototype.concat()******************************/
+// Combines the text of two (or more) strings and returns a new string.
+/*
+Syntax
+concat(str1) 
+concat(str1, str2)
+concat(str1, str2, ... , strN)
+*/
+
+let str9 = "Hello";
+let str10 = "World"; 
+
+console.log(str9.concat(" ",str10));  //Hello World
+console.log(str10.concat(" ",str9)); //World Hello
+
+let test1 = (Name) => {
+  return Name.concat(" ","Thakur");
+};
+
+console.log(test1("Chandan"));  //Chandan Thakur
+
+
+let hello = "Hello";
+console.log(hello.concat(" Ravi" , ". Have a nice Day")); //Hello Ravi. Have a nice Day
+
+let greetList = ['Hello', ' ', 'Venkat', '!'] 
+console.log("".concat(...greetList)); // "Hello Venkat!"
+
+console.log("".concat({}));	// [object Object]
+console.log("".concat([]));	// ""
+console.log("".concat(null)); // "null"
+console.log("".concat(true)); // "true"
+console.log("".concat(4, 5)); // "45"
+
+
+
+/********************************************String.prototype.includes()*********************************/
+// The includes() method performs a case-sensitive search to determine whether one string may be found within another string, returning true or false as appropriate.
+/*
+Syntax
+includes(searchString) 
+includes(searchString, position)
+*/
+
+
+let str3 =  'The quick brown fox jumps over the lazy dog.';
+let word = "fox";
+console.log(`The word ${word} ${str3.includes(word) ? "is" : "is not"} the sentence`); //The word Fox is not the sentence
+
+// Case-sensitivity
+let word1 = "Fox"
+console.log(`The word ${word1} ${str3.includes(word1) ? "is" : "is not"} the sentence`);  //The word Fox is not the sentence
+
+
+
+const str4 = 'To be, or not to be, that is the question.'
+
+console.log(str4.includes('To be'))	// true
+console.log(str4.includes('question'))	// true 
+console.log(str4.includes('nonexistent')) // false 
+console.log(str4.includes('To be', 1))	// false 
+console.log(str4.includes('TO BE'))	// false
+console.log(str4.includes(''))	// true
+
+
+/*************************************************String.prototype.endsWith()**************************************/
+// The endsWith() method determines whether a string ends with the characters of a specified string, returning true or false as appropriate.
+/*
+Syntax
+endsWith(searchString) 
+endsWith(searchString, length)
+*/
+
+const str5 = "Cats is the best!";
+console.log(str5.endsWith("best"));  //false
+console.log(str5.endsWith("best!"));  //true
+
+const str6 = "Is a question for you"  
+console.log(str6.endsWith("for",17)); //true
+
+
+let str7 = 'To be, or not to be, that is the question.'
+console.log(str7.endsWith('question.')) // true 
+console.log(str7.endsWith('to be'))	// false 
+console.log(str7.endsWith('to be', 19)) // true
+
+
+/*********************************************String.prototype.indexOf()**********************/
+// Returns the index within the calling String object of the first occurrence of
+// searchValue , or  -1 if not found.  case-sensitive
+/*
+Syntax
+indexOf(searchValue) 
+indexOf(searchValue, fromIndex)
+*/
+
+const paragraph = "The quick brown fox jumps over the lazy dog. If the dog the hungray and jumps";
+
+const serach = "jumps";
+const Indexfirst = paragraph.indexOf(serach);
+console.log(Indexfirst);  //20
+ 
+//first jumps access
+console.log(`The index of the first ${serach} from the beginning is ${Indexfirst}`); //The index of the first jumps from the beginning is 20
+
+//Second jumps acces  
+console.log(`The index of the Second ${serach} from the beginning is ${paragraph.indexOf(serach, (Indexfirst+1))}`);//The index of the Second jumps from the beginning is 72
+
+
+// 'Blue Whale'.indexOf('Blue') // returns 0 
+// 'Blue Whale'.indexOf('Blute') // returns -1 
+// 'Blue Whale'.indexOf('Whale', 0) // returns 5
+// 'Blue Whale'.indexOf('Whale', 5) // returns 5
+// 'Blue Whale'.indexOf('Whale', 7) // returns -1 
+// 'Blue Whale'.indexOf('')    // returns 0 
+// 'Blue Whale'.indexOf('', 9)      // returns 9
+// 'Blue Whale'.indexOf('', 10)     // returns 10
+// 'Blue Whale'.indexOf('', 11)     // returns 10
+
+
+// Checking occurrences
+console.log('Blue Whale'.indexOf('Blue') !== -1); // true 
+console.log('Blue Whale'.indexOf('Bloe') !== -1);// false
+
+const str8 = 'Brave new world new'
+console.log('Index of first w from start is ' + str8.indexOf('w'));  //8
+console.log('Index of "new" from start is ' + str8.indexOf('new'));  //6
+console.log('Index of "new" from start is ' + str8.indexOf('new',10)); //16
+
+
+
+/****************************************************String.prototype.lastIndexOf()
+*****************************/
+// The lastIndexOf() method returns the index within the calling String object of the last occurrence of the specified value, 
+// searching backwards from fromIndex .
+// Returns -1 if the value is not found. Case-sensitivity
+/*
+Syntax
+lastIndexOf(searchValue) 
+lastIndexOf(searchValue, fromIndex)
+*/
+
+const sentence1  = 'The quick brown fox jumps over the lazy dog. If the dog barked, was it really lazy?';
+const searchitem = "dog";
+
+console.log(`The index of the first "${searchitem}" from the end is ${paragraph.lastIndexOf(searchitem)}`); //The index of the first "dog" from the end is 52
+
+
+// 'canal'.lastIndexOf('a');     // returns 3
+// 'canal'.lastIndexOf('a', 2);  // returns 1
+// 'canal'.lastIndexOf('a', 0);  // returns -1
+// 'canal'.lastIndexOf('x');     // returns -1
+// 'canal'.lastIndexOf('c', -5); // returns 0
+// 'canal'.lastIndexOf('c', 0);  // returns 0
+// 'canal'.lastIndexOf('');      // returns 5
+// 'canal'.lastIndexOf('', 2);   // returns 2
+
+// Using indexOf() and lastIndexOf()
+let anyString = 'Brave, Brave New World';
+console.log('The index of the first "Brave" is ' + anyString.indexOf('Brave'));  //The index of the first "Brave" is 0
+console.log('The index of the first "Brave" is ' + anyString.lastIndexOf('Brave'));  //The index of the first "Brave" is 7
+
+
+/*************************************************************String.prototype.match()******************************************* */
+// The match() method retrieves the result of matching a string against a regular expression.
+/*
+Syntax
+match(regexp)
+*/
+const paragraph2 = 'The quick brown fox jumps over the A lazy dog. If the dog barked, was it really lazy?';
+
+const regex = /[A-Z]/g;
+const found = paragraph2.match(regex);
+console.log(found);  //['T', 'A', 'I']
