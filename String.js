@@ -409,3 +409,34 @@ const paragraph2 = 'The quick brown fox jumps over the A lazy dog. If the dog ba
 const regex = /[A-Z]/g;
 const found = paragraph2.match(regex);
 // console.log(found);  //['T', 'A', 'I']
+
+const str11 = "For more information, see Chapter 3.4.5.1";
+const reg = /see (chapter \d+(\.\d)*)/i;
+const found1 = str11.match(reg);
+console.log(found1)
+
+// logs [ 'see Chapter 3.4.5.1',
+//	'Chapter 3.4.5.1',
+//	'.1',
+//	index: 22,
+//	input: 'For more information, see Chapter 3.4.5.1' ]
+
+// 'see Chapter 3.4.5.1' is the whole match.
+// 'Chapter 3.4.5.1' was captured by '(chapter \d+(\.\d)*)'.
+// '.1' was the last value captured by '(\.\d)'.
+// The 'index' property (22) is the zero-based index of the whole match.
+// The 'input' property is the original string that was parsed.
+
+
+// Using global and ignore case flags with match()
+const str12 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+const reg1 = /[A-E]/gi;
+
+const match_str12 = str12.match(reg1);
+
+console.log(match_str12); //['A', 'B', 'C', 'D', 'E', 'a', 'b', 'c', 'd', 'e']
+
+// Using match() with no parameter
+const str13 = "Nothing will come of nothing."; 
+console.log(str13.match());	// returns [""] 
+/*                                     Learn  Reguer expression                              */
