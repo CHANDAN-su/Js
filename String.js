@@ -440,3 +440,26 @@ console.log(match_str12); //['A', 'B', 'C', 'D', 'E', 'a', 'b', 'c', 'd', 'e']
 const str13 = "Nothing will come of nothing."; 
 console.log(str13.match());	// returns [""] 
 /*                                     Learn  Reguer expression                              */
+
+
+
+/*******************************************String.prototype.matchAll()****************************************/
+// The matchAll() method returns an iterator of all results matching a string against a regular expression, including capturing groups.
+/*
+Syntax
+matchAll(regexp)
+*/
+
+
+const str15 = "test1test2";
+const reg2 = /t(e)(st(\d?))/g;
+const array3 = [...str15.matchAll(reg2)];
+
+console.log(array3);  
+console.log(array3[0]); //'test1', 'e', 'st1', '1', index: 0, input: 'test1test2', groups: undefined]
+console.log(array3[1]); //['test2', 'e', 'st2', '2', index: 5, input: 'test1test2', groups: undefined]
+
+
+
+
+
