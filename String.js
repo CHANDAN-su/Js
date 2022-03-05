@@ -152,7 +152,7 @@ function test(string){
   }
 };
 
-test("Chandan");
+test("Chandan");  
 test("Ravi");
 test("Fareen");
 test("Manoj");
@@ -223,7 +223,7 @@ includes(searchString, position)
 
 let str3 =  'The quick brown fox jumps over the lazy dog.';
 let word = "fox";
-console.log(`The word ${word} ${str3.includes(word) ? "is" : "is not"} the sentence`); //The word Fox is not the sentence
+console.log(`The word ${word} ${str3.includes(word) ? "is" : "is not"} the sentence`); //The word Fox is the sentence
 
 // Case-sensitivity
 let word1 = "Fox"
@@ -307,8 +307,7 @@ console.log('Index of "new" from start is ' + str8.indexOf('new',10)); //16
 
 
 
-/****************************************************String.prototype.lastIndexOf()
-*****************************/
+/****************************************************String.prototype.lastIndexOf()*****************************/
 // The lastIndexOf() method returns the index within the calling String object of the last occurrence of the specified value, 
 // searching backwards from fromIndex .
 // Returns -1 if the value is not found. Case-sensitivity
@@ -339,6 +338,66 @@ console.log('The index of the first "Brave" is ' + anyString.indexOf('Brave')); 
 console.log('The index of the first "Brave" is ' + anyString.lastIndexOf('Brave'));  //The index of the first "Brave" is 7
 
 
+/*************************************************************String.prototype.localeCompare()*************************************/
+// The localeCompare() method returns a number indicating whether a reference string comes before, or after, or is the same as the given string in sort order.
+/*
+Syntax
+localeCompare(compareString) 
+localeCompare(compareString, locales) 
+localeCompare(compareString, locales, options)
+*/
+
+const a = 'reserve';
+const  b =  'RESERVE';
+
+console.log(a.localeCompare(b));  //-1
+console.log(b.localeCompare(a));  //1
+
+console.log(a.localeCompare(b, "en",{sensitivity: "base" }));  //0
+
+const lo = "a";
+const lo1 = "B";;
+console.log(lo.localeCompare(lo1));  //-1
+console.log(lo1.localeCompare(lo));  //1
+
+console.log(lo.localeCompare(lo1, "en",{sensitivity: "base" }));  //-1
+
+const lo2 = "a";
+const lo3 = "B";;
+console.log(lo2.localeCompare(lo3));  //-1
+console.log(lo3.localeCompare(lo2));  //1
+
+console.log(lo3.localeCompare(lo2, "en",{sensitivity: "base" }));  //1
+
+// "a" and "a" are equivalent yielding a neutral value of zero
+console.log("a".localeCompare("a"));  //0
+
+// The letter "a" is before "c" yielding a negative value
+console.log('a'.localeCompare('c')); // -2 or -1 (or some other negative value)
+
+// Alphabetically the word "check" comes after "against" yielding a posit
+console.log('check'.localeCompare('against')); // 2 or 1 (or some other positive value
+
+// Sort an array
+const array = ['reserve', 'Premier', 'Cliche', 'communique', 'cafe', 'Adieu'];
+
+array.sort((a,b) => a.localeCompare(b,"en",{ignorePunctuation: true}));
+console.log(array);  //['Adieu', 'cafe', 'Cliche', 'communique', 'Premier', 'reserve']
+
+console.log('ä'.localeCompare('z', 'de')); // a negative value: in German 
+console.log('ä'.localeCompare('z', 'sv')); // a positive value: in Swedis
+
+// Numeric sorting
+// by default, "2" > "10"
+console.log("2".localeCompare("12")); // 1
+
+// numeric using options:
+console.log("2".localeCompare("10", undefined, {numeric: true})); // -1
+console.log("2".localeCompare("10", "en", {numeric: false})); // 1
+
+// numeric using locales tag: 
+console.log("2".localeCompare("10", "en")); // 1
+
 /*************************************************************String.prototype.match()******************************************* */
 // The match() method retrieves the result of matching a string against a regular expression.
 /*
@@ -349,4 +408,4 @@ const paragraph2 = 'The quick brown fox jumps over the A lazy dog. If the dog ba
 
 const regex = /[A-Z]/g;
 const found = paragraph2.match(regex);
-console.log(found);  //['T', 'A', 'I']
+// console.log(found);  //['T', 'A', 'I']
