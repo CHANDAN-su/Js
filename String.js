@@ -459,6 +459,59 @@ console.log(array3);
 console.log(array3[0]); //'test1', 'e', 'st1', '1', index: 0, input: 'test1test2', groups: undefined]
 console.log(array3[1]); //['test2', 'e', 'st2', '2', index: 5, input: 'test1test2', groups: undefined]
 
+/**********************************************************String.prototype.padEnd()***********************************/
+// The padEnd() method pads the current string with a given string (repeated, if needed) so that the resulting string reaches a given length.
+/*
+Syntax
+padEnd(targetLength) 
+padEnd(targetLength, padString)
+*/
+
+const str16 = "Breaded Mushrooms";
+
+console.log(str16.padEnd(20, '.')); //Breaded Mushrooms...
+console.log(str16.padEnd(25, '.'));  //Breaded Mushrooms........
+
+const str17 = "200";
+console.log(str17.padEnd(15));  //'200            '
+console.log(str17.padEnd(7));  //'200    '
+
+// 'abc'.padEnd(10); // "abc " 
+// 'abc'.padEnd(10, "foo"); // "abcfoofoof" 
+// 'abc'.padEnd(6, "123456"); // "abc123"
+// 'abc'.padEnd(1);	// "abc"
+
+
+/**************************************String.prototype.padStart()************************************/
+// The padStart() method pads the current string with another string (multiple times, if needed) until the resulting string reaches the given length. 
+/*
+Syntax
+padStart(targetLength) 
+padStart(targetLength, padString)
+*/
+
+const str18 = "5";
+console.log(str18.padStart(6,"0")); //000005
+
+
+const Phonenumber = "7073251686";
+const  last4Digit = Phonenumber.slice(-4);
+const MaskedNumber = last4Digit.padStart(10,"*");  //******1686
+console.log(MaskedNumber);
+
+// 'abc'.padStart(10);	// "	abc" 
+// 'abc'.padStart(10, "foo"); // "foofoofabc" 
+// 'abc'.padStart(6,"123465"); // "123abc" 
+// 'abc'.padStart(8, "0");	// "00000abc"
+// 'abc'.padStart(1);
+
+function LeftFillNum(num,targetLength){
+  return num.toString().padStart(targetLength,"*");
+};
+
+console.log(LeftFillNum(251686,10));  //****251686
+
+
 
 
 
