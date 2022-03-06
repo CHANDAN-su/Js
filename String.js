@@ -513,6 +513,78 @@ console.log(LeftFillNum(251686,10));  //****251686
 
 
 
+/*****************************************************String.prototype.repeat()*************************************/
+// The repeat() method constructs and returns a new string which contains the specified number of copies of the string on which it was called, concatenated together.
+/*
+Syntax
+repeat(count)
+*/
+
+const chorus = 'Because I\'m happy. '
+
+console.log(`Chorus lyrics for "Happy": ${chorus.repeat(5)}`); //Chorus lyrics for "Happy": Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy.
+
+// 'abc'.repeat(-1)	// RangeError 
+// 'abc'.repeat(0)	// ''
+// 'abc'.repeat(1)	// 'abc' 
+// 'abc'.repeat(2)	// 'abcabc'
+// 'abc'.repeat(3.5)	// 'abcabcabc' (count will be converted to integer) 
+// 'abc'.repeat(1/0)	// RangeError
+
+
+
+
+/**********************************************************String.prototype.replace()**********************************************/
+// The replace() method returns a new string with some or all matches of a pattern replaced by a replacement 
+/*
+Syntax
+replace(regexp, newSubstr) 
+replace(regexp, replacerFunction)
+replace(substr, newSubstr) 
+replace(substr, replacerFunction)
+*/
+
+const p = "The quick brown fox jumps over the lazy dog. If the dog reacted, was it really lazy?";
+console.log(p.replace("dog" ,"Monkey"));  //The quick brown fox jumps over the lazy Monkey. If the dog reacted, was it really lazy?
+
+
+const reg3 = /dog/g;
+console.log(p.replace(reg3,"Monkey"));   //The quick brown fox jumps over the lazy Monkey. If the Monkey reacted, was it really lazy?
+
+
+// Defining the regular expression in replace()
+let str19 = "Twas the night before Xmas...";
+let newstr = str19.replace(/xmas/i , "Chandan");
+console.log(newstr);  //Twas the night before Chandan...
+
+// Using global and ignore with replace()
+let str20 = "Apples are round, and apples are juicy.";
+let reg4 = /apple/gi;
+
+let newstr1 = str20.replace(reg4,"Orange");
+console.log(newstr1);   //Oranges are round, and Oranges are juicy.
+
+// Switching words in a string
+let re = /(\w+)\s(\w+)/;
+let str21 = 'John Smith';
+let newstr3 = str21.replace(re, '$2, $1'); 
+console.log(newstr3); // Smith, John  
+
+
+/********************************************************************String.prototype.replaceAll()******************************************/
+const p1 = "The quick brown fox jumps over the lazy dog. If the dog reacted, was it really lazy?";
+console.log(p1.replaceAll("dog","Monkey"));  //The quick brown fox jumps over the lazy Monkey. If the Monkey reacted, was it really lazy?
+
+let reg5 = /Dog/ig;
+console.log(p1.replaceAll(reg5,"Lion")); //The quick brown fox jumps over the lazy Lion. If the Lion reacted, was it really lazy?
+
+
+console.log('aabbcc'.replaceAll('b','.'));  //aa..cc
+
+console.log('aabbcc'.replaceAll(/b/g,'.'));  //aa..cc
+
+
+
 
 
 
