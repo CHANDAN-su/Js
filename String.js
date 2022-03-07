@@ -608,3 +608,38 @@ let reg8 = /[.]/g;
 
 console.log(str23.search(reg7));  //4
 console.log(str23.search(reg8));  //-1
+
+
+/******************************************String.prototype.slice()************************************/
+// The slice() method extracts a section of a string and returns it as a new string, without modifying the original string.
+/*
+Syntax
+slice(beginIndex)
+slice(beginIndex, endIndex)
+*/
+
+const str24 = "The quick brown fox jumps over the lazy dog.";
+
+console.log(str24.slice(31));  //the lazy dog.
+
+console.log(str24.slice(4,19)); //quick brown fox
+
+console.log(str24.slice(-4));  //dog.
+
+console.log(str24.slice(-9,-4));  //lazy 
+
+console.log(str24);  //The quick brown fox jumps over the lazy dog.
+
+let str25 = 'The morning is upon us.' 
+console.log(str25.slice(-3)); // returns 'us.' 
+console.log(str25.slice(-3, -1)); // returns 'us'
+console.log(str25.slice(0, -1));  // returns 'The morning is upon us'
+
+// This example counts backwards from the end of the string by 11 to find the start index and forwards from the start of the string by 16 to find the end index.
+console.log(str25.slice(-11, 16)) // => "is u"
+
+// Here it counts forwards from the start by 11 to find the start index and backwards from the end by 7 to find the end index.
+console.log(str25.slice(11, -7)) // => " is u"
+
+// These arguments count backwards from the end by 5 to find the start index and backwards from the end by 1 to find the end index.
+console.log(str25.slice(-5, -1)) // => "n us"
