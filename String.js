@@ -643,3 +643,60 @@ console.log(str25.slice(11, -7)) // => " is u"
 
 // These arguments count backwards from the end by 5 to find the start index and backwards from the end by 1 to find the end index.
 console.log(str25.slice(-5, -1)) // => "n us"
+
+
+/*****************************************String.prototype.split()*************************************/
+// The split() method divides a String into an ordered list of substrings, puts these substrings into an array, and returns the array.
+/*
+Syntax
+split() 
+split(separator) 
+split(separator, limit)
+*/
+
+
+const str26 = "The quick brown fox jumps over the lazy dog.";
+
+const word3 = str26.split(" ");
+console.log(word3); //['The',   'quick','brown', 'fox','jumps', 'over','the',   'lazy','dog.']
+console.log(word3[3]);  //fox
+
+const chars = str26.split('');
+console.log(chars);  
+/*
+[
+  'T', 'h', 'e', ' ', 'q', 'u', 'i',
+  'c', 'k', ' ', 'b', 'r', 'o', 'w',
+  'n', ' ', 'f', 'o', 'x', ' ', 'j',
+  'u', 'm', 'p', 's', ' ', 'o', 'v',
+  'e', 'r', ' ', 't', 'h', 'e', ' ',
+  'l', 'a', 'z', 'y', ' ', 'd', 'o',
+  'g', '.'
+]
+*/
+console.log(chars[4]);  //q
+
+const strCopy = str5.split();
+console.log(strCopy); //[ 'The quick brown fox jumps over the lazy dog.' ]
+
+
+function splitString(stringToSplit, separator){
+  
+  const arrayOfStrings = stringToSplit.split(separator);
+  
+  console.log('The original string is: ', stringToSplit);
+  console.log('The separator is: ', separator);
+  
+  console.log(arrayOfStrings);
+};
+
+splitString("The,morning,is,upon,us",",");  //[ 'The', 'morning', 'is', 'upon', 'us' ]
+splitString("CHANDANTHKUR",""); 
+/*
+[
+  'C', 'H', 'A', 'N',
+  'D', 'A', 'N', 'T',
+  'H', 'K', 'U', 'R'
+]
+*/
+
