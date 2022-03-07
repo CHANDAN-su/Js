@@ -790,3 +790,16 @@ const str31 = "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.";
 console.log(str31.toLowerCase());  //the quick brown fox jumps over the lazy dog.
 
 console.log('ALPHABET'.toLowerCase());  //alphabet
+
+
+/******************************************************************************String.prototype.toUpperCase()*************************/
+// The toUpperCase() method returns the calling string value converted to uppercase
+/*
+Syntax
+toUpperCase()
+*/
+
+const str32 = "the quick brown fox jumps over the lazy dog.";
+console.log(str32.toUpperCase());  //THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.
+
+console.log('alphabet'.toUpperCase()); // 'ALPHABET'
