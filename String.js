@@ -731,3 +731,52 @@ sub()
 */
 console.log('superTex'.sup());  //<sup>superTex</sup>
 
+/***********************************************************************String.prototype.substring()*************************************/
+// The substring() method returns the part of the  string between the start and end indexes, or to the end of the string.
+/*
+Syntax
+substring(indexStart) 
+substring(indexStart, indexEnd)
+*/
+// 
+const str29 = "Mozilla";
+
+console.log(str29.substring(3));  //illa
+console.log(str29.substring(1,3));  //oz
+
+let anyString1 = 'Mozilla'
+
+// Displays 'M' console.log(anyString.substring(0, 1))
+console.log(anyString1.substring(1, 0)); //M
+
+// Displays 'Mozill' 
+console.log(anyString1.substring(0, 6)); //Mozill
+
+// Displays 'lla' console.log(anyString.substring(4)) console.log(anyString.substring(4, 7))
+console.log(anyString1.substring(7, 4));  //lla
+
+// Displays 'Mozilla' console.log(anyString.substring(0, 7))
+console.log(anyString1.substring(0, 10));  //Mozilla
+
+//Using substring() with length property
+let str30 = "Mozilla";
+let ans = str30.substring(str30.length-3);
+console.log(ans);  //lla
+
+// The difference between substring() and substr()
+let text = 'Mozilla' 
+console.log(text.substring(2,5)) // => "zil" 
+console.log(text.substr(2,3))	// => "zil"
+
+// Differences between substring() and slice()
+let text1 = "Mozilla";
+console.log(text1.substring(5,2));  //zil
+console.log(text1.slice(5,2)); //" "
+
+console.log(text.substring(-5, 2)) // => "Mo" 
+console.log(text.substring(-5, -2)) // => ""
+
+// Replacing a substring  within a  string
+
+
+
