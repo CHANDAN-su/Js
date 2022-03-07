@@ -700,3 +700,27 @@ splitString("CHANDANTHKUR","");
 ]
 */
 
+
+/********************************************String.prototype.startsWith()************************/
+// The startsWith() method determines whether a string begins with the characters of a specified string, returning true or false as appropriate.
+/*
+Syntax
+startsWith(searchString) 
+startsWith(searchString, position)
+*/
+
+const str27 = 'Saturday night plans';
+
+console.log(str27.startsWith("Sat")); //true
+console.log(str27.startsWith("sat")); //false (case sensitive)
+
+console.log(str27.startsWith("night",9)); //true
+
+//startswith
+let str28 = 'To be, or not to be, that is the question.'
+
+console.log(str28.startsWith('To be'))	// true 
+console.log(str28.startsWith('not to be'))	// false
+console.log(str28.startsWith('not to be', 10)) // true
+
+
