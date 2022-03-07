@@ -877,3 +877,16 @@ console.log(str34.trimEnd().length);  //30
 
 console.log(str34.trimRight());  //"                   Hello World"
 console.log(str34.trimRight().length);  //30
+
+
+/**************************************************************String.prototype.valueOf()*******************************************/
+// The valueOf() method returns the primitive value of a String object.
+/*
+Syntax
+valueOf()
+*/
+
+const newarr = new String("Foo");
+
+console.log(typeof newarr , newarr);  //object String {'Foo'}
+console.log(typeof newarr.valueOf() ,newarr);  //string String {'Foo'}
