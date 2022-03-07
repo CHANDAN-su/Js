@@ -855,3 +855,25 @@ console.log(str33.trimStart().length);  //21
 
 console.log(str33.trimLeft());  //"Hello World       "
 console.log(str33.trimLeft().length); //21
+
+
+/*********************************************************************String.prototype.trimEnd()****************************/
+// The trimEnd() method removes whitespace from the end of a string. 
+// trimRight() is an alias of this method.
+/*
+Syntax
+trimEnd() 
+trimRight()
+*/
+
+
+const str34 = "                   Hello World                       ";
+
+console.log(str34);//"                   Hello World             "
+console.log(str34.length);  //53
+
+console.log(str34.trimEnd()); //"                   Hello World"
+console.log(str34.trimEnd().length);  //30
+
+console.log(str34.trimRight());  //"                   Hello World"
+console.log(str34.trimRight().length);  //30
