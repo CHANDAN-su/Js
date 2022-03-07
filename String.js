@@ -723,4 +723,11 @@ console.log(str28.startsWith('To be'))	// true
 console.log(str28.startsWith('not to be'))	// false
 console.log(str28.startsWith('not to be', 10)) // true
 
+/*******************************************************String.prototype.sub()***************************************/
+// The sub() method embeds a string in a <sub> element: " <sub>str</sub> ".
+/*
+Syntax
+sub()
+*/
+console.log('superTex'.sup());  //<sup>superTex</sup>
 
