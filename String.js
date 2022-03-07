@@ -584,7 +584,27 @@ console.log('aabbcc'.replaceAll('b','.'));  //aa..cc
 console.log('aabbcc'.replaceAll(/b/g,'.'));  //aa..cc
 
 
+/****************************************String.prototype.search()*******************************/
+// The search() method executes a search for a match between a regular expression and this String object.
+/*
+Syntax
+search(regexp)
+*/
 
 
+const str22 = 'The quick brown fox jumps over the lazy.';
+const reg6 = /[^\w\s]/g;
+
+console.log(str22.search(reg6));  //39
+console.log(str22.search("fox")); //16
+
+const str1 = 'The quick brown fox jumps over the lazy';
+console.log(str1.search(reg));  //-1
 
 
+let str23 = "hey JudE"
+let reg7 = /[A-Z]/g;
+let reg8 = /[.]/g;
+
+console.log(str23.search(reg7));  //4
+console.log(str23.search(reg8));  //-1
