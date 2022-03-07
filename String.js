@@ -822,3 +822,17 @@ console.log(stringObj.toString());
 
 var x2= new String('Hello world');
 console.log(x.toString()); // logs 'Hello world'
+
+
+/********************************************************************************String.prototype.trim()***********************************/
+// The trim() method removes whitespace from both ends of a string and returns a new string, without modifying the original string.
+/*
+Syntax
+trim()
+*/
+
+const greeting = "    Hello World      ";
+console.log(greeting);  //"    Hello   World"
+console.log(greeting.trim());  //"Hello World"
+
+
