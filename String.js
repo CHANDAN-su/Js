@@ -803,3 +803,22 @@ const str32 = "the quick brown fox jumps over the lazy dog.";
 console.log(str32.toUpperCase());  //THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.
 
 console.log('alphabet'.toUpperCase()); // 'ALPHABET'
+
+
+
+/*******************************************************************************String.prototype.toString()**************************/
+// The toString() method returns a string representing the specified object.
+/*
+Syntax
+toString()
+*/
+const stringObj = new String('foo');
+
+console.log(stringObj);
+// expected output: String { "foo" }
+
+console.log(stringObj.toString());
+// expected output: "foo"
+
+var x2= new String('Hello world');
+console.log(x.toString()); // logs 'Hello world'
