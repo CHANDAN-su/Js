@@ -779,4 +779,14 @@ console.log(text.substring(-5, -2)) // => ""
 // Replacing a substring  within a  string
 
 
+/***************************************************************************String.prototype.toLowerCase()***********************************/
+// The toLowerCase() method returns the calling string value converted to lower case.
+/*
+Syntax
+toLowerCase()
+*/
 
+const str31 = "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.";
+console.log(str31.toLowerCase());  //the quick brown fox jumps over the lazy dog.
+
+console.log('ALPHABET'.toLowerCase());  //alphabet
