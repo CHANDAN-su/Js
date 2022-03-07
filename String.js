@@ -836,3 +836,22 @@ console.log(greeting);  //"    Hello   World"
 console.log(greeting.trim());  //"Hello World"
 
 
+/********************************************************************String.prototype.trimStart()***********************************8*/
+// The trimStart() method removes whitespace from the beginning of a string.
+// trimLeft() is an alias of this method.
+/*
+Syntax
+trimStart() 
+trimLeft()
+*/
+
+const str33 = "      Hello World          ";
+
+console.log(str33);  //"      Hello World          "
+console.log(str33.length);   //27
+
+console.log(str33.trimStart());  //"Hello World         "
+console.log(str33.trimStart().length);  //21
+
+console.log(str33.trimLeft());  //"Hello World       "
+console.log(str33.trimLeft().length); //21
