@@ -64,3 +64,41 @@ console.log(firstadd);  //6
 console.log(Fruits);  //['Strawberry', 'Apple', 'Banana', 'Kiwi', 'Mango', 'Orange']
 
 
+
+// Find the index of an item in the Array
+var Fruits = ["Apple","Banana","Kiwi","Mango","Orange"];
+
+let indexof = Fruits.indexOf("Apple");
+console.log(indexof);  //0
+console.log(Fruits.indexOf("Kiwi"));  //2
+
+
+// Remove an item by index position
+var Fruits = ["Apple","Banana","Kiwi","Mango","Orange"];
+
+let removedItem = Fruits.splice(2,1);
+console.log(Fruits);  //['Apple', 'Banana', 'Mango', 'Orange']
+console.log(removedItem);  //['Kiwi']
+
+
+
+let years = [1950, 1960, 1970, 1980, 1990, 2000, 2010]
+// console.log(years.0)	// a syntax error 
+console.log(years[0]) // works properly  1950
+
+console.log(years['2'] != years['02'])  //true
+console.log(years['2'] === years['02'])  //false
+
+
+var Fruits = ["Apple","Banana","Kiwi","Mango","Orange"];
+
+Fruits.length = 10;
+console.log(Fruits[8]);  //undefined
+
+
+// Copying an array
+let array1 = [1,2,3]
+let array1Reference = array1; 
+array1[1] = 9; 
+console.log(array1Reference);  //[1, 9, 3]
+
