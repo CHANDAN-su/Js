@@ -102,3 +102,119 @@ let array1Reference = array1;
 array1[1] = 9; 
 console.log(array1Reference);  //[1, 9, 3]
 
+
+/****************************************************Array.from()********************************************************/
+// The Array.from() static method creates a new, shallow-copied Array instance from an array-like or iterable object.
+
+
+// Syntax
+// Arrow function
+   // Array.from(arrayLike, (element) => { /* ... */ } ) -->
+   // Array.from(arrayLike, (element, index) => { /* ... */ } )  -->
+
+// Mapping function
+   // Array.from(arrayLike, mapFn)  -->
+   // Array.from(arrayLike, mapFn, thisArg)
+
+// Inline mapping function
+   // Array.from(arrayLike, function mapFn(element) { /* ... */ })  -->
+   // Array.from(arrayLike, function mapFn(element, index) { /* ... */ }) --> 
+  // Array.from(arrayLike, function mapFn(element) { /* ... */ }, thisArg)
+ // Array.from(arrayLike, function mapFn(element, index) { /* ... */ }, thisArg)
+
+
+
+const str = "12345678";
+
+const res = Array.from(str);
+
+console.log(str); //12345678
+console.log(res); // ['1', '2', '3', '4', '5', '6', '7', '8']
+
+console.log(Array.from("foo"));  //['f', 'o', 'o']
+
+
+//Long Method
+  // Array.from(arrayLike, mapFn)
+const str1 = "123456789";
+const res1 = Array.from(str1,(mapFn));
+
+function mapFn(x){
+    return Number(x);
+};
+console.log(res1);  //[1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+//Function
+ // Array.from(arrayLike, function mapFn(element) { /* ... */ })
+const res2  = Array.from(str1, function Mapf(x){
+    return Number(x);
+});
+console.log(res2); //[1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+// Array.from(arrayLike, function mapFn(element, index) { /* ... */ })
+const range1 = (start, stop, step) => 
+Array.from({ length: (stop - start) / step + 1}, function (_, i){
+    return start + (i * step)
+});
+
+console.log(range1(0,4,1));  //[0, 1, 2, 3, 4]
+console.log(range1(1, 10, 2));  //[1, 3, 5, 7, 9]
+console.log(range1('A'.charCodeAt(0), 'Z'.charCodeAt(0), 1).map(x => String.fromCharCode(x))); //['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+
+
+
+//Array Method
+ // Array.from(arrayLike, (element) => { /* ... */ } )
+const res3 = Array.from(str1, x => Number(x));
+console.log(res3);  //[1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+console.log(Array.from([1,2,3], x => x*x));  //[1, 4, 9]
+console.log(Array.from([1,2,3], x => x+x)); // [2, 4, 6]
+
+
+// Sequence generator (range)
+// Array.from(arrayLike, (element, index) => { /* ... */ } )
+const range = (start, stop, step) => 
+Array.from({ length: (stop - start) / step + 1}, (_, i) => 
+start + (i * step));
+
+console.log(range(0,4,1));  //[0, 1, 2, 3, 4]
+console.log(range(1, 10, 2));  //[1, 3, 5, 7, 9]
+console.log(range('A'.charCodeAt(0), 'Z'.charCodeAt(0), 1).map(x => String.fromCharCode(x))); //['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+
+
+// Array from a Set
+const set = new Set(['foo', 'bar', 'baz', 'foo']);
+console.log(Array.from(set));  //['foo', 'bar', 'baz']
+
+// Array from a Map
+const map = new Map([[1, 2], [2, 4], [4, 8]]); 
+console.log(Array.from(map)); //[[1, 2], [2, 4], [4, 8]]
+
+const mapper = new Map([['1', 'a'], ['2', 'b']]); 
+console.log(Array.from(mapper.values())); //['a', 'b']
+
+console.log(Array.from(mapper.keys()));  // ['1', '2'];
+
+
+// Array from an Array-like object (arguments)
+function f(name){
+    return Array.from(name)
+};
+let obj = f("Chandan");
+console.log(obj);  //['C', 'h', 'a', 'n', 'd', 'a', 'n']
+
+
+// 1. Quick introduction
+const somenumber = {
+    "0":10,
+    "1": 20,
+    length:2
+};
+
+console.log(Array.from(somenumber,value => value * 2));  //[20, 40]
+
+// 2. Transform array-like into an array
+// https://dmitripavlutin.com/javascript-array-from-applications/  => Lear this website
+
