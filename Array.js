@@ -216,5 +216,49 @@ const somenumber = {
 console.log(Array.from(somenumber,value => value * 2));  //[20, 40]
 
 // 2. Transform array-like into an array
-// https://dmitripavlutin.com/javascript-array-from-applications/  => Lear this website
+// The first useful application of Array.from() is indicated directly from its definition: transform an array-like object into an array.
+
+function SumArgument(){
+    return Array.from(arguments).reduce((sum, num) => sum + num);
+};
+
+console.log(SumArgument(1,2,3));  //6
+
+const map1 = new Map();
+map1.set("one","1");
+map1.set("two","2");
+console.log(Array.from(map1));
+
+
+// const map1 = new Map();
+// map.set('one', 1)
+// map.set('two', 2);
+// Array.from(map1); // => [['one', 1], ['two', 2]]
+
+
+// 3. Clone an array
+const numbers = [3,6,9];
+const numbersCopy = Array.from(numbers);
+
+console.log(numbers == numbersCopy);  //false
+
+function recursiveClone(val){
+    return Array.isArray(val)? Array.from(val,recursiveClone):val;
+};
+
+const numbers1 = [0,1,2,3];
+const numbersClone = recursiveClone(numbers1);
+console.log(numbersClone); //[0,1,2,3]
+
+const numbers2 = 12345;
+const numbersClone1 = recursiveClone(numbers2);
+console.log(numbersClone1);   //12345
+
+
+// 4. Unique items of an array
+function unique(array){
+    return Array.from(new Set(array));
+};
+
+console.log(unique([0,1,2,3,4,3,3,3,4,4,4,4,4])); //[0, 1, 2, 3, 4]
 
