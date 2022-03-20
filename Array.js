@@ -298,3 +298,53 @@ console.log(Array.isArray(false));    //false
 console.log(Array.isArray(new Uint8Array(32)));   //false
 console.log(Array.isArray({	proto	: Array.prototype }));   //false
 
+
+
+/****************************************************Array.prototype.at()*******************************************/
+// The at() method takes an integer value and returns the item at that index, allowing for positive and negative integers. 
+// Negative integers count back from the last item in the array.
+/*
+Syntax
+at(index)
+*/
+
+const array = [1,34,53,56,35,43,90];
+const index = 2;
+
+console.log(`Using an index of ${index} the item returned is ${array.at(index)} `);  //Using an index of 2 the item returned is 53
+
+const index1 = -2;
+
+console.log(`Using an index of ${index1} the item returned is ${array.at(index1)} `);  //Using an index of -2 the item returned is 43
+
+// Our array with items
+const cart = ['apple', 'banana', 'pear'];
+
+// A function which returns the last item of a given array
+function returnLast(arr) {
+  return arr.at(-1);
+}
+
+// Get the last item of our array 'cart'
+const item1 = returnLast(cart);
+console.log(item1); // Logs: 'pear'
+
+// Add an item to our 'cart' array
+cart.push('orange');
+const item2 = returnLast(cart);
+console.log(item2); // Logs: 'orange'
+
+// Comparing methods
+const color = ["red","green","yello"];
+
+// Using length property
+const lengthway = color[color.length-2];
+console.log(lengthway); //green
+
+// Using slice() method. Note an array is returned
+const sliceway = color.slice(-2,-1);
+console.log(sliceway);  //[green]
+
+// Using at() method
+const atway = color.at(-2);
+console.log(atway); //green
