@@ -262,3 +262,39 @@ function unique(array){
 
 console.log(unique([0,1,2,3,4,3,3,3,4,4,4,4,4])); //[0, 1, 2, 3, 4]
 
+
+
+/*********************************************Array.isArray()******************************************************/
+// The Array.isArray() method determines whether the passed value is an Array .
+/*
+Syntax
+Array.isArray(value)
+*/
+
+console.log(Array.isArray([1,2,3,4]));  //true
+console.log(Array.isArray({foo:123}));  //false
+console.log(Array.isArray("foobar"));  //false
+console.log(Array.isArray(undefined));  //false
+
+
+// all following calls return true Array.isArray([]);
+console.log(Array.isArray([1])); //true
+console.log(Array.isArray(new Array()));  //true
+console.log(Array.isArray(new Array('a', 'b', 'c', 'd')));  //true
+console.log(Array.isArray(new Array(3)));  //true
+// Little known fact: Array.prototype itself is an array: 
+console.log(Array.isArray(Array.prototype));  //true
+
+
+// all following calls return false 
+console.log(Array.isArray());     //false
+console.log(Array.isArray({}));    //false
+console.log(Array.isArray(null));    //false
+console.log(Array.isArray(undefined));    //false
+console.log(Array.isArray(17));   //false
+console.log(Array.isArray('Array'));   //false
+console.log(Array.isArray(true));   //false
+console.log(Array.isArray(false));    //false
+console.log(Array.isArray(new Uint8Array(32)));   //false
+console.log(Array.isArray({	proto	: Array.prototype }));   //false
+
