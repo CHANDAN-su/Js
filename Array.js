@@ -394,3 +394,34 @@ console.log(number1);  //[[1], 2, [3]]
 // modify the first element of num5 num5[0].push(4);
 num5[0].push(4);
 console.log(number1);  //[[1, 4], 2, [3]]
+
+
+/********************************************Array.copyWithin()******************************************/
+// The copyWithin() method shallow copies part of an array to another location in the same array and returns it without modifying its length
+/*
+Syntax
+copyWithin(target) 
+copyWithin(target, start) 
+copyWithin(target, start, end)
+*/
+
+const array2 = ["a","b","c","d","e"];
+
+// copy to index 0 the element at index 3
+console.log(array2.copyWithin(0,3,4,)); //['d', 'b', 'c', 'd', 'e']
+
+// copy to index 1 all elements from index 3 to the end
+console.log(array2.copyWithin(1,3));    //['d', 'd', 'e', 'd', 'e']
+
+console.log([1,2,3,4,5].copyWithin(-2));  //[1, 2, 3, 1, 2]
+
+console.log([1,2,3,4,5].copyWithin(-2,-3,-1));  //[1, 2, 3, 3, 4]
+
+console.log([].copyWithin.call({length: 5, 3: 1}, 0, 3)); // {0: 1, 3: 1, length: 5}
+
+var i32a = new Int32Array([1, 2, 3, 4, 5])
+console.log(i32a.copyWithin(0, 2)); // Int32Array [3, 4, 5, 4, 5]
+
+
+/******************************************************************Array.entries()********************************/
+// The entries() method returns a new Array Iterator object that contains the key/value pairs for each index in the array.
