@@ -230,11 +230,6 @@ map1.set("two","2");
 console.log(Array.from(map1));
 
 
-// const map1 = new Map();
-// map.set('one', 1)
-// map.set('two', 2);
-// Array.from(map1); // => [['one', 1], ['two', 2]]
-
 
 // 3. Clone an array
 const numbers = [3,6,9];
@@ -348,3 +343,54 @@ console.log(sliceway);  //[green]
 // Using at() method
 const atway = color.at(-2);
 console.log(atway); //green
+
+
+/*******************************************Array.concat()***************************************************/
+// The concat() method is used to merge two or more arrays.
+// This method does not change the existing arrays, but instead returns a new array.
+/*
+Syntax
+concat() 
+concat(value0) 
+concat(value0, value1)
+concat(value0, value1, ... , valueN)
+*/
+
+
+const arry2 = [1,2,3,4,5];
+const arry3 = ["a","b","c","d"];
+
+const arry4 = arry2.concat(arry3);
+console.log(arry4);  //[1, 2, 3, 4, 5, 'a', 'b', 'c', 'd']
+
+// Concatenating two arrays
+const number = [1,2,3];
+const letters = ["a","b","c"];
+
+const alphaNumeric = letters.concat(number);
+console.log(alphaNumeric);   //['a', 'b', 'c', 1, 2, 3]
+
+// Concatenating three arrays
+const num1 = [1,2,3];
+const num2 = [4,5,6];
+const num3 = [7,8,9];
+
+const num4 = num1.concat(num2,num3);
+console.log(num4);  //[1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+// Concatenating values to an array
+const letters1 = ["a","b","c"];
+
+const alphaNumeric1 = letters.concat(1,[2,3]);
+console.log(alphaNumeric1);  //['a', 'b', 'c', 1, 2, 3]
+
+// Concatenating nested arrays
+const num5 = [[1]];
+const num6 = [2,[3]];
+
+const number1 = num5.concat(num6);
+console.log(number1);  //[[1], 2, [3]]
+
+// modify the first element of num5 num5[0].push(4);
+num5[0].push(4);
+console.log(number1);  //[[1, 4], 2, [3]]
