@@ -465,3 +465,31 @@ for (const a of iterator1){
 [2, 'c']
 */
 
+/*********************************************************************Array.every()*************************************/
+// The every() method tests whether all elements in the array pass the test implemented by the provided function. 
+// It returns a Boolean value.
+
+
+// Syntax
+
+// // Arrow function
+// every((element) => { /* ... */ } )
+// every((element, index) => { /* ... */ } ) 
+// every((element, index, array) => { /* ... */ } )
+
+// // Callback function 
+// every(callbackFn) 
+// every(callbackFn, thisArg)
+
+// // Inline callback function 
+// every(function(element) { /* ... */ }) 
+// every(function(element, index) { /* ... */ }) 
+// every(function(element, index, array){ /* ... */ })
+// every(function(element, index, array) { /* ... */ }, thisArg)
+
+
+const array4 = [2,4,6,8,10];
+
+let test1 = (currentvalue) => currentvalue >= 10;
+
+console.log(array4.every(test1));  //false
