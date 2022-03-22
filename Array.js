@@ -425,3 +425,43 @@ console.log(i32a.copyWithin(0, 2)); // Int32Array [3, 4, 5, 4, 5]
 
 /******************************************************************Array.entries()********************************/
 // The entries() method returns a new Array Iterator object that contains the key/value pairs for each index in the array.
+/*
+Syntax
+entries()
+*/
+
+const array3 = ["a","b","c"];
+
+const iterator1 = array3.entries();
+
+// console.log(iterator1);  //Array Iterator {}
+
+// console.log(iterator1.value);  //undefined
+// console.log(iterator1.next().value);  //[0, 'a']
+// console.log(iterator1.next().value);  // [1, 'b']
+// console.log(iterator1.next().value); // [2, 'c']
+// console.log(iterator1.next().value);  //undefined
+
+
+
+// Iterating with index and element
+// for (const [index, value] of iterator1){
+//     console.log(index, value);
+// };  
+/*
+0 'a'
+1 'b'
+2 'c'
+*/
+
+
+//Using a for…of loop
+for (const a of iterator1){
+    console.log(a);
+};  
+/*
+[0, 'a']
+[1, 'b']
+[2, 'c']
+*/
+
