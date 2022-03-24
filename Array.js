@@ -492,4 +492,83 @@ const array4 = [2,4,6,8,10];
 
 let test1 = (currentvalue) => currentvalue >= 10;
 
+let test2 = function (currentvalue1){
+    return currentvalue1>=10;
+}
+
 console.log(array4.every(test1));  //false
+console.log(array4.every(test2));  //false
+
+
+function isBigEmough(element,index,array){
+    return element>= 10;
+};
+
+console.log([12, 5, 2, 130, 44].every(isBigEmough));   //false
+console.log([12, 54, 18, 130, 44].every(isBigEmough)); //true
+
+// Check if one array is a subset of another array
+
+// every(function(element) { /* ... */ }) 
+
+function issubset(array1,array2){
+    return array2.every(function (element){
+        return array1.includes(element);
+    });
+};
+
+console.log(issubset([1,2,3,4,5,6,7],[5,6,7]));  //true
+console.log(issubset([1,2,3,4,5,6,7],[5,6,8]));  //false
+
+
+// Using arrow functions
+console.log([23,4,67,54,3].every(x => x >= 10));  //false
+console.log([12,34,56,78,98,40].every(x => x >= 10));  //true
+
+// Affecting Initial Array (modifying, appending, and deleting)
+
+// Modifying items
+
+let arr = [1,2,3,4,5];
+
+arr.every( (elem, index, arr) => { 
+    arr[index+1] -= 1
+    console.log(`[${arr}] [${index}] -> [${elem}]`);
+    return elem < 2
+});
+/*
+[1,1,3,4,5] [0] -> [1]
+[1,1,2,4,5] [1] -> [1]
+[1,1,2,3,5] [2] -> [2]
+*/
+
+//// Appending items
+
+arr = [1, 2, 3];
+arr.every( (elem, index, arr) => { 
+    arr.push('new') 
+console.log(`[${arr}][${index}] -> ${elem}`)
+return elem < 4
+})
+/*
+[1,2,3,new][0] -> 1
+[1,2,3,new,new][1] -> 2
+[1,2,3,new,new,new][2] -> 3
+*/
+
+// Deleting items
+arr = [1, 2, 3, 4];
+arr.every( (elem, index, arr) => { 
+    arr.pop()
+console.log(`[${arr}][${index}] -> ${elem}`) 
+return elem < 4
+})
+/*
+[1,2,3,new,new,new][2] -> 3
+[1,2,3][0] -> 1
+[1,2][1] -> 2
+*/
+
+
+    
+
