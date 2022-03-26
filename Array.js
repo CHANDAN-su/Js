@@ -570,5 +570,45 @@ return elem < 4
 */
 
 
-    
+/*********************************************************Array.fill()*********************************/
+// The fill() method changes all elements in an array to a static value, from a start index (default 0 ) to an end index (default array.length ). It returns the modified array.
+
+/*
+Syntax
+fill(value) 
+fill(value, start) 
+fill(value, start, end)
+*/
+
+const array5 = [1,2,3,4,5,6,7,8,9];
+
+console.log(array5); //[1, 2, 3, 4, 5, 6, 7, 8, 9]
+console.log(array5.fill("Number"));  //'Number', 'Number', 'Number', 'Number', 'Number', 'Number', 'Number', 'Number', 'Number']
+console.log(array5); //['Number', 'Number', 'Number', 'Number', 'Number', 'Number', 'Number', 'Number', 'Number']
+
+console.log(array5.fill(10,3));  //['Number', 'Number', 'Number', 10, 10, 10, 10, 10, 10]
+
+const array6 = [1,2,3,4,5,6,7,8,9];
+console.log(array6.fill(10,3,6));  //[1, 2, 3, 10, 10, 10, 7, 8, 9]
+
+console.log([1,	2,	3].fill(4))		//	[4,	4,	4]
+console.log([1,	2,	3].fill(4,	1))		//	[1,	4,	4]
+console.log([1,	2,	3].fill(4,	1,	2))	//	[1,	4,	3]
+console.log([1,	2,	3].fill(4,	1,	1))	//	[1,	2,	3]
+console.log([1,	2,	3].fill(4,	3,	3))	//	[1,	2,	3]
+console.log([1,	2,	3].fill(4,	-3, -2))	//	[4,	2,	3]
+console.log([1,	2,	3].fill(4,	NaN, NaN))	//	[1,	2,	3]
+console.log([1,	2,	3].fill(4,	3, 5))	//	[1,	2,	3]
+
+console.log(Array(4).fill(4));  //[4, 4, 4]
+
+console.log([].fill.call({length:3},4));
+
+let arr1 = Array(3).fill({});
+arr1[0] = "hi";
+console.log(arr1);  //['hi', {…}, {…}]
+
+
+let tempGirls = Array(5).fill("girl",0);
+console.log(tempGirls);  //['girl', 'girl', 'girl', 'girl', 'girl']
 
