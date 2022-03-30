@@ -762,3 +762,20 @@ const deleteWords = words.filter( (word, index, arr) => {
 console.log(deleteWords)
 // Notice 'elite' is not even obtained as its been popped off `words` before filter can even get there
 // ["spray" ,"limit"]
+
+
+// Using filter() on an Array of Objects
+
+var creatures = [
+    {name: "Shark", habitat: "Ocean"},
+    {name: "Whale", habitat: "Ocean"},
+    {name: "Lion", habitat: "Savanna"},
+    {name: "Monkey", habitat: "Jungle"}
+  ];
+
+var Applycretural = creatures.filter(function(creates){
+    return creates.habitat == "Ocean";
+});
+
+console.log(Applycretural);   //[ {name: "Shark", habitat: "Ocean"}, {name: "Whale", habitat: "Ocean"} ]
+
