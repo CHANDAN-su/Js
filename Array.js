@@ -612,3 +612,152 @@ console.log(arr1);  //['hi', {…}, {…}]
 let tempGirls = Array(5).fill("girl",0);
 console.log(tempGirls);  //['girl', 'girl', 'girl', 'girl', 'girl']
 
+
+/**********************************************************************Array.filter()************************************/
+// The filter() method creates a new array with all elements that pass the test implemented by the provided function.
+
+// Syntax
+
+// // Arrow function
+// filter((element) => { /* ... */ } )
+// filter((element, index) => { /* ... */ } ) 
+// filter((element, index, array) => { /* ... */ } )
+
+// // Callback function 
+// filter(callbackFn) 
+// filter(callbackFn, thisArg)
+
+// // Inline callback function 
+// filter(function(element) { /* ... */ }) 
+// filter(function(element, index) { /* ... */ }) 
+// filter(function(element, index, array){ /* ... */ })
+// filter(function(element, index, array) { /* ... */ }, thisArg)
+
+
+const word = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+
+// filter(function(element) { /* ... */ }) 
+const result = word.filter(word => word.length > 6);
+
+console.log(result);  //['exuberant', 'destruction', 'present']
+
+// Filtering out all small values
+function isBigEmough(value){
+    return value >= 10;
+};
+
+let filtered = [122,3,34,22,7,90].filter(isBigEmough);
+console.log(filtered);  // [122, 34, 22, 90]
+
+let filtered1 = [172,15,184,22,7,40].filter(function isBigEmough1(value){
+    return value >= 20;
+});
+console.log(filtered1);  // [172, 184, 22, 40]
+
+// Find all prime numbers in an array
+const array7 = [-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,40,41];
+
+function isPrime(num){
+    for(let i = 2 ; num > i; i++){
+        if(num % i == 0){
+            return false;
+        }
+    }
+    return num > 1;
+};
+
+console.log(array7.filter(isPrime)); //[2, 3, 5, 7, 11, 13, 41]
+
+
+// Filtering invalid entries from JSON
+let arr4 = [
+    { id: 15 },
+    { id: -1 },
+    { id: 0 },
+    { id: 3 },
+    { id: 12.2 },
+    { },
+    { id: null },
+    { id: NaN },
+    { id: 'undefined' }
+  ];
+
+let invalidEntries = 0;
+
+function FilterbyID(item){
+    if(Number.isFinite(item.id)&& item.id !==0){
+        return true;
+    }
+     invalidEntries ++;
+     return false;
+};
+
+let arrbuId = arr4.filter(FilterbyID);
+console.log(arrbuId);  //// [{ id: 15 }, { id: -1 }, { id: 3 }, { id: 12.2 }]
+
+console.log('Number of Invalid Entries = ', invalidEntries);  //Number of Invalid Entries =  5
+
+
+// Searching in array
+let fruits = ["Apple","Mango","Orange","kiwi","Graps","Banana"];
+
+function FilterItem(arr,quary){
+    return arr.filter(function (el){
+        return el.toLowerCase().indexOf(quary.toLowerCase()) !== -1
+    })
+};
+
+console.log(FilterItem(fruits,"an"));  // ['Mango', 'Orange', 'Banana']
+
+
+// ES2015 Implementation
+
+let fruits1 = ["Apple","Mango","Orange","kiwi","Graps","Banana"];
+
+const FilterItem1 = (arr,quary) => {
+    return arr.filter( el => el.toLowerCase().indexOf(quary.toLowerCase()) !== -1);
+};
+
+console.log(FilterItem1(fruits,"ap"));  // ['Apple', 'Graps']
+
+
+// Affecting Initial Array (modifying, appending and deleting)
+
+// Modifying each words
+
+let words = ['spray', 'limit', 'exuberant', 'destruction', 'elite', 'present']
+
+const modifiedWords = words.filter( (word, index, arr) => {
+  arr[index+1] +=' extra'
+  return word.length < 6
+})
+
+console.log(modifiedWords)
+// Notice there are three words below length 6, but since they've been modified one is returned
+// ["spray"]
+
+
+// Appending new words
+
+words = ['spray', 'limit', 'exuberant', 'destruction', 'elite', 'present']
+const appendedWords = words.filter( (word, index, arr) => {
+  arr.push('new')
+  return word.length < 6
+})
+
+console.log(appendedWords)
+// Only three fits the condition even though the `words` itself now has a lot more words with character length less than 6
+// ["spray" ,"limit" ,"elite"]
+
+
+// Deleting words
+
+words = ['spray', 'limit', 'exuberant', 'destruction', 'elite', 'present']
+const deleteWords = words.filter( (word, index, arr) => {
+  arr.pop()
+  return word.length < 6
+})
+
+console.log(deleteWords)
+// Notice 'elite' is not even obtained as its been popped off `words` before filter can even get there
+// ["spray" ,"limit"]
