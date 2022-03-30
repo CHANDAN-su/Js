@@ -727,6 +727,7 @@ console.log(FilterItem1(fruits,"ap"));  // ['Apple', 'Graps']
 
 let words = ['spray', 'limit', 'exuberant', 'destruction', 'elite', 'present']
 
+// filter((element, index, array) => { /* ... */ } )
 const modifiedWords = words.filter( (word, index, arr) => {
   arr[index+1] +=' extra'
   return word.length < 6
