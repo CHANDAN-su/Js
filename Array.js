@@ -929,4 +929,20 @@ let index2 = fruits2.findIndex(first => first === "blueberries");
 console.log(index2);  //3
 console.log(fruits2[index]);  //cantaloupe
 
+/****************************Array.prototype.flat()************************************************************/
+// The flat() method creates a new array with all sub-array elements concatenated into it recursively up to the specified depth.
+/*
+Syntax
+flat()
+flat(depth)
+*/
+
+const arr2 = [1,2,3,[4,5]];
+console.log(arr2.flat());  //[1, 2, 3, 4, 5]
+
+const arr3 = [1,2,3,[[[[3,4]]]]];
+console.log(arr3.flat(2));  //[1,2,3,[3,4]]
+
+const arr5 = [1,2,,,,3,4]
+console.log(arr5.flat());  //[1,2,3,4]
 
