@@ -1075,3 +1075,35 @@ function flatten(arr) {
 console.log(flatten(nested)); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 
+
+/*********************************************Array.prototype.includes()******************************************/
+// The includes() method determines whether an array includes a certain 
+// value among its entries, returning true or false as appropriate
+
+/*
+Syntax
+includes(searchElement) 
+includes(searchElement, fromIndex)
+*/
+
+const array11 = [1,2,3,4];
+console.log(array11.includes(3));  //true
+
+const animal = ["cat","dog","bat"];
+console.log(animal.includes("cat")); //true
+
+console.log(animal.includes("at"));  //false
+
+// fromIndex is greater than or equal to the array length
+let arr7 = [1,2,3];
+
+console.log(arr7.includes(3,3));  //false
+console.log(arr7.includes(3,100));  //false
+
+// Computed index is less than 0
+let arr8 = ['a', 'b', 'c']
+
+console.log(arr8.includes('a', -100)) // true 
+console.log(arr8.includes('b', -100)) // true 
+console.log(arr8.includes('c', -100)) // true 
+console.log(arr8.includes('a', -2)) // false
