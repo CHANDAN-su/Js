@@ -946,3 +946,132 @@ console.log(arr3.flat(2));  //[1,2,3,[3,4]]
 const arr5 = [1,2,,,,3,4]
 console.log(arr5.flat());  //[1,2,3,4]
 
+/***************************************************Array.prototype.forEach()********************************/
+// The forEach() method executes a provided function once for each array element.
+
+// Syntax
+
+// // Arrow function
+// forEach((element) => { /* ... */ } ) 
+// forEach((element, index) => { /* ... */ } ) 
+// forEach((element, index, array) => { /* ... */ } )
+
+// // Callback function 
+// forEach(callbackFn) 
+// forEach(callbackFn, thisArg)
+
+// // Inline callback 
+// function forEach(function(element) { /* ... */ })
+// forEach(function(element, index) { /* ... */ }) 
+// forEach(function(element, index, array){ /* ... */ }) 
+// forEach(function(element, index, array) { /* ... */ }, thisArg)
+
+// Converting a for loop to forEach
+// old method
+const num7 = [1,2,3,4,5];
+
+for(let i = 1;i < num7.length; i++){
+    console.log(i);
+}; 
+/*
+1
+2
+3
+4
+5
+*/
+
+//  foreach method
+let test3 = num7.forEach(element => console.log(element));
+console.log(test3);
+/*
+1
+2
+3
+4
+5
+*/
+
+
+
+// Optional Parameters
+// Index
+
+let index3 = num7.forEach(function (number,index){
+    console.log("index "+ index + "  number " + number);
+})
+/*
+index 0  number 1
+index 1  number 2
+index 2  number 3
+index 3  number 4
+index 4  number 5
+*/
+
+
+// Array
+let arr6 = num7.forEach(function (number,index,arr){
+    console.log("index "+ index + "  number " + number + "  arr " + arr);
+});
+/*
+index 0  number 1  arr 1,2,3,4,5
+index 1  number 2  arr 1,2,3,4,5
+index 2  number 3  arr 1,2,3,4,5
+index 3  number 4  arr 1,2,3,4,5
+index 4  number 5  arr 1,2,3,4,5
+*/
+
+
+// No operation for uninitialized values (sparse arrays)
+const arrauspares = [1,3,5];
+
+let numCallbackRuns = 0;
+
+arrauspares.forEach(function (element){
+    console.log(element);
+    numCallbackRuns++
+});
+
+console.log("numCallbackRuns: " ,numCallbackRuns )
+
+/*
+1
+3
+5
+numCallbackRuns:  3
+*/
+
+// Modifying the array during iteration
+let word1 = ["one","two","three","four"];
+
+word1.forEach(function (element){
+    console.log(element);
+    if(element == "two"){
+        word1.shift();
+    }
+});
+
+console.log(word1);  //['two', 'three', 'four']
+
+
+// Flatten an array
+
+function flatten(arr) { 
+    const result = []
+
+    arr.forEach(function(i) {
+     if (Array.isArray(i)) {
+          result.push(...flatten(i))
+    } else { 
+         result.push(i)
+    }
+    })
+    
+    return result;
+    };
+
+    const nested = [1, 2, 3, [4, 5, [6, 7], 8, 9]]
+
+console.log(flatten(nested)); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
