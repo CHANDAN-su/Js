@@ -779,3 +779,104 @@ var Applycretural = creatures.filter(function(creates){
 
 console.log(Applycretural);   //[ {name: "Shark", habitat: "Ocean"}, {name: "Whale", habitat: "Ocean"} ]
 
+/**********************************************Array.prototype.find()******************************************/
+// The find() method returns the value of the first element in the provided array that satisfies the provided testing function. 
+// If no values satisfy the testing function, undefined is returned.
+
+// // Arrow function
+// find((element) => { /* ... */ } )
+// find((element, index) => { /* ... */ } )
+// find((element, index, array) => { /* ... */ } )
+
+// // Callback function
+//  find(callbackFn) 
+//  find(callbackFn, thisArg)
+
+// // Inline callback 
+// function find(function(element) { /* ... */ }) 
+// find(function(element, index) { /* ... */ }) 
+// find(function(element, index, array){ /* ... */ })
+// find(function(element, index, array) { /* ... */ }, thisArg)
+
+
+const array8 = [5,3,38,12,120,44];
+
+const found = array8.find(function test1(element){
+    return element > 40;
+});
+
+console.log(found);  //120
+
+// Find an object in an array by one of its properties
+const invertory = [
+    {name: 'apples', quantity: 2},
+    {name:"bananan",quantity:0},
+    {name:"Cherry", quantity: 1}
+];
+
+function isCherry(fruit){
+    return fruit.name == "Cherry";
+};
+
+console.log(invertory.find(isCherry));  //{name: 'Cherry', quantity: 1}
+
+// Using arrow function and destructuring
+const inventory1 = [
+    {name: 'apples', quantity: 2},
+    {name: 'bananas', quantity: 0},
+    
+    {name: 'cherries', quantity: 5}
+];
+
+const Isapple = inventory1.find(({name}) => name === "apples");
+console.log(Isapple);  //{name: 'apples', quantity: 2}
+    
+// Find a prime number in an array
+function isprime(element,index,arr){
+    let start = 2;
+    while(start <= Math.sqrt(element)){
+        if(element % start++ <1){
+            return false;
+        }
+    }
+    return element >1;
+};
+
+console.log([4, 6, 8, 12].find(isprime)); // undefined, not found 
+console.log([4, 5, 8, 12].find(isprime)); // 5
+
+
+const array9 = [0,1,,,,5,6];
+
+array9.find(function (value ,index){
+    console.log('Visited index ', index, ' with value ', value);
+});
+/*
+Visited index  0  with value  0
+Array.js:852 Visited index  1  with value  1
+Array.js:852 Visited index  2  with value  undefined
+Array.js:852 Visited index  3  with value  undefined
+Array.js:852 Visited index  4  with value  undefined
+Array.js:852 Visited index  5  with value  5
+Array.js:852 Visited index  6  with value  6
+*/
+
+// Shows all indexes, including deleted 
+array9.find(function (value,index){
+    //// Delete element 5 on first iteration
+    if(index === 0){
+        console.log('Deleting array[5] with value ', array9[5]);
+        delete array9[5]
+    }
+    console.log('Visited index ', index, ' with value ', value)
+});
+/*
+Deleting array[5] with value  5
+Array.js:871 Visited index  0  with value  0
+Array.js:871 Visited index  1  with value  1
+Array.js:871 Visited index  2  with value  undefined
+Array.js:871 Visited index  3  with value  undefined
+Array.js:871 Visited index  4  with value  undefined
+Array.js:871 Visited index  5  with value  undefined
+Array.js:871 Visited index  6  with value  6
+*/
