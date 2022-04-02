@@ -880,3 +880,53 @@ Array.js:871 Visited index  4  with value  undefined
 Array.js:871 Visited index  5  with value  undefined
 Array.js:871 Visited index  6  with value  6
 */
+
+
+/***********************************Array.prototype.findIndex()*****************************************/
+// The findIndex() method returns the index of the first element in the array that satisfies the provided testing function. 
+// Otherwise, it returns -1 , indicating that no element passed the test.
+
+// Syntax
+
+// // Arrow function
+// findIndex((element) => { /* ... */ } ) 
+// findIndex((element, index) => { /* ... */ } ) 
+// findIndex((element, index, array) => { /* ... */ } )
+
+// // Callback function 
+// findIndex(callbackFn)
+// findIndex(callbackFn, thisArg)
+
+// // Inline callback
+// function findIndex(function(element) { /* ... */ }) 
+// findIndex(function(element, index) { /* ... */ }) 
+// findIndex(function(element, index, array){ /* ... */ })
+// findIndex(function(element, index, array) { /* ... */ }, thisArg)
+
+const array10 = [5,12,8,130,44];
+
+const t1 = (element) => element > 13;
+
+console.log(array10.findIndex(t1));  //3
+
+function isprime1(num){
+    for(let i = 2;num>i;i++){
+        if(num % i == 0){
+            return false;
+        }
+    }
+    return num > 1;
+};
+console.log([4,4,6,9,12].findIndex(isprime1));  //-1
+console.log([4,6,7,9,12].findIndex(isprime1));  //2
+
+
+// Find index using arrow function
+const fruits2 = ["apple", "banana", "cantaloupe", "blueberries", "grapefru"];
+
+let index2 = fruits2.findIndex(first => first === "blueberries");
+
+console.log(index2);  //3
+console.log(fruits2[index]);  //cantaloupe
+
+
