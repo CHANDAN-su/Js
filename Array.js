@@ -1107,3 +1107,58 @@ console.log(arr8.includes('a', -100)) // true
 console.log(arr8.includes('b', -100)) // true 
 console.log(arr8.includes('c', -100)) // true 
 console.log(arr8.includes('a', -2)) // false
+
+
+
+/*********************************Array.indexOf()****************************************************/
+// The indexOf() method returns the first index at which a given element can be found in the array, 
+// or -1 if it is not present.
+/*
+Syntax
+indexOf(searchElement) 
+indexOf(searchElement, fromIndex)
+*/
+
+const beasts = ['ant', 'bison', 'camel', 'duck', 'bison'];
+
+console.log(beasts.indexOf("bison"));  //1
+
+console.log(beasts.indexOf("bison",2));  //4
+
+console.log(beasts.indexOf("Hii"));  //-1
+
+console.log(beasts.indexOf("bison",beasts.length-1)) //4
+
+
+// Finding all the occurrences of an element
+
+var includes = [];
+var array12 = ['a', 'b', 'a', 'c', 'a', 'd'];
+var element = "a";
+
+var idx = array12.indexOf(element);
+// console.log(idx);  //0
+
+while (idx != -1) {
+    includes.push(idx);
+    idx = array12.indexOf(element,idx+1);
+};
+
+console.log(includes);  //[0, 2, 4]
+ 
+// Finding if an element exists in the array or not and updating the array
+
+function updatevegetablecollection(veggies,veggie){
+    if(veggies.indexOf(veggie) === -1) {
+        veggies.unshift(veggie);
+        console.log("New veggies collection is :"+ veggies )
+    }else if(veggies.indexOf(veggie) > -1){
+        console.log(veggie + "' already exists in the veggies collection.'")
+    }
+}
+
+var veggies = ['potato', 'tomato', 'chillies', 'green-pepper'];
+
+updatevegetablecollection(veggies,"tomato"); //tomato' already exists in the veggies collection.
+
+updatevegetablecollection(veggies,"Apple"); //New veggies collection is :potato,tomato,chillies,green-pepper,Apple
