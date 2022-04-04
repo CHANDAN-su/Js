@@ -1162,3 +1162,20 @@ var veggies = ['potato', 'tomato', 'chillies', 'green-pepper'];
 updatevegetablecollection(veggies,"tomato"); //tomato' already exists in the veggies collection.
 
 updatevegetablecollection(veggies,"Apple"); //New veggies collection is :potato,tomato,chillies,green-pepper,Apple
+
+
+/*******************************************Array.join()******************************************/
+// The join() method creates and returns a new string by concatenating all of the elements in an array (or an array-like object), 
+// separated by commas or a specified separator string. 
+/*
+Syntax
+join() 
+join(separator)
+*/
+
+const elements1 = ["Fire","Air","Water"];
+
+console.log(elements1.join());  //Fire,Air,Water
+console.log(elements1.join(" "))  //Fire Air Water
+console.log(elements1.join("-"))  //Fire-Air-Water
+console.log(elements1.join(" + "));  //Fire + Air + Water
