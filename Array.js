@@ -1179,3 +1179,33 @@ console.log(elements1.join());  //Fire,Air,Water
 console.log(elements1.join(" "))  //Fire Air Water
 console.log(elements1.join("-"))  //Fire-Air-Water
 console.log(elements1.join(" + "));  //Fire + Air + Water
+
+
+/*********************************************************Array.prototype.keys()*********************************/
+// The keys() method returns a new Array Iterator object that contains the keys for each index in the array.
+/*
+Syntax
+keys()
+*/
+
+const array13 = ["a","b","c"];
+const iterator = array1.keys(); 
+// console.log(array13.keys());;
+
+for(const key of iterator){
+    console.log(key);
+};
+/*
+0
+1
+2
+*/
+
+// Key iterator doesn't ignore holes
+var arr9 = ["a", ,"b"];
+
+var denseKeys = [...arr9.keys()];
+console.log(denseKeys);  // [0, 1, 2]
+
+var sparseKeys  = Object.keys(arr9);
+console.log(sparseKeys); //['0', '2']
