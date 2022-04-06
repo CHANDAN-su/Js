@@ -1289,3 +1289,28 @@ obj.addElem({})
 obj.addElem({}) 
 console.log(obj.length); // → 2
 */
+
+/***************************************************Array.unshift()*****************************/
+// The unshift() method adds one or more elements to the beginning of an array and returns the new length of the array.
+/*
+Syntax
+unshift(element0) 
+unshift(element0, element1)
+unshift(element0, element1, ... , elementN)
+*/
+
+const array15 = [4,5,6];
+
+console.log(array15.unshift(1,2,3));
+console.log(array15);  // [1, 2, 3, 4, 5, 6]
+
+const array16 = [4,5,6];
+
+array16.unshift(1);
+array16.unshift(2);
+array16.unshift(3);
+
+console.log(array16);   //[3, 2, 1, 4, 5, 6]
+
+
+
