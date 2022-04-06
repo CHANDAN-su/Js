@@ -1205,7 +1205,45 @@ for(const key of iterator){
 var arr9 = ["a", ,"b"];
 
 var denseKeys = [...arr9.keys()];
-console.log(denseKeys);  // [0, 1, 2]
+console.log(denseKeys);  //[0, 1, 2]
 
 var sparseKeys  = Object.keys(arr9);
 console.log(sparseKeys); //['0', '2']
+
+
+/*********************************************************Array.lastIndexOf()******************************************/
+// The lastIndexOf() method returns the last index at which a given element can be found in the array, or -1 if it is not present. 
+// The array is searched backwards, starting at fromIndex .
+/*
+Syntax
+lastIndexOf(searchElement) 
+lastIndexOf(searchElement, fromIndex)
+*/
+
+const animal1 = ['Dodo', 'Tiger', 'Penguin', 'Dodo'];
+
+console.log(animal1.lastIndexOf("Dodo"));  //3
+
+console.log(animal1.lastIndexOf("Tiger"));  //1
+
+var numbers3 = [2, 5, 9, 2];
+console.log(numbers3.lastIndexOf(2));	// 3
+console.log(numbers3.lastIndexOf(7));	// -1
+console.log(numbers3.lastIndexOf(2, 3)); // 3
+console.log(numbers3.lastIndexOf(2, 2)); // 0
+console.log(numbers3.lastIndexOf(2, -2)); // 0
+console.log(numbers3.lastIndexOf(2, -1)); // 3
+
+// Finding all the occurrences of an element
+const result1 = [];
+const array14 = ['a', 'b', 'a', 'c', 'a', 'd'];
+const elements2 = "a";
+
+var idx1 = array14.lastIndexOf(elements2);
+
+while (idx1 != -1) {
+    result1.push(idx1)
+    idx1 = (idx1 > 0 ? array14.lastIndexOf(elements2,idx1-1):-1);
+};
+
+console.log(result1);  //[4, 2, 0]
