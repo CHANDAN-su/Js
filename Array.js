@@ -1247,3 +1247,45 @@ while (idx1 != -1) {
 };
 
 console.log(result1);  //[4, 2, 0]
+
+/*************************************************************Array.push()***************************/
+// The push() method adds one or more elements to the end of an array and returns the new length of the array.
+/*
+Syntax
+push(element0) 
+push(element0, element1)
+push(element0, element1, ... , elementN)
+*/
+
+const animal2 = ['pigs', 'goats', 'sheep'];
+
+const count1 = animal2.push("cow");
+console.log(count1);  //4
+console.log(animal2);  // ['pigs', 'goats', 'sheep', 'cow']
+
+animal2.push('chickens', 'cats', 'dogs');
+console.log(animal2);  //['pigs', 'goats', 'sheep', 'cow', 'chickens', 'cats', 'dogs']
+
+// Merging two arrays
+let vegetables = ['parsnip', 'potato'];
+let moreVegs = ['celery', 'beetroot'];
+
+// Merge the second array into the first one vegetables.push(...moreVegs);
+vegetables.push(...moreVegs);
+console.log(vegetables);  //['parsnip', 'potato', 'celery', 'beetroot']
+
+
+// Using an object in an array-like fashion
+let obj1 = {
+    length: 0,
+    addElem: function addElem(elem){
+        // obj.length is automatically incremented
+    // every time an element is added. 
+    [].push.call(this, elem)
+    }
+}
+/*
+obj.addElem({})
+obj.addElem({}) 
+console.log(obj.length); // → 2
+*/
