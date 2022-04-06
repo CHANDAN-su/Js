@@ -1380,4 +1380,14 @@ while( typeof (i = names.shift()) !== 'undefined' ) {
 }
 // Andrew, Edward, Paul, Chris, John
 
+/*********************************************Array.toString()********************************/
+// The toString() method returns a string representing the specified array and its elements.
+/*
+Syntax
+toString()
+*/
+
+const array18 = [1,2,"a","1a"];
+
+console.log(array18.toString());  //1,2,a,1a
 
