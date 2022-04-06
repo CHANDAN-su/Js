@@ -1355,5 +1355,29 @@ const collection = {
     collection.removeElement(); 
     console.log(collection.length); // 2
     
+/********************************************************Array.shift()**************************/
+// The shift() method removes the first element from an array and returns that removed element. 
+// This method changes the length of the array.
+/*
+Syntax
+shift()
+*/
+
+const array17 = [1,2,3];
+
+const firstelement = array17.shift();
+console.log(firstelement);  //1
+
+console.log(array17);  //[2, 3]
+
+
+// Using shift() method in while loop
+
+var names = ["Andrew", "Edward", "Paul", "Chris" ,"John"];
+
+while( typeof (i = names.shift()) !== 'undefined' ) { 
+    console.log(i);
+}
+// Andrew, Edward, Paul, Chris, John
 
 
