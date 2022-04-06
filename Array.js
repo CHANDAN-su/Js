@@ -1312,5 +1312,48 @@ array16.unshift(3);
 
 console.log(array16);   //[3, 2, 1, 4, 5, 6]
 
+/****************************************************Array.pop()*******************************/
+// The pop() method removes the last element from an array and returns that element. 
+// This method changes the length of the array.
+/*
+Syntax
+pop()
+*/
+
+const plants = ['broccoli', 'cauliflower', 'cabbage', 'kale', 'tomato'];
+
+console.log(plants.pop());  //tomato
+
+console.log(plants);  //['broccoli', 'cauliflower', 'cabbage', 'kale']
+
+plants.pop();
+console.log(plants);  //['broccoli', 'cauliflower', 'cabbage']
+
+
+const collection = { 
+    length: 0,
+    addElements: function(...elements) {
+    // obj.length will be incremented automatically
+    // every time an element is added.
+    
+    // Returning what push returns; that is
+    // the new value of length property. 
+    return [].push.call(this, ...elements);
+    },
+    removeElement: function() {
+    // obj.length will be decremented automatically
+    // every time an element is removed.
+    
+    // Returning what pop returns; that is
+    // the removed element. 
+    return [].pop.call(this);
+    }
+    }
+    
+    collection.addElements(10, 20, 30);
+    console.log(collection.length); // 3 
+    collection.removeElement(); 
+    console.log(collection.length); // 2
+    
 
 
