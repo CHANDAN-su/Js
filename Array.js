@@ -1450,6 +1450,55 @@ for(let letters of iterator3){
 };  //undefined
 
 
+/******************************************************Array.slice()*****************************************/
+// The slice() method returns a shallow copy of a portion of an array into a new array object selected from 
+// start to end ( end not included) where start and end represent the index of items in that array. 
+// The original array will not be modified.
+/*
+Syntax
+slice() 
+slice(start) 
+slice(start, end)
+*/
+
+const animal3 = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+
+console.log(animal3.slice(2)); //['camel', 'duck', 'elephant']
+
+console.log(animal3.slice(2,4)); //['camel', 'duck']
+
+console.log(animal3.slice(1,5)); //['bison', 'camel', 'duck', 'elephant']
+
+console.log(animal3.slice(-2));  //['duck', 'elephant']
+
+console.log(animal3.slice(2,-1));  //['camel', 'duck']
+
+console.log(animal3.slice());  // ['ant', 'bison', 'camel', 'duck', 'elephant']
+
+
+// Using slice, create newCar from myCar.
+let myHonda = {
+    color: 'red', 
+    wheels: 4, 
+    engine: { cylinders: 4, size: 2}
+};
+
+let myCar = [myHonda, 2, 'cherry condition', 'purchased 1997'];
+
+let newCar = myCar.slice(0.2);
+
+// Display the values of myCar, newCar, and the color of myHonda
+//  referenced from both arrays. 
+console.log('myCar = ' + JSON.stringify(myCar)) ;  //myCar = [{"color":"red","wheels":4,"engine":{"cylinders":4,"size":2}},2,"cherry condition","purchased 1997"]
+console.log('newCar = ' + JSON.stringify(newCar)) ;  //newCar = [{"color":"red","wheels":4,"engine":{"cylinders":4,"size":2}},2,"cherry condition","purchased 1997"]
+console.log('myCar[0].color = ' + myCar[0].color); //myCar[0].color = red
+console.log('newCar[0].color = ' + newCar[0].color);//newCar[0].color = red
+
+// Change the color of myHonda. 
+myHonda.color = 'purple';
+console.log('The new color of my Honda is ' + myHonda.color);  //The new color of my Honda is purple
+
+
 
 
 
