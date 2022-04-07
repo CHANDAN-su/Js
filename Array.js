@@ -1569,3 +1569,21 @@ let myFish7 = ['angel', 'clown', 'mandarin', 'sturgeon'];
 let removed7 = myFish7.splice(2);
 console.log(myFish7); //['angel', 'clown']
 
+
+/************************************************************Array.reverse()****************************/
+// The reverse() method reverses an array in place	. 
+// The first array element becomes the last, and the last array element becomes the first.
+/*
+Syntax
+reverse()
+*/
+
+const array22 = ["one","two","three"];
+console.log("array22",array22);  //array22 : ['one', 'two', 'three']
+
+const reversed = array22.reverse();
+console.log("Reversed:",reversed);  //Reversed: ['three', 'two', 'one']
+
+console.log("array22",array22);  //array22 ['three', 'two', 'one']
+
+
