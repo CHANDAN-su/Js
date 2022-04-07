@@ -1391,3 +1391,65 @@ const array18 = [1,2,"a","1a"];
 
 console.log(array18.toString());  //1,2,a,1a
 
+/********************************************************Array.values()********************************/
+// The values() method returns a new array iterator object that contains the values for each index in the array.
+/*
+Syntax
+values()
+*/
+
+const array19 = ["a","b","c","d"];
+
+const values = array19.values();
+
+for(const value of values){
+    console.log(value);
+}
+
+/*
+a
+b
+c
+d
+*/
+
+// Iteration using .next()
+const array20 = ["a","b","c","d","e"];
+
+var iterator2 = array20.values();
+
+console.log(iterator2.next());  //value: 'a', done: false}
+console.log(iterator2.next().value);   //b
+
+
+console.log(iterator2.next()["value"]);  //c
+
+console.log(iterator2.next());  //{value: 'd', done: false}
+console.log(iterator2.next()); //{value: 'e', done: false}
+console.log(iterator2.next());  //{value: undefined, done: true}
+console.log(iterator2.next().value)  //undefined
+
+
+// Warning: The array iterator object is one use or temporary object
+const array21 = ["a","b","c","d","e"];
+const iterator3 = array21.values();
+
+for(let letters of iterator3){
+    console.log(letters);
+};
+/*
+a
+b
+c
+d
+e
+*/
+
+for(let letters of iterator3){
+    console.log(letters);
+};  //undefined
+
+
+
+
+
