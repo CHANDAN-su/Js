@@ -1816,3 +1816,76 @@ let filteredNumbers = number5.map(function (num,index){
 });
 console.log(filteredNumbers);  //[1, 2, 3, undefined]
  
+/******************************************************Array.flatMap()**************************************/
+// The flatMap() method returns a new array formed by applying a given callback function to each element of the array, 
+// and then flattening the result by one level. 
+
+// Syntax
+
+// // Arrow function
+// flatMap((currentValue) => { /* ... */ } ) 
+// flatMap((currentValue, index) => { /* ... */ } ) 
+// flatMap((currentValue, index, array) => { /* ... */ } )
+
+// // Callback function 
+// flatMap(callbackFn) 
+// flatMap(callbackFn, thisArg)
+
+// // Inline callback function 
+// flatMap(function(currentValue) { /* ... */ }) 
+// flatMap(function(currentValue, index) { /* ... */ }) 
+// flatMap(function(currentValue, index, array){ /* ... */ })
+// flatMap(function(currentValue, index, array) { /* ... */ }, thisArg)
+
+
+var arr10 = [1,2,3,4];
+
+let fl = arr10.map(x => [x,x*2]);
+console.log(fl); 
+/*
+0: (2) [1, 2]
+1: (2) [2, 4]
+2: (2) [3, 6]
+3: (2) [4, 8]
+*/
+
+let fl1 = arr10.flatMap(x => [x,x*2]);
+console.log(fl1);  //[1, 2, 2, 4, 3, 6, 4, 8]
+
+
+// is equivalent to 
+var n = arr10.length;
+var acc = new Array(n * 2); 
+
+for (let i = 0; i < n; i++){
+var x = arr10[i]; 
+acc [i * 2] = x;
+acc [i * 2 + 1] = x * 2;
+};
+
+console.log(acc);  //[1, 2, 2, 4, 3, 6, 4, 8]
+
+// Let's generate a list of words from a list of sentences.
+const arr11 = ["it's Sunny in", "", "California"] ;
+
+let arr12 = arr11.map(x => x.split(" "));
+console.log(arr12);  
+/*
+0: (3) ["it's", 'Sunny', 'in']
+1: ['']
+2: ['California']
+*/
+
+let arr13 = arr11.flatMap(x => x.split(" "));
+console.log(arr13); // ["it's", 'Sunny', 'in', '', 'California']
+
+// For adding and removing items during a map()
+// Let's say we want to remove all the negative numbers
+// and split the odd numbers into an even number and a 1 
+
+let a = [5, 4, -3, 20, 17, -33, -4, 18];
+
+let b = a.flatMap( (n) =>
+    (n < 0) ? [] : (n % 2 == 0) ? [n] :[n-1,n]
+);
+console.log(b); //[4, 5, 4, 20, 16, 17, 18]
