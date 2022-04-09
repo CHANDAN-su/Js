@@ -1889,3 +1889,134 @@ let b = a.flatMap( (n) =>
     (n < 0) ? [] : (n % 2 == 0) ? [n] :[n-1,n]
 );
 console.log(b); //[4, 5, 4, 20, 16, 17, 18]
+
+
+/***************************************************Array.reduce()***************************/
+// The reduce() method executes a user-supplied “reducer” callback function on each element of the array, 
+// in order, passing in the return value from the calculation on the preceding element. 
+// The final result of running the reducer across all elements of the array is a single value.
+
+// Syntax
+// // Arrow function
+// reduce((previousValue, currentValue) => { /* ... */ } ) 
+// reduce((previousValue, currentValue, currentIndex) => { /* ... */ } ) 
+// reduce((previousValue, currentValue, currentIndex, array) => { /* ... */ } )
+// reduce((previousValue, currentValue, currentIndex, array) => { /* ... */ }, initialValu
+
+// // Callback function 
+// reduce(callbackFn) reduce(callbackFn, initialValue)
+
+// // Inline callback function
+// reduce(function(previousValue, currentValue) { /* ... */ }) 
+// reduce(function(previousValue, currentValue, currentIndex) { /* ... */ }) 
+// reduce(function(previousValue, currentValue, currentIndex, array) { /* ... */ }) 
+// reduce(function(previousValue, currentValue, currentIndex, array) { /* ... */ }, initia
+
+const array29 = [1,2,3,4];
+
+let reducer = (previousValue, currentValue) => previousValue+currentValue;
+
+console.log(array29.reduce(reducer));  //10
+console.log(array29.reduce(reducer,5));   //15
+
+const getMax = (a,b) => Math.max(a,b);
+
+// callback is invoked for each element in the array starting at index 0 
+console.log([1, 100].reduce(getMax, 50)); // 100
+console.log([	50].reduce(getMax, 10)); // 50
+
+// callback is invoked once for element at index 1 
+console.log([1, 100].reduce(getMax));	// 100
+
+// callback is not invoked
+console.log([	50].reduce(getMax));	// 50 
+console.log([		].reduce(getMax, 1)); // 1
+// console.log([	].reduce(getMax));	// TypeError
+
+const array30 = [15, 16, 17, 18, 19];
+
+function reducer1(previous, current, index, array){
+    const returns = previous+current;
+    console.log(`previous: ${previous}, current: ${current}, index: ${index}, array: ${array} `);
+    return returns;
+};
+
+console.log(array30.reduce(reducer1));
+/*
+previous: 15, current: 16, index: 1, array: 15,16,17,18,19 
+previous: 31, current: 17, index: 2, array: 15,16,17,18,19 
+previous: 48, current: 18, index: 3, array: 15,16,17,18,19 
+previous: 66, current: 19, index: 4, array: 15,16,17,18,19 
+85
+*/
+
+// Examples
+
+// Sum all the values of an array
+let sum1 = [0,1,2,3,4].reduce(function (previousValue, currentValue){
+    return previousValue+currentValue;
+});
+console.log(sum1);  //10
+
+let sum2 = [0,1,2,3,4].reduce(function (previousValue, currentValue){
+    return previousValue+currentValue;
+},0);
+console.log(sum2);  //10
+
+// Alternatively written with an arrow function:
+
+// let total = [ 0, 1, 2, 3 ].reduce(
+// ( previousValue, currentValue ) => previousValue + currentValue, 0
+// );
+
+// Sum of values in an object array
+let initialValue = 0;
+let sum3 =  [{x: 1}, {x: 2}, {x: 3}].reduce(function (previousValue, currentValue){
+    return previousValue + currentValue.x;
+},initialValue);
+
+console.log(sum3); //6
+
+// Alternatively written with an arrow function:
+
+// let initialValue = 0
+// let sum = [{x: 1}, {x: 2}, {x: 3}].reduce(
+// (previousValue, currentValue) => previousValue + currentValue.x
+// , initialValue
+// )
+
+// console.log(sum) // logs 6
+
+
+// Flatten an array of arrays
+let flattened = [[0,1],[2,3],[4,5]].reduce(function (previousValue, currentValue){
+    return previousValue.concat(currentValue);
+},[]);
+
+console.log(flattened);  //[0, 1, 2, 3, 4, 5]
+
+// Alternatively written with an arrow function:
+
+// let flattened = [[0, 1], [2, 3], [4, 5]].reduce(
+// ( previousValue, currentValue ) => previousValue.concat(currentValue), []
+// )
+
+// Counting instances of values in an object
+let names1 = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice'];
+
+let countedNames = names1.reduce(function (allNames, name){
+    if(name in allNames){
+        allNames[name]++
+    }else{
+        allNames[name] = 1;
+    }
+    return allNames
+},{});
+
+console.log(countedNames); //{Alice: 2, Bob: 1, Tiff: 1, Bruce: 1}
+
+
+// Grouping objects by a property
+
+
+
