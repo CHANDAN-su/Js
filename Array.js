@@ -1587,3 +1587,113 @@ console.log("Reversed:",reversed);  //Reversed: ['three', 'two', 'one']
 console.log("array22",array22);  //array22 ['three', 'two', 'one']
 
 
+/********************************************Array.sort()****************************************/
+// The sort() method sorts the elements of an array in place	and returns the sorted array. 
+
+// Syntax
+// // Functionless 
+// sort()
+// // Arrow function
+// sort((firstEl, secondEl) => { /* ... */ } )
+// // Compare function 
+// sort(compareFn)
+// // Inline compare function
+// sort(function compareFn(firstEl, secondEl) { /* ... */ })
+
+const months1 = ['March', 'Jan', 'Feb', 'Dec']
+
+months1.sort();
+console.log(months1);  //['Dec', 'Feb', 'Jan', 'March']
+
+const array23 = [1, 30, 4, 21, 100000];
+
+array23.sort();
+console.log(array23);  //[1, 100000, 21, 30, 4]
+
+// The sort method can be conveniently used with function expressions:
+const number2 =[4, 2, 5, 1, 3];
+
+number2.sort(function(a,b){
+    return a-b;
+});
+console.log(number2);  //[1, 2, 3, 4, 5]
+
+// ES2015 provides arrow function expressions with even shorter syntax.
+const number3 = [4, 2, 5, 1, 3];
+
+number3.sort((a,b) => b-a);
+console.log(number3);  //[5, 4, 3, 2, 1]
+
+// Arrays of objects can be sorted by comparing the value of one of their properties.
+var items = [
+    { name: 'Edward', value: 21 },
+    { name: 'Sharpe', value: 37 },
+    { name: 'And', value: 45 },
+    { name: 'The', value: -12 },
+    { name: 'Magnetic', value: 13 },
+    {name: 'Zeros', value: 37 }
+];
+
+// console.log(items);
+/*
+0: {name: 'Edward', value: 21}
+1: {name: 'Sharpe', value: 37}
+2: {name: 'And', value: 45}
+3: {name: 'The', value: -12}
+4: {name: 'Magnetic', value: 13}
+5: {name: 'Zeros', value: 37}
+*/
+
+// sort by value 
+items.sort(function (a,b){
+    return a.value - b.value;
+});
+
+console.log(items);
+/*
+0: {name: 'The', value: -12}
+1: {name: 'Magnetic', value: 13}
+2: {name: 'Edward', value: 21}
+3: {name: 'Sharpe', value: 37}
+4: {name: 'Zeros', value: 37}
+5: {name: 'And', value: 45}
+*/
+
+// sort by name
+items.sort(function (a,b){
+    var nameA = a.name.toUpperCase();
+    var nameB = b.name.toUpperCase();
+
+    if(nameA < nameB){
+        return -1;
+    }
+    if(nameA > nameB){
+        return 1;
+    }
+    // names must be equal 
+    return 0;
+});
+
+console.log(items);
+/*
+0: {name: 'And', value: 45}
+1: {name: 'Edward', value: 21}
+2: {name: 'Magnetic', value: 13}
+3: {name: 'Sharpe', value: 37}
+4: {name: 'The', value: -12}
+5: {name: 'Zeros', value: 37}
+*/
+
+// Sorting non-ASCII characters
+// For sorting strings with non-ASCII characters, i.e. strings with accented characters (e, é, è, a, ä, etc.), 
+// strings from languages other than English, use String.localeCompare . 
+
+var items1 = ['réservé', 'premier', 'communiqué', 'café', 'adieu', 'éclair'];
+
+items1.sort(function (a,b){
+    return a.localeCompare(b);
+});
+console.log(items1);  //['adieu', 'café', 'communiqué', 'éclair', 'premier', 'réservé']
+
+
+
