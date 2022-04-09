@@ -1696,4 +1696,57 @@ items1.sort(function (a,b){
 console.log(items1);  //['adieu', 'café', 'communiqué', 'éclair', 'premier', 'réservé']
 
 
+/**************************************************************Array.some()********************************/
+// The some() method tests whether at least one element in the array passes the test implemented by the provided function.
+// It returns true if, in the array, it finds an element for which the provided function returns true; 
+// otherwise it returns false. It doesn't modify the array.
+
+// Syntax
+
+// // Arrow function
+// some((element) => { /* ... */ } )
+// some((element, index) => { /* ... */ } ) 
+// some((element, index, array) => { /* ... */ } )
+
+// // Callback function 
+// some(callbackFn)
+// some(callbackFn, thisArg)
+
+// // Inline callback function 
+// some(function(element) { /* ... */ }) 
+// some(function(element, index) { /* ... */ })
+
+// some(function(element, index, array){ /* ... */ }) 
+// some(function(element, index, array) { /* ... */ }, thisArg)
+
+const array27 = [1,2,3,4,5,6];
+
+const even = element => element%2 === 0;
+console.log(array27.some(even));  //true
+
+
+// Testing value of array elements
+
+function isBiggerThan10(element,index,arr){
+    return element > 10;
+};
+
+console.log([2, 5, 8, 1, 4].some(isBiggerThan10));  //false
+console.log([12, 5, 8, 1, 4].some(isBiggerThan10));  //true
+
+// Testing array elements using arrow functions
+console.log([2, 5, 8, 1, 4].some(x => x>10)); //false
+console.log([12, 5, 8, 1, 4].some(x => x>10));  //true
+
+// Checking whether a value exists in an array
+const fruits4 = ['apple', 'banana', 'mango', 'guava'];
+
+function checkAvailability(arr,val){
+    return arr.some(function (valu1){
+        return val === valu1
+    });
+};
+
+console.log(checkAvailability(fruits4, 'kela'));  //false
+console.log(checkAvailability(fruits4, 'mango'));  //true
 
