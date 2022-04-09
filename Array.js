@@ -1750,3 +1750,69 @@ function checkAvailability(arr,val){
 console.log(checkAvailability(fruits4, 'kela'));  //false
 console.log(checkAvailability(fruits4, 'mango'));  //true
 
+/**************************************************************Array.prototype.map()**************************/
+// The map() method creates a new array populated with the results of calling a provided function
+// on every element in the calling array.
+
+// Syntax
+// // Arrow function 
+// map((element) => { /* ... */ })
+// map((element, index) => { /* ... */ }) 
+// map((element, index, array) => { /* ... */ })
+
+// // Callback function 
+// map(callbackFn) 
+// map(callbackFn, thisArg)
+
+// // Inline callback function
+// map(function(element) { /* ... */ }) 
+// map(function(element, index) { /* ... */ }) 
+// map(function(element, index, array){ /* ... */ })
+// map(function(element, index, array) { /* ... */ }, thisArg)
+
+
+const array28 = [1,4,9,16];
+
+const map2 = array28.map(x => x*2);
+console.log(map2);   //[2, 8, 18, 32]
+
+
+// Mapping an array of numbers to an array of square roots
+const number4 = [1,4,9];
+
+const square1 = number4.map(function (num){
+    return Math.sqrt(num);
+});
+
+console.log(square1);  //[1, 2, 3]
+
+// Using map to reformat objects in an array
+let KvArray = [{key: 1, value: 10},
+    {key: 2, value: 20},
+    {key: 3, value: 30}
+    ];
+
+
+let reformattedArray = KvArray.map(Obj =>{
+    var rObj = {};
+    rObj[Obj.key] = Obj.value;
+    return rObj;
+});
+
+console.log(reformattedArray); 
+/*
+0: {1: 10}
+1: {2: 20}
+2: {3: 30}
+*/
+
+// Mapped array contains undefined
+let number5 = [1, 2, 3, 4];
+
+let filteredNumbers = number5.map(function (num,index){
+    if(index < 3){
+        return num; 
+    };
+});
+console.log(filteredNumbers);  //[1, 2, 3, undefined]
+ 
