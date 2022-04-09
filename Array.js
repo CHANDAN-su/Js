@@ -2017,6 +2017,68 @@ console.log(countedNames); //{Alice: 2, Bob: 1, Tiff: 1, Bruce: 1}
 
 
 // Grouping objects by a property
+let people = [
+    { name: 'Alice', age: 21 },
+    { name: 'Max', age: 20 },
+    { name: 'Jane', age: 20 }
+];
+
+function group(ObjectArray, property){
+    return ObjectArray.reduce(function (acc,obj){
+        let key = obj[property];
+        if(!acc[key]){
+            acc[key] = []
+        }
+        acc[key].push(obj)
+        return acc;
+    },{})   
+};
+
+let grouppeople = group(people,"age");
+console.log(grouppeople);
+    //	20: [
+     
+    //	{ name: 'Max', age: 20 },
+    //	{ name: 'Jane', age: 20 }
+    //	],
+    //	21: [{ name: 'Alice', age: 21 }]
+    // }
+    
+// Bonding arrays contained in an array of objects using the spread operator and initialValue
+let friend = 
+[
+    {
+        name: 'Anna',
+        books: ['Bible', 'Harry Potter'], 
+        age: 21
+    }, 
+    {
+        name: 'Bob',
+        books: ['War and peace', 'Romeo and Juliet'], age: 26
+    }, 
+    {
+        name: 'Alice',
+        books: ['The Lord of the Rings', 'The Shining'], age: 18
+    }
+];
+
+let allbook = friend.reduce(function (previousValue,currentValue){
+    return [...previousValue,...currentValue.books];
+},['Alphabet']);
+
+console.log(allbook);  //['Alphabet', 'Bible', 'Harry Potter', 'War and peace', 'Romeo and Juliet', 'The Lord of the Rings', 'The Shining']
+
+// Remove duplicate items in an array
+let myarray = ['a', 'b', 'a', 'b', 'c', 'e', 'e', 'c', 'd', 'd', 'd', 'd'];
+
+let myArrayWithNoDuplicates = myarray.reduce(function (previousValue,currentvalue){
+    if(previousValue.indexOf(currentvalue) === -1){
+        previousValue.push(currentvalue);
+    }
+    return previousValue;
+}, []);
+
+console.log(myArrayWithNoDuplicates);  //['a', 'b', 'c', 'e', 'd']
 
 
 
