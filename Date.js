@@ -82,13 +82,54 @@ Date.now()
 const start = Date.now();
 console.log("Starting Timer");
 
-setTimeout( () => {
-  const milles = Date.now()  - start;
-  console.log(`seconds elapsed ${Math.floor(milles/1000)}`);
-//    seconds elapsed 2
-}, 2000); 
+// setTimeout( () => {
+//   const milles = Date.now()  - start;
+//   console.log(`seconds elapsed ${Math.floor(milles/1000)}`);
+// //    seconds elapsed 2
+// }, 2000); 
 
 // UTC + 5:30 => IST 
+// GMT 
+
+/*********************************************************Date.parse( )*********************************************8*/
+//  The Date.parse() method parses a string representation of a date, and returns 
+//  the number of milliseconds since January 1, 1970, 000000 UTC 
+/*
+Syntax
+Direct call
+Date.parse(dateString)
+ 
+Implicit call
+new Date(dateString)
+*/
+const unixTimeZero = Date.parse('01 Jan 1970 00:00:00 GMT');
+const javaScriptRelease  = Date.parse('04 Dec 1995 00:12:00 GMT');
+
+console.log(unixTimeZero);  //0
+console.log(javaScriptRelease); //818035920000
+
+
+// Date Time String Format
+// For example
+// 1.   " 2011-10-10 " (date-only form)
+// 2.   " 2011-10-10T14:48:00 " (date-time form)
+// 3.   " 2011-10-10T14:48:00.000+09:00 " (date-time form with milliseconds and time zone) 
+
+
+// Fall-back to implementation-specific date formats
+// Non-ISO string with invalid date values 
+console.log(new Date('23/25/2014'));  //Invalid Date
+
+
+// ISO string with invalid values 
+// console.log(new Date('2014-25-23').toISOString());  //// throws "RangeError: invalid date" in all ES5-compliant browsers
+
+console.log(new Date('10 06 2014'));  //Mon Oct 06 2014 00:00:00 GMT+0530 (India Standard Time)
+
+console.log(new Date('foo-bar 2014').toString()); // Wed Jan 01 2014 00:00:00 GMT+0530 (India Standard Time)
+
+
+
 
 
 
