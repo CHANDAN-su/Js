@@ -129,7 +129,7 @@ console.log(new Date('10 06 2014'));  //Mon Oct 06 2014 00:00:00 GMT+0530 (India
 console.log(new Date('foo-bar 2014').toString()); // Wed Jan 01 2014 00:00:00 GMT+0530 (India Standard Time)
 
 
-/******************************************************Date.prototype.getDate()**********************************/
+/******************************************************Date.getDate()**********************************/
 // The getDate() method returns the day of the month for the specified date according to local time.
 /*
 Syntax
@@ -139,6 +139,17 @@ getDate()
 const birthday = new Date('September 01, 2001 23:55:30');
 const day = birthday.getDate();
 console.log(day);  //1
+
+/************************************************Date.getDay()*************************************/
+// The getDay() method returns the day of the week for the specified date according to local time, where 0 represents Sunday. 
+/*
+Syntax
+getDay()
+*/
+
+const birthday1 = new Date('September 01, 2001 23:55:30');
+const day1 = birthday1.getDay();
+console.log(day1);  //6
 
 
 
