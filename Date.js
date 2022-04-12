@@ -207,3 +207,13 @@ const birthday5 = new Date('September 01, 2001 23:55:330');
 const Minutes = birthday5.getMinutes();
 console.log(Minutes);  //55
 
+/*******************************************************Date.getMonth()***************************************/
+// The getMonth() method returns the month in the specified date according to local time, 
+// as a zero-based value (where zero indicates the first month of the year).
+/*
+Syntax
+getMonth()
+*/
+
+const moonLanding = new Date('July 20, 69 00:20:18');
+console.log(moonLanding.getMonth()); // (January gives 0) // expected output: 6
