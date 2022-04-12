@@ -217,3 +217,15 @@ getMonth()
 
 const moonLanding = new Date('July 20, 69 00:20:18');
 console.log(moonLanding.getMonth()); // (January gives 0) // expected output: 6
+
+
+/********************************************************************Date.getSeconds()************************************/
+// The getSeconds() method returns the seconds in the specified date according to local time.
+/*
+Syntax
+getSeconds()
+*/
+
+const birthday6 = new Date('September 01, 2001 23:55:30');
+const Seconds = birthday6.getSeconds();
+console.log(Seconds);  //30
