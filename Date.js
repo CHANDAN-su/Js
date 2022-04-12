@@ -167,3 +167,15 @@ var today = new Date();
 var year = today.getFullYear();
 console.log(year); //2022
 
+/**********************************************************Date.getHours()******************************************/
+// The getHours() method returns the hour for the specified date, according to local time.
+/*
+Syntax
+getHours()
+*/
+
+const birthday3 = new Date('September 01, 2001 23:55:30');
+const hour = birthday3.getHours();
+console.log(hour);  //23
+
+
