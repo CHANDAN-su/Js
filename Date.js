@@ -178,4 +178,21 @@ const birthday3 = new Date('September 01, 2001 23:55:30');
 const hour = birthday3.getHours();
 console.log(hour);  //23
 
+/********************************************************Date.getMilliseconds()*****************************/
+// The getMilliseconds() method returns the milliseconds in the specified date according to local time.
+/*
+Syntax
+getMilliseconds()
+*/
+
+const birthday4 = new Date('September 01, 2001 23:55:330');
+const Milliseconds = birthday4.getMilliseconds();
+console.log(Milliseconds);  //0
+
+console.log(birthday4.setMilliseconds(123));  //999368700123
+
+
+var today1 = new Date();
+var milliseconds1 = today1.getMilliseconds();
+console.log(milliseconds1);  //871
 
