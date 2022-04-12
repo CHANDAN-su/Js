@@ -196,3 +196,14 @@ var today1 = new Date();
 var milliseconds1 = today1.getMilliseconds();
 console.log(milliseconds1);  //871
 
+/**********************************************Date.getMinutes()*********************************/
+// The getMinutes() method returns the minutes in the specified date according to local time.
+/*
+Syntax
+getMinutes()
+*/
+
+const birthday5 = new Date('September 01, 2001 23:55:330');
+const Minutes = birthday5.getMinutes();
+console.log(Minutes);  //55
+
