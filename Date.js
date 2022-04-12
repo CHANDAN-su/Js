@@ -151,5 +151,19 @@ const birthday1 = new Date('September 01, 2001 23:55:30');
 const day1 = birthday1.getDay();
 console.log(day1);  //6
 
+/************************************************Date.getFullYear()******************************/
+// The getFullYear() method returns the year of the specified date according to local time. 
+// Use this method instead of the getYear() method.
+/*
+Syntax
+getFullYear()
+*/
 
+const birthday2 = new Date('September 01, 2001 23:55:30');
+const yesr = birthday2.getFullYear();
+console.log(yesr);  //2001
+
+var today = new Date();
+var year = today.getFullYear();
+console.log(year); //2022
 
