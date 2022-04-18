@@ -229,3 +229,217 @@ getSeconds()
 const birthday6 = new Date('September 01, 2001 23:55:30');
 const Seconds = birthday6.getSeconds();
 console.log(Seconds);  //30
+
+
+/*********************************************************Date.getTime()***************************************************/
+// The getTime() method returns the number of milliseconds* since the Unix Epoch	.
+/*
+Syntax
+getTime()
+*/
+
+
+const date12 = new Date('July 20, 69 20:17:40 GMT+00:00');
+
+console.log(date12.getTime());  //-14182940000
+
+console.log(new Date().getTime());  //1650214598692
+
+// Using getTime() for copying dates
+
+// Since month is zero based, birthday will be January 10, 1995
+var birthday7 = new Date(1994, 12, 10);
+var copy = new Date();
+console.log(copy.setTime(birthday.getTime()));  //999368730000
+
+// Measuring execution time
+var end, start1;
+
+start1 = new Date();
+for (var i = 0; i < 2000; i++) {
+  Math.sqrt(i);
+}
+end = new Date();
+
+console.log('Operation took ' + (end.getTime() - start1.getTime()) + ' msec');  //Operation took 2 msec
+
+var today111 = new Date();
+var dayOfMonth = today111.getUTCDate();
+console.log(dayOfMonth);
+
+
+const date111 = new Date('April 17, 2022 23:15:30 GMT+11:00');
+const date211 = new Date('April 17, 2022 13:00:30 GMT-11:00');
+console.log(date111.getUTCDate());  //17
+console.log(date211.getUTCDate());   //18
+
+
+/************************************************Intl.DateTimeFormat**********************************************/
+
+/*
+Syntax
+new Intl.DateTimeFormat()
+new Intl.DateTimeFormat(locales)
+new Intl.DateTimeFormat(locales, options)
+*/
+
+const date13 = new Date();
+console.log(new Intl.DateTimeFormat("en-US", {
+  
+  // dateStyle
+  // dateStyle: "full",  //Monday, April 18, 2022
+  dateStyle: "long",  //April 18, 2022
+  // dateStyle: "medium",  //Apr 18, 2022
+  // dateStyle: "short",  //4/18/22
+  
+  // timeStyle
+  // timeStyle: "full", //9:10:34 AM Coordinated Universal Time
+  timeStyle: "long",  //9:11:05 AM UTC
+  // timeStyle: "medium"  //9:11:24 AM
+  // timeStyle: "short",  //9:11 AM
+  
+  // calendar
+  // calendar: "japanese"
+  // calendar: "chinese"
+  // calendar: "indian"
+  
+  // timeZone
+  // timeZone: "Asia/Shanghai"  //5:24:58 PM GMT+8
+  timeZone: "Asia/Kolkata",  //2:55:31 PM GMT+5:30
+  // timeZone: "America/New_York"  //5:25:55 AM EDT
+  
+  // hourCycle
+  // hourCycle: "h11"  //2:58:11 PM GMT+5:30
+  // hourCycle: "h12"  //2:58:36 PM GMT+5:30
+  // hourCycle: "h23"  //14:58:59 GMT+5:30
+  hourCycle: "h24", //14:59:23 GMT+5:30
+
+}).format(date13));
+
+console.log("Next")
+
+const date14 = new Date();
+
+
+console.log(new Intl.DateTimeFormat("en-US",{
+  
+  timeZone: "Asia/Kolkata",
+  
+  // weekday
+  // weekday: "long"  //Monday
+  // weekday: "short"  //Mon
+  // weekday: "narrow"  //M
+  
+  // era
+  // era: "long"  //4 18, 2022 Anno Domini
+  // era: "short"  //4 18, 2022 AD
+  // era: "narrow"  //4 18, 2022 A
+  
+  // year
+  year: "numeric" , //2022
+  // year: "2-digit"  //22
+  
+  // month
+  // month: "numeric"  //04/2022
+  // month: "2-digit"  //04/2022
+  month: "long",  //April 2022
+  // month: "short"  //Apr 2022
+  // month: "narrow"  //A 2022
+  
+  
+  // day
+  // day: "numeric"  //April 18, 2022
+  day: "2-digit",  //April 18, 2022
+  
+  // hour
+  // hour: "numeric"  //April 18, 2022, 3 PM
+  hour: "2-digit",  //April 18, 2022, 03 PM
+  
+  // minute
+  minute: "numeric",  //April 18, 2022, 03:18 PM
+  // minute: "2-digit"  //April 18, 2022, 03:18 PM
+  
+  
+  // second
+  // second: "numeric"  //April 18, 2022, 03:19:48 PM
+  second: "2-digit",  //April 18, 2022, 03:20:09 PM
+  
+  // timeZoneName
+  // timeZoneName: "long"  //April 18, 2022, 03:25:05 PM India Standard Time
+  timeZoneName: "short"  //April 18, 2022, 03:25:29 PM GMT+5:30
+
+}).format(date14));
+
+console.log(new Intl.DateTimeFormat().format(Date.now())); 
+//4/18/2022
+
+
+// Using dayPeriod
+let date15 = Date.UTC(2012, 11, 17, 4, 0, 42);
+
+console.log(new Intl.DateTimeFormat('en-GB', { 
+  hour: 'numeric', 
+  hourCycle: 'h12', 
+  dayPeriod: 'short', 
+  timeZone: 'UTC' 
+  
+}).format(date15));   // > 4 at night"  
+
+console.log(new Intl.DateTimeFormat('fr', {
+  hour: 'numeric',
+  hourCycle: 'h12',
+  dayPeriod: 'narrow', 
+  timeZone: 'UTC' 
+  
+}).format(date15));// > "4 mat."  
+
+console.log(new Intl.DateTimeFormat('fr', { 
+  hour: 'numeric', 
+  hourCycle: 'h12', 
+    dayPeriod: 'long', 
+    timeZone: 'UTC' 
+  
+}).format(date15)); // > "4 du matin"
+
+
+const date16 = new Date();
+const arry = ['short', 'long', 'shortOffset', 'longOffset', 'shortGeneric', 'longGeneric'];
+
+for(let Zonename of arry){
+  var formatter = new Intl.DateTimeFormat("en-US",{
+    timeZone: "Asia/Kolkata",
+    timeZoneName: Zonename,
+  })
+  console.log(Zonename + ": " + formatter.format(date16))
+}; 
+/*
+short: 4/17/2022, GMT+5:30
+long: 4/17/2022, India Standard Time
+shortOffset: 4/17/2022, GMT+5:30
+longOffset: 4/17/2022, GMT+05:30
+shortGeneric: 4/17/2022, India Time
+longGeneric: 4/17/2022, India Standard Time
+*/
+
+// Using format
+const options = {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+};
+
+const datefomate = new Intl.DateTimeFormat("en-US",options);
+
+console.log(datefomate.format(new Date()));  //Monday, April 18, 2022
+
+// Using format with map
+var a = [new Date(2021,8) , new Date(2021,12) , new Date(2021,3)];
+
+var options1 = { year: "numeric",   month: "long", };
+
+var formatters = new Intl.DateTimeFormat("en-US",options1);
+
+var mapping = a.map(formatters.format);
+
+console.log(mapping.join(","));  //September 2021,January 2022,April 2021
