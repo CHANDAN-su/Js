@@ -443,3 +443,62 @@ var formatters = new Intl.DateTimeFormat("en-US",options1);
 var mapping = a.map(formatters.format);
 
 console.log(mapping.join(","));  //September 2021,January 2022,April 2021
+
+
+// Intl.DateTimeFormat.prototype.formatToParts()
+/*
+Syntax
+formatToParts(date)
+*/
+
+const date17 = new Date();
+var formatter = new Intl.DateTimeFormat('en-us', {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'numeric',
+  day: 'numeric',
+  hour: 'numeric',
+  minute: 'numeric',
+  second: 'numeric',
+  fractionalSecondDigits: 3,
+  hour12: true,
+  timeZone: 'UTC'
+});
+
+console.log(formatter.format(date17));  //Monday, 4/18/2022, 5:57:27.251 PM
+
+console.log(formatter.formatToParts(date17));
+/*
+{type: 'weekday', value: 'Monday'}
+{type: 'literal', value: ', '}
+{type: 'month', value: '4'}
+{type: 'literal', value: '/'}
+{type: 'day', value: '18'}
+{type: 'literal', value: '/'}
+{type: 'year', value: '2022'}
+{type: 'literal', value: ', '}
+{type: 'hour', value: '5'}
+{type: 'literal', value: ':'}
+{type: 'minute', value: '58'}
+{type: 'literal', value: ':'}
+{type: 'second', value: '23'}
+{type: 'literal', value: '.'}
+{type: 'fractionalSecond', value: '160'}
+{type: 'literal', value: ' '}
+{type: 'dayPeriod', value: 'PM'}
+*/
+
+var dateString = formatter.formatToParts(date17).map(({type, value}) => {
+  switch (type) {
+    case 'dayPeriod': 
+    return `<b>${value}</b>`;
+
+    default : return value;
+  }
+}).join('');
+
+console.log(formatter.format(date));  // "Monday, 12/17/2012, 3:00:42.000 AM"
+
+console.log(dateString);  // "Monday, 12/17/2012, 3:00:42.000 <b>AM</b>"
+
+// TM
