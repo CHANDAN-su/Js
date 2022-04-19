@@ -501,4 +501,118 @@ console.log(formatter.format(date));  // "Monday, 12/17/2012, 3:00:42.000 AM"
 
 console.log(dateString);  // "Monday, 12/17/2012, 3:00:42.000 <b>AM</b>"
 
-// TM
+// Intl.DateTimeFormat.prototype.formatRange()
+// The Intl.DateTimeFormat.prototype.formatRange() formats a date range in the most concise way based on 
+// the locale and options provided when instantiating Intl.DateTimeFormat object.
+/*
+Syntax
+formatRange(startDate, endDate)
+*/
+
+const options4 = { 
+  weekday: 'long', 
+  year: 'numeric', 
+  month: 'long', 
+  day: 'numeric' 
+};
+
+const startDate = new Date(Date.UTC(2007, 0, 10, 10, 0, 0));
+const endDate = new Date(Date.UTC(2008, 0, 10, 11, 0, 0));
+
+const dateTimeFormat = new Intl.DateTimeFormat("en",options4);
+console.log(dateTimeFormat.formatRange(startDate, endDate));  //Wednesday, January 10, 2007 – Thursday, January 10, 2008
+
+
+const options5 = { 
+  year: '2-digit', 
+  month: 'numeric', 
+  day: 'numeric' 
+};
+const dateTimeFormat1 = new Intl.DateTimeFormat("en",options5);
+console.log(dateTimeFormat1.formatRange(startDate, endDate));  //1/10/07 – 1/10/08
+
+
+
+let date18 = new Date(Date.UTC(2007, 0, 10, 10, 0, 0)); // > 'Wed, 10 Jan 2007 10:00:00 GMT'
+let date29 = new Date(Date.UTC(2007, 0, 10, 11, 0, 0)); // > 'Wed, 10 Jan 2007 11:00:00 GMT'
+let date30 = new Date(Date.UTC(2007, 0, 20, 10, 0, 0)); // > 'Sat, 20 Jan 2007 10:00:00 GMT'
+
+
+let fmt1 = new Intl.DateTimeFormat("en", {
+    year: '2-digit',
+    month: 'numeric',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric'
+});
+console.log(fmt1.format(date1)); // > '1/10/07, 10:00 AM'
+console.log(fmt1.formatRange(date18, date29)); // > '1/10/07, 10:00 – 11:00 AM'
+console.log(fmt1.formatRange(date18, date30)); // > '1/10/07, 10:00 AM – 1/20/07, 10:00 AM'
+
+
+let fmt2 = new Intl.DateTimeFormat("en", {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+});
+console.log(fmt2.format(date1)); // > 'Jan 10, 2007'
+console.log(fmt2.formatRange(date18, date29)); // > 'Jan 10, 2007'
+console.log(fmt2.formatRange(date18, date30)); // > 'Jan 10 – 20, 2007'
+
+// Intl.DateTimeFormat.prototype.formatRangeToParts()
+// The Intl.DateTimeFormat.prototype.formatRangeToParts() method returns an array of locale-specific tokens representing each part of
+//  the formatted date range produced by Intl.DateTimeFormat formatters.
+/*
+Syntax
+formatRangeToParts(startDate, endDate)
+*/
+
+const startDate1 = new Date(Date.UTC(2007, 0, 10, 10, 0, 0)); // > 'Wed, 10 Jan 2007 10:00:00 GMT'
+const endDate1 = new Date(Date.UTC(2007, 0, 10, 11, 0, 0));   // > 'Wed, 10 Jan 2007 11:00:00 GMT'
+
+const dateTimeFormat2 = new Intl.DateTimeFormat('en', {
+  hour: 'numeric',
+  minute: 'numeric'
+});
+
+const parts = dateTimeFormat2.formatRangeToParts(startDate1, endDate1);
+for (const part of parts) {
+  console.log(part);
+}
+/*
+{type: 'hour', value: '3', source: 'startRange'}source: "startRange"type: "hour"value: "3"[[Prototype]]: Object
+{type: 'literal', value: ':', source: 'startRange'}
+{type: 'minute', value: '30', source: 'startRange'}
+{type: 'literal', value: ' – ', source: 'shared'}
+{type: 'hour', value: '4', source: 'endRange'}
+{type: 'literal', value: ':', source: 'endRange'}
+{type: 'minute', value: '30', source: 'endRange'}
+{type: 'literal', value: ' ', source: 'shared'}
+{type: 'dayPeriod', value: 'PM', source: 'shared'}
+*/
+
+let date28 = new Date(Date.UTC(2007, 0, 10, 10, 0, 0));
+let date27 = new Date(Date.UTC(2007, 0, 10, 11, 0, 0));
+// > 'Wed, 10 Jan 2007 10:00:00 GMT'
+// > 'Wed, 10 Jan 2007 11:00:00 GMT'
+
+let fmt8 = new Intl.DateTimeFormat("en", {
+    hour: 'numeric',
+    minute: 'numeric'
+});
+
+console.log(fmt8.formatRange(date28, date27));
+// > '10:00 – 11:00 AM'
+
+console.log(fmt8.formatRangeToParts(date28, date27));
+/*
+{type: 'hour', value: '3', source: 'startRange'}
+{type: 'literal', value: ':', source: 'startRange'}
+{type: 'minute', value: '30', source: 'startRange'}
+{type: 'literal', value: ' – ', source: 'shared'}
+{type: 'hour', value: '4', source: 'endRange'}
+{type: 'literal', value: ':', source: 'endRange'}
+{type: 'minute', value: '30', source: 'endRange'}
+{type: 'literal', value: ' ', source: 'shared'}
+{type: 'dayPeriod', value: 'PM', source: 'shared'}
+*/
