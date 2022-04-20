@@ -616,3 +616,145 @@ console.log(fmt8.formatRangeToParts(date28, date27));
 {type: 'literal', value: ' ', source: 'shared'}
 {type: 'dayPeriod', value: 'PM', source: 'shared'}
 */
+
+/***********************************Date.getUTCDate()*********************************/
+// The getUTCDate() method returns the day of the month(from 1 to 31) in the specified date according to universal time.
+/*
+Syntax
+getUTCDate()
+*/
+
+const udate = new Date('August 19, 1975 23:15:30 GMT+11:00');
+console.log(udate.getUTCDate());  //19
+
+
+const udate1 = new Date('August 19, 1975 23:15:30 GMT-11:00');
+console.log(udate1.getUTCDate());  //20
+
+var today = new Date();
+var dayOfMonth = today.getUTCDate();
+console.log(dayOfMonth);  //20
+
+
+/**********************************Date.getUTCDay()************************/
+// The getUTCDay() method returns the day of the week in the specified date according to universal time, where 0 represents Sunday.
+/*
+Syntax
+getUTCDay()
+*/
+
+const udate2 = new Date('August 19, 1975 23:15:30 GMT+11:00');
+console.log(udate2.getUTCDay());  //2
+
+
+const udate3 = new Date('August 19, 1975 23:15:30 GMT-11:00');
+console.log(udate3.getUTCDay());  //3
+
+var today1 = new Date();
+var weekday  = today1.getUTCDay();
+console.log(weekday );  //3
+
+
+/**************************************Date.getUTCFullYear()*****************************/
+// The getUTCFullYear() method returns the year in the specified date according to universal time.
+
+/*Syntax
+getUTCFullYear()
+*/
+
+const udate4 = new Date('December 31, 1975, 23:15:30 GMT+11:00');
+console.log(udate4.getUTCFullYear());  //1975
+
+
+const udate5 = new Date('December 31, 1975, 23:15:30 GMT-11:00');
+console.log(udate5.getUTCFullYear());  //1976
+
+var today2 = new Date();
+var year   = today2.getUTCFullYear();
+console.log(year);  //2022
+
+/**********************************Date.getUTCHours()********************************/
+// The getUTCHours() method returns the hours in the specified date according to universal time.
+/*
+Syntax
+getUTCHours()
+*/
+
+const udate6 = new Date('December 31, 1975, 23:15:30 GMT+11:00');
+console.log(udate6.getUTCHours());  //12
+
+
+const udate7 = new Date('December 31, 1975, 23:15:30 GMT-11:00');
+console.log(udate7.getUTCHours());  //10
+
+var today3 = new Date();
+var hours    = today2.getUTCHours();
+console.log(hours);  //7
+
+/***************************************Date.getUTCMilliseconds()***************************/
+// The getUTCMilliseconds() method returns the milliseconds portion of the time object's value according to universal time.
+/*
+Syntax
+getUTCMilliseconds()
+*/
+const exampleDate = new Date('2018-01-02T03:04:05.678Z');
+console.log(exampleDate.getUTCMilliseconds());  //678
+
+var today = new Date();
+var milliseconds = today.getUTCMilliseconds();
+console.log(milliseconds);  //750
+
+/***********************************************Date.getUTCMinutes()*************************************/
+// The getUTCMinutes() method returns the minutes in the specified date according to universal time.
+/*
+Syntax
+getUTCMinutes()
+*/
+
+const udate8 = new Date('1 January 2000	03:15:30 GMT+07:00');
+const udate9 = new Date('1 January 2000	03:15:30 GMT+03:30');
+
+console.log(udate8.getUTCMinutes()); //15
+console.log(udate9.getUTCMinutes());  //45
+
+var today = new Date();
+var minutes = today.getUTCMinutes();
+console.log(minutes);  //41
+
+
+/***********************************************************Date.getUTCMonth()*********************************************/
+// The getUTCMonth() returns the month of the specified date according to universal time, as a zero-based value (where zero indicates the first month of the year).
+/*
+Syntax
+getUTCMonth()
+*/
+
+const udate10 = new Date('December 31, 1975, 23:15:30 GMT+11:00');
+const udate11 = new Date('December 31, 1975, 23:15:30 GMT-11:00');
+
+console.log(udate10.getUTCMonth());  //11
+console.log(udate11.getUTCMonth());  //0
+
+
+var today = new Date();
+var month = today.getUTCMonth();
+console.log(month);  //3
+
+
+/*******************************************************Date.getUTCSeconds()************************************/
+// The getUTCSeconds() method returns the seconds in the specified date according to universal time.
+/*
+Syntax
+getUTCSeconds()
+*/
+
+const moonLanding1 = new Date('July 20, 1969, 20:18:04 UTC');
+console.log(moonLanding1.getUTCSeconds());  //4
+
+
+var today = new Date();
+var seconds = today.getUTCSeconds();
+console.log(seconds);  //24
+
+const today222 = new Date();
+console.log(today222.getYear());  //122
