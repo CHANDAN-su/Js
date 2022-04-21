@@ -758,3 +758,160 @@ console.log(seconds);  //24
 
 const today222 = new Date();
 console.log(today222.getYear());  //122
+
+
+/**********************************************************Date.setDate()****************************************/
+// The setDate() method changes the day of the month of a given Date instance, based on local time.
+/*
+Syntax
+setDate(dayValue)
+*/
+const setd = new Date('August 19, 1975 23:15:30');  
+console.log(setd);  //Tue Aug 19 1975 23:15:30 GMT+0530 (India Standard Time)
+
+setd.setDate(24);
+console.log(setd);  //Sun Aug 24 1975 23:15:30 GMT+0530 (India Standard Time)
+
+setd.setDate(32);
+console.log(setd);  //Mon Sep 01 1975 23:15:30 GMT+0530 (India Standard Time)
+
+const Bigdate = new Date();
+Bigdate.setDate(25);
+console.log(Bigdate);  //Mon Apr 25 2022 22:16:06 GMT+0530 (India Standard Time)
+
+
+/***********************************************************Date.prototype.setFullYear()*******************************************/
+// The setFullYear() method sets the full year for a specified date according to local time. Returns new timestamp.
+/*
+Syntax
+setFullYear(yearValue) 
+setFullYear(yearValue, monthValue) 
+setFullYear(yearValue, monthValue, dateValue)
+*/
+
+const setd1 = new Date('August 19, 1975 23:15:30');
+console.log(setd1);  //Tue Aug 19 1975 23:15:30 GMT+0530 (India Standard Time)
+
+setd1.setFullYear(1976);
+console.log(setd1);  //Thu Aug 19 1976 23:15:30 GMT+0530 (India Standard Time)
+
+console.log(setd1.getFullYear());  //1976
+
+const Bigdate1 = new Date();
+Bigdate1.setFullYear(2025);
+console.log(Bigdate1);  //Mon Apr 21 2025 22:22:08 GMT+0530 (India Standard Time)
+
+/**********************************************************************Date.setHours()*************************************/
+// The setHours() method sets the hours for a specified date according to local time, and returns the number of milliseconds 
+// since January 1, 1970 00:00:00 UTC until the time represented by the updated Date instance.
+/*
+Syntax
+setHours(hoursValue) 
+setHours(hoursValue, minutesValue)
+setHours(hoursValue, minutesValue, secondsValue) 
+setHours(hoursValue, minutesValue, secondsValue, msValue)
+*/
+
+const setd2 = new Date('August 19, 1975 23:15:30');
+
+setd2.setHours(20);
+console.log(setd2);  //Tue Aug 19 1975 20:15:30 GMT+0530 (India Standard Time)
+
+setd2.setHours(20,21,22);
+console.log(setd2);   //Tue Aug 19 1975 20:21:22 GMT+0530 (India Standard Time)
+
+const Bigdate2 = new Date();
+Bigdate2.setHours(7);
+console.log(Bigdate2);     //Thu Apr 21 2022 07:26:57 GMT+0530 (India Standard Time)
+
+
+/***************************************************************************Date.setMilliseconds()************************************/
+// The setMilliseconds() method sets the milliseconds for a specified date according to local time.
+/*
+Syntax
+setMilliseconds(millisecondsValue)
+*/
+
+const setd3 = new Date('August 19, 1975 23:15:30');
+console.log(setd3.getMilliseconds());  //0
+
+setd3.setMilliseconds(456);
+console.log(setd3.getMilliseconds());  //456
+
+const Bigdate3 = new Date();
+Bigdate3.setMilliseconds(100);;
+console.log(Bigdate3.getMilliseconds());  //100
+
+/*******************************************************************Date.setMinutes()**********************************/
+// The setMinutes() method sets the minutes for a specified date according to local time.
+/*
+Syntax
+setMinutes(minutesValue) 
+setMinutes(minutesValue, secondsValue) 
+setMinutes(minutesValue, secondsValue, msValue)
+*/
+
+const setd4 = new Date('August 19, 1975 23:15:30');
+
+setd4.setMinutes(45);
+console.log(setd4.getMinutes());  //45
+console.log(setd4);  //Tue Aug 19 1975 23:45:30 GMT+0530 (India Standard Time)
+
+const Bigdate4 = new Date();
+Bigdate4.setMinutes(45);;
+console.log(Bigdate4);   //Thu Apr 21 2022 22:45:58 GMT+0530 (India Standard Time)
+
+
+/*****************************************************Date.setMonth()***********************************/
+// The setMonth() method sets the month for a specified date according to the currently set year.
+/*
+Syntax
+setMonth(monthValue) 
+setMonth(monthValue, dayValue)
+*/
+
+const setd5 = new Date('August 19, 1975 23:15:30');
+
+setd5.setMonth(3);
+console.log(setd5.getMonth());  //3
+console.log(setd5);  //Sat Apr 19 1975 23:15:30 GMT+0530 (India Standard Time)
+
+const Bigdate5 = new Date();
+Bigdate5.setMonth(7);;
+console.log(Bigdate5);   //Sun Aug 21 2022 22:41:41 GMT+0530 (India Standard Time)
+
+
+/******************************************************************************Date.setYear()*************************************/
+// The legacy  setYear() method sets the year for a specified date according to local time.
+/*
+Syntax
+setYear(yearValue)
+*/
+
+
+var theBigDay = new Date();
+
+theBigDay.setYear(96);
+console.log(theBigDay); //Sun Apr 21 1996 22:46:34 GMT+0530 (India Standard Time)
+
+theBigDay.setYear(1996);  
+console.log(theBigDay);  //Sun Apr 21 1996 22:47:29 GMT+0530 (India Standard Time)
+
+theBigDay.setYear(2000);  
+console.log(theBigDay);  //Fri Apr 21 2000 22:47:56 GMT+0530 (India Standard Time)
+
+
+/***************************************************************Date.setTime()********************************************/
+// The setTime() method sets the Date object to the time represented by a number of milliseconds since January 1, 1970, 00:00:00 UTC.
+/*
+Syntax
+setTime(timeValue)
+*/
+
+const event1 = new Date('July 1, 1999');
+const event2 = new Date();
+event2.setTime(event1.getTime());
+
+console.log(event1);  //Thu Jul 01 1999 00:00:00 GMT+0530 (India Standard Time)
+
+console.log(event2);  //Thu Jul 01 1999 00:00:00 GMT+0530 (India Standard Time)
