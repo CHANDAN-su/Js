@@ -915,3 +915,225 @@ event2.setTime(event1.getTime());
 console.log(event1);  //Thu Jul 01 1999 00:00:00 GMT+0530 (India Standard Time)
 
 console.log(event2);  //Thu Jul 01 1999 00:00:00 GMT+0530 (India Standard Time)
+
+
+
+
+/*******************************************************************Date.setUTCDate()************************************/
+// The setUTCDate() method changes the day of the month of a given  Date instance, based on UTC time.
+/*
+Syntax
+setUTCDate(dayValue)
+*/
+
+
+
+
+
+/***************************************************Date.toDateString()*******************************************/
+/*
+The toDateString() method returns the date portion of a Date object in English in the following format separated by spaces:
+
+1.	First three letters of the week day name
+2.	First three letters of the month name
+3.	Two digit day of the month, padded on the left a zero if necessary
+4.	Four digit year (at least), padded on the left with zeros if necessary
+
+E.g. "Thu Jan 01 1970".
+*/
+/*
+Syntax
+toDateString()
+*/
+
+const DataString = new Date(1993, 6, 28, 14, 39, 7);
+
+console.log(DataString.toString());  //Wed Jul 28 1993 14:39:07 GMT+0530 (India Standard Time)
+
+console.log(DataString.toDateString());  //Wed Jul 28 1993
+
+const today4 = new Date();
+console.log(today4.toDateString());  //Mon Apr 25 2022
+
+
+/************************************************Date.toGMTString()**********************************************/
+// The toGMTString() method converts a date to a string, using Internet Greenwich Mean Time (GMT) conventions. The exact format of the value returned by toGMTString() 
+// varies according to the platform and browser, in general it should represent a human readable date string.
+/*
+Syntax
+toGMTString()
+*/
+
+let today5 = new Date();
+console.log(today5.toGMTString());  //Mon, 25 Apr 2022 17:24:16 GMT
+
+
+/*********************************************************************Date.toISOString()**********************************/
+// The toISOString() method returns a string in simplified extended ISO format (
+  // ISO 8601	), which is always 24 or 27 characters long ( YYYY-MM-DDTHH:mm:ss.sssZ or
+  // ±YYYYYY-MM-DDTHH:mm:ss.sssZ , respectively). The timezone is always zero UTC offset, as denoted by the suffix " Z ".
+/*
+Syntax
+toISOString()
+*/
+
+const iso = new Date("'05 October 2011 14:48 UTC'");
+
+console.log(iso.toString());  //Wed Oct 05 2011 20:18:00 GMT+0530 (India Standard Time)
+
+console.log(iso.toISOString());  //2011-10-05T14:48:00.000Z
+  
+
+/*************************************************************Date.toString()**************************************/
+// The toString() method returns a string representing the specified Date object.
+/*
+Syntax
+toString()
+*/
+
+const string = new Date("August 19, 1975 23:15:30");
+
+console.log(string.toString());  //Tue Aug 19 1975 23:15:30 GMT+0530 (India Standard Time)
+
+const x = new Date();
+console.log(x.toString());  //Mon Apr 25 2022 23:05:56 GMT+0530 (India Standard Time)
+
+
+/*******************************************************Date.toTimeString()**************************************************/
+// The toTimeString() method returns the time portion of a Date object in human readable form in English.
+/*
+Syntax
+toTimeString()
+*/
+
+
+const timestring = new Date('August 19, 1975 23:15:30');
+
+console.log(timestring.toTimeString());  //23:15:30 GMT+0530 (India Standard Time)
+
+const d = new Date();
+
+console.log(d.toString());   //Mon Apr 25 2022 23:10:59 GMT+0530 (India Standard Time)
+
+console.log(d.toTimeString());  //23:13:03 GMT+0530 (India Standard Time)
+
+
+/************************************************************Date.toUTCString()***************************************/
+// The toUTCString() method converts a date to a string, using the UTC time zone.
+//Www, dd Mmm yyyy hh:mm:ss GMT 
+/*
+Syntax
+toUTCString()
+*/
+
+const stringUTC = new Date('14 Jun 2017 00:00:00 PDT');
+console.log(stringUTC.toUTCString());  //Wed, 14 Jun 2017 07:00:00 GMT
+
+const today6 = new Date();
+console.log(today6.toUTCString());  //Mon, 25 Apr 2022 17:47:20 GMT
+
+/****************************************************************Date.valueOf()**********************************/
+// The valueOf() method returns the primitive value of a Date object.
+/*
+Syntax
+valueOf()
+*/
+
+const value = new Date(Date.UTC(96, 1, 2, 3, 4, 5));
+console.log(value.valueOf());  //823230245000
+
+const value1 = new Date('02 Feb 1996 03:04:05 GMT');
+console.log(value1.valueOf());  //823230245000
+
+const y = new Date();
+console.log(y.valueOf());  //1650909386628
+
+
+/************************************************************Date.UTC()*****************************************************/
+// The Date.UTC() method accepts parameters similar to the Date constructor, but treats them as UTC. It returns the number of milliseconds since January 1, 1970, 00:00:00 UTC.
+/*
+Date.UTC(year) Date.UTC(year, month) Date.UTC(year, month, day)
+Date.UTC(year, month, day, hour) Date.UTC(year, month, day, hour, minute)
+Date.UTC(year, month, day, hour, minute, second) Date.UTC(year, month, day, hour, minute, second, millisecond)
+*/
+
+const utcDate1 = new Date(Date.UTC(96, 1, 2, 3, 4, 5));
+const utcDate2 = new Date(Date.UTC(0, 0, 0, 0, 0, 0));
+
+console.log(utcDate1.toUTCString());
+// expected output: Fri, 02 Feb 1996 03:04:05 GMT
+
+console.log(utcDate2.toUTCString());
+// expected output: Sun, 31 Dec 1899 00:00:00 GMT
+
+
+
+/************************************************Date.toLocaleDateString()***************************************/
+/*
+Syntax
+toLocaleDateString() 
+toLocaleDateString(locales) 
+toLocaleDateString(locales, options)
+*/
+
+// var date = new Date(Date.UTC(2012, 11, 20, 3, 0, 0));
+
+// formats below assume the local time zone of the locale;
+// America/Los_Angeles for the US
+
+// US English uses month-day-year order console.log(date.toLocaleDateString('en-US'));
+// → "12/20/2012"
+
+// British English uses day-month-year order console.log(date.toLocaleDateString('en-GB'));
+// → "20/12/2012"
+
+// Korean uses year-month-day order console.log(date.toLocaleDateString('ko-KR'));
+// → "2012. 12. 20."
+
+// Event for Persian, It's hard to manually convert date to Solar Hijri console.log(date.toLocaleDateString('fa-IR'));
+// "٠٣/٩/١٩٣١" → //
+
+// Arabic in most Arabic speaking countries uses real Arabic digits console.log(date.toLocaleDateString('ar-EG'));
+// "٠٢/٢١/٢١٠٢" → //
+
+// for Japanese, applications may want to use the Japanese calendar,
+// where 2012 was the year 24 of the Heisei era
+
+// console.log(date.toLocaleDateString('ja-JP-u-ca-japanese'));
+// → "24/12/20"
+
+// when requesting a language that may not be supported, such as
+
+// Balinese, include a fallback language, in this case Indonesian console.log(date.toLocaleDateString(['ban', 'id']));
+// → "20/12/2012"
+
+
+// var date = new Date(Date.UTC(2012, 11, 20, 3, 0, 0));
+// request a weekday along with a long date
+// var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'nu console.log(date.toLocaleDateString('de-DE', options));
+// → "Donnerstag, 20. Dezember 2012"
+
+// an application may want to use UTC and make that visible
+// options.timeZone = 'UTC'; options.timeZoneName = 'short';
+// console.log(date.toLocaleDateString('en-US', options));
+// → "Thursday, December 20, 2012, UTC"
+
+
+/*****************************************************************Date.toLocaleString()******************************************/
+// The toLocaleString() method returns a string with a language sensitive representation of this date.
+/*
+Syntax
+toLocaleString() 
+toLocaleString(locales) 
+toLocaleString(locales, options)
+*/
+
+
+
+/**********************************************************************Date.toLocaleTimeString()**************************************/
+/*
+Syntax
+toLocaleTimeString() 
+toLocaleTimeString(locales) 
+toLocaleTimeString(locales, options)
+*/
