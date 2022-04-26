@@ -917,17 +917,160 @@ console.log(event1);  //Thu Jul 01 1999 00:00:00 GMT+0530 (India Standard Time)
 console.log(event2);  //Thu Jul 01 1999 00:00:00 GMT+0530 (India Standard Time)
 
 
-
-
-/*******************************************************************Date.setUTCDate()************************************/
+/*********************************************************Date.setUTCDate()***************************/
 // The setUTCDate() method changes the day of the month of a given  Date instance, based on UTC time.
 /*
 Syntax
 setUTCDate(dayValue)
 */
 
+const setutc = new Date('August 19, 1975 23:15:30 GMT-3:00');
+
+console.log(setutc.getUTCDate());  //20
 
 
+setutc.setUTCDate(19);
+console.log(setutc.getUTCDate());  //19
+
+var theBigDay = new Date(); 
+theBigDay.setUTCDate(20);
+console.log(theBigDay);  //2022-04-20T07:35:08.888Z
+
+
+/*****************************************Date.setUTCFullYear()*******************************/
+// The setUTCFullYear() method sets the full year for a specified date according to universal time.
+/*
+Syntax
+setUTCFullYear(yearValue) 
+setUTCFullYear(yearValue, monthValue) 
+setUTCFullYear(yearValue, monthValue, dayValue)
+*/
+
+
+const setutc1 = new Date('December 31, 1975 23:15:30 GMT-3:00');
+
+console.log(setutc1.getUTCFullYear());  //1976
+
+console.log(setutc1.toUTCString());  //Thu, 01 Jan 1976 02:15:30 GMT
+
+setutc1.setUTCFullYear(1975);
+console.log(setutc1.toUTCString());  //Wed, 01 Jan 1975 02:15:30 GMT
+
+
+const theBigDay1 = new Date(); 
+theBigDay1.setUTCFullYear(1997);
+console.log(theBigDay1.toUTCString());  //Tue, 22 Apr 1997 07:41:42 GMT
+
+
+/*************************************************************Date.setUTCMonth()******************************/
+// The setUTCMonth() method sets the month for a specified date according to universal time.
+/*
+Syntax
+setUTCMonth(monthValue) 
+setUTCMonth(monthValue, dayValue)
+*/
+
+const setutc2 = new Date('December 31, 1975 23:15:30 GMT-3:00');
+
+console.log(setutc2.toUTCString());  //Thu, 01 Jan 1976 02:15:30 GMT
+
+console.log(setutc2.getMonth()); //0
+
+setutc2.setUTCMonth(11);
+console.log(setutc2.toUTCString()); //Wed, 01 Dec 1976 02:15:30 GMT
+
+
+var theBigDay2 = new Date(); 
+theBigDay2.setUTCMonth(11);
+console.log(theBigDay2.toUTCString());  //Thu, 22 Dec 2022 07:49:15 GMT
+
+
+/******************************************************Date.setUTCHours()**********************************/
+// The setUTCHours() method sets the hour for a specified date according to universal time, and returns the number of milliseconds since January 1, 1970 00:00:00
+// UTC until the time represented by the updated Date instance.
+/*
+Syntax
+setUTCHours(hoursValue) 
+setUTCHours(hoursValue, minutesValue)
+setUTCHours(hoursValue, minutesValue, secondsValue) 
+setUTCHours(hoursValue, minutesValue, secondsValue, msValue)
+*/
+
+const setutc3 = new Date('August 19, 1975 23:15:30 GMT-3:00');
+
+console.log(setutc3.toUTCString());  //Wed, 20 Aug 1975 02:15:30 GMT
+
+console.log(setutc3.getUTCHours());  //2
+
+setutc3.setUTCHours(23);
+console.log(setutc3.toUTCString());  //Wed, 20 Aug 1975 23:15:30 GMT
+
+var theBigDay3 = new Date(); 
+theBigDay3.setUTCHours(13);
+console.log(theBigDay3.toUTCString()); //Fri, 22 Apr 2022 13:58:02 GMT
+
+
+/*******************************************Date.setUTCMinutes()**********************************/
+// The setUTCMinutes() method sets the minutes for a specified date according to universal time.
+/*
+Syntax
+setUTCMinutes(minutesValue) 
+setUTCMinutes(minutesValue, secondsValue) 
+setUTCMinutes(minutesValue, secondsValue, msValue)
+*/
+
+
+const setutc4 = new Date('December 31, 1975, 23:15:30 GMT+11:00');
+
+console.log(setutc4.getUTCMinutes()); //15
+
+setutc4.setUTCMinutes(25);
+console.log(setutc4.getUTCMinutes()); //22
+
+
+var theBigDay4 = new Date(); 
+theBigDay4.setUTCMinutes(43);
+console.log(theBigDay4.toUTCString());  //Fri, 22 Apr 2022 08:43:45 GMT
+
+
+
+/*******************************************************Date.setUTCSeconds()*******************************/
+// The setUTCSeconds() method sets the seconds for a specified date according to universal time.
+/*
+Syntax
+setUTCSeconds(secondsValue) 
+setUTCSeconds(secondsValue, msValue)
+*/
+
+const setutc5 = new Date('December 31, 1975, 23:15:30 GMT+11:00');
+
+console.log(setutc5.getUTCSeconds());  //30
+
+setutc5.setUTCSeconds(41);
+console.log(setutc5.getUTCSeconds());  //41
+
+
+var theBigDay5 = new Date(); 
+theBigDay5.setUTCSeconds(20);
+console.log(theBigDay5.toUTCString()); //Fri, 22 Apr 2022 08:05:20 GMT
+
+/***************************************************Date.setUTCMilliseconds()********************************/
+// The setUTCMilliseconds() method sets the milliseconds for a specified date according to universal time.
+/*
+Syntax
+setUTCMilliseconds(millisecondsValue)
+*/
+
+const setutc6 = new Date('2018-01-24T12:38:29.069Z');
+
+console.log(setutc6.getUTCMilliseconds());  //069Z
+
+setutc6.setUTCMilliseconds(420);
+console.log(setutc6.getUTCMilliseconds());  //420
+
+var theBigDay6 = new Date(); 
+theBigDay6.setUTCMilliseconds(500);
+ console.log(theBigDay6.toUTCString()); //Fri, 22 Apr 2022 08:09:06 GMT
 
 
 /***************************************************Date.toDateString()*******************************************/
