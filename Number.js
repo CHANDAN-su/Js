@@ -27,7 +27,6 @@ Syntax
 Number.isFinite(value)
 */
 
-console.log(Number.isFinite(1/0));  //false
 console.log(Number.isFinite(10/5));  //true
 console.log(Number.isFinite(0/0)); //false
 
@@ -108,7 +107,7 @@ console.log(typeofNaN(232));   //undefined
 console.log(isNaN(34)); //false
 console.log(isNaN("54fg"));  //true
 
-console.log(Number.isNaN(NaN)); // true 
+console.log(isNaN(NaN)); // true 
 console.log(Number.isNaN(Number.NaN)); // true 
 console.log(Number.isNaN(0 / 0)); // true
 
@@ -126,3 +125,33 @@ console.log(Number.isNaN('37'));
 console.log(Number.isNaN('37.37'));
 console.log(Number.isNaN(''));
 console.log(Number.isNaN(' '));
+
+
+
+/************************************************************************Number.isSafeInteger()****************************************/
+// The Number.isSafeInteger() method determines whether the provided value is a number that is a safe integer.
+/*
+Syntax
+Number.isSafeInteger(testValue)
+*/
+
+function warn(x){
+    if(Number.isSafeInteger(x)){
+        return 'Precision safe.';
+    }
+    return 'Precision may be lost!';
+};
+
+console.log(warn(Math.pow(2,53)));  //Precision may be lost!
+
+console.log(warn(Math.pow(2,53)-1));  //Precision safe.
+
+console.log(Number.isSafeInteger(3));	// true 
+console.log(Number.isSafeInteger(Math.pow(2, 53)));	// false 
+console.log(Number.isSafeInteger(Math.pow(2, 53) - 1)); // true 
+console.log(Number.isSafeInteger(NaN));	// false
+console.log(Number.isSafeInteger(Infinity));	// false
+console.log(Number.isSafeInteger('3'));	// false
+console.log(Number.isSafeInteger(3.1));	// false
+console.log(Number.isSafeInteger(3.0));	// true
+
