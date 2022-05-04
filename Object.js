@@ -259,3 +259,319 @@ const obj1 = {
 
 const Copy = Object.assign({},obj1);
 console.log(Copy);  //{foo: 1, bar: 2}
+
+
+
+/****************************************************************************Object.create()***************************************/
+// The Object.create() method creates a new object, using an existing object as the prototype of the newly created object.
+/*
+Syntax
+Object.create(proto)
+Object.create(proto, propertiesObject)
+*/
+
+
+const person2 = {
+  isHuman: false,
+  printIntroduction: function (){
+    console.log(`My name is ${this.name}. I AM Human? ${this.isHuman} `);
+  }
+};
+
+const me = Object.create(person2);
+
+me.name = "Chandan Thakur";
+me.isHuman = true;
+
+console.log(me.printIntroduction());  //My name is Chandan Thakur. I AM Human? true
+
+var oco;
+oco = Object.create({});
+console.log(ocn);  //undfine
+
+oco.p = 12;
+console.log(oco);  //{p: 12}
+
+
+
+var ocn;
+ocn =Object.create(null);
+console.log(ocn);  //{}
+
+ocn.p = 13;
+console.log(ocn); //{p: 13}
+
+
+/***********************************************************************Object.entries()***********************************************/
+// The Object.entries() method returns an array of a given object's own enumerable string-keyed property [key, value] pairs. 
+// This is the same as iterating with a for...in loop, except that a for...in loop enumerates properties in the prototype chain as well.
+/*
+Syntax
+Object.entries(obj)
+*/
+
+
+const object1 = {
+  a: "something",
+  b: 42
+};
+
+console.log(Object.entries(object1)); // [['a', 'something'],['b', 42] ]
+
+for(const [key,value] of Object.entries(object1)){
+  console.log(`${key}: ${value} `);
+};
+/*
+a: something 
+b: 42 
+*/
+
+
+const Obj6 = {
+  boo: "far",
+  baz: 42
+};
+console.log(Object.entries(Obj6));  //[ ['foo', 'bar'], ['baz', 42] ]
+
+// array like object
+const Obj7 = {
+  1: "a",
+  2: "b",
+  3: "c"
+};
+
+console.log(Object.entries(Obj7)); //[ ['0', 'a'], ['1', 'b'], ['2', 'c']
+
+// array like object with random key ordering const 
+const Obj8 = {
+  100: "a",
+  2: "b",
+  7: "c"
+};
+
+console.log(Object.entries(Obj8));  //[ ['2', 'b'], ['7', 'c'], ['100', "a"] ]
+
+
+const Obj9 = {
+  foo: "bar",
+  baz: 42
+};
+const map = new Map(Object.entries(Obj9));
+console.log(map);  //Map(2) {'foo' => 'bar', 'baz' => 42}
+
+
+// Iterating through an Object
+const Obj10 = {
+  foo: "bar",
+  baz: 42
+};
+
+Object.entries(Obj10).forEach(([key,vale]) => console.log(`${key}: ${vale}`));
+/*
+foo: bar
+baz: 42
+*/
+
+/*****************************************************************************Object.fromEntries()***********************************/
+// The Object.fromEntries() method transforms a list of key-value pairs into an object.
+/*
+Syntax
+Object.fromEntries(iterable);
+*/
+
+const entries = new Map([  ['foo', 'bar'],  ['baz', 42]  ]);
+
+const Obj17 = Object.fromEntries(entries);
+console.log(Obj17);  //{foo: 'bar', baz: 42}
+
+
+// Converting an Array to an Object
+const arr1 = [ ['0', 'a'], ['1', 'b'], ['2', 'c'] ];
+const obj18 = Object.fromEntries(arr1);
+console.log(obj18); // { 0: "a", 1: "b", 2: "c" }
+
+
+
+/**********************************************************************Object.freeze()**********************************************************/
+// The Object.freeze() method freezes an object. 
+// A frozen object can no longer be changed; freezing an object prevents new properties from being added to it
+/*
+Syntax
+Object.freeze(obj)
+*/
+
+const Obj11 = {
+  prop: 42
+};
+console.log(Obj11); //{prop:42}
+
+Object.freeze(Obj11);
+Obj11.prop = 33; //// Throws an error in strict	mode
+
+console.log(Obj11);  //{prop: 42}
+
+
+// Freezing objects
+const Obj12 = {
+  prop() { return 1},
+  foo : 'bar'
+};
+
+// Freeze.
+Object.freeze(Obj12);
+
+Obj12.foo = "baz";  //not mater
+Obj12.lumpy  = "woof";  //not mater
+delete Obj12.prop;  //not mater
+
+console.log(Obj12);  //{foo: 'bar', prop: ƒ}
+
+// In strict mode such attempts will throw TypeErrors 
+// function fail(){
+//   "use strict";
+
+//   Obj12.foo = "'sparky'",   //// throws a TypeError 
+//   delete Obj12.prop, // throws a TypeError
+//   Obj12.sparky  = "arf" //// throws a TypeError
+// };
+// console.log(fail());
+
+
+
+// Freezing arrays
+let a = [0];
+Object.freeze(a);
+
+a[0] = 3;
+// a.push("chanda");  //// throws a TypeError
+console.log(a);  //[0]
+
+
+/**************************************************************************Object.isFrozen()**********************************************/
+// The Object.isFrozen() determines if an object is frozen.
+
+const object2 = {
+  prop : 43
+};
+
+console.log(Object.isFrozen(object2));  //false
+
+Object.freeze(object2);
+console.log(Object.isFrozen(object2));  // true
+
+
+
+/*************************************************************************Object.keys()***********************************************/
+// The Object.keys() method returns an array of a given object's own enumerable property names, iterated in the same order that a normal loop would.
+/*
+Syntax
+Object.keys(obj)
+*/
+
+
+const object3 = {
+  a: "something",
+  b: 23,
+  c: false
+};
+
+console.log(Object.keys(object3));  //['a', 'b', 'c']
+
+// simple array
+const arr = ["a" , "b" , "c"];
+console.log(Object.keys(arr));  //['0', '1', '2']
+
+// array-like object with random key ordering 
+const Obj14 = {
+  100: "a",
+  2: "b",
+  7: "c"
+};
+console.log(Object.keys(Obj14));   //['2', '7', '100']
+
+// getFoo is a property which isn't enumerable 
+const myObj = Object.create({},{
+  getfoo: {
+    value : function (){
+      return this.foo;
+    }
+  }
+});
+
+myObj.foo = 2;
+console.log(Object.keys(myObj));  //['foo']
+
+
+/********************************************************************Object.values()**********************************************/
+// The Object.values() method returns an array of a given object's own enumerable property values, in the same order as that provided by a for...in loop. 
+/*
+Syntax
+Object.values(obj)
+*/
+
+const object4 = {
+  a: "something",
+  b: 45,
+  c: true
+};
+
+console.log(Object.values(object4));  // ['something', 45, true]
+
+
+// array-like object with random key ordering 
+const Obj15 = {
+  100: "a",
+  2: "b",
+  7: "c"
+};
+console.log(Object.values(Obj15));   //['b', 'c', 'a']
+
+// getFoo is a property which isn't enumerable 
+const myObj1 = Object.create({},{
+  getfoo: {
+    value : function (){
+      return this.foo;
+    }
+  }
+});
+
+myObj1.foo = "bar";
+console.log(Object.values(myObj1));  //['bar']
+
+// non-object argument will be coerced to an object 
+console.log(Object.values("foo")); //['f', 'o', 'o']
+
+
+/****************************************************************Object.is()****************************************************************/
+// The Object.is() method determines whether two values are the same value.
+/*
+Syntax
+Object.is(value1, value2);
+*/
+
+
+// Case 1: Evaluation result is the same as using ===
+
+console.log(Object.is(25, 25));	//	true
+console.log(Object.is('foo', 'foo'));	//	true
+console.log(Object.is('foo', 'bar'));	//	false
+console.log(Object.is(null, null));	//	true
+console.log(Object.is(undefined, undefined));	//	true
+console.log(Object.is(window, window));	//	true
+console.log(Object.is([], [])); //	false
+
+var foo = { a: 1 };	
+var bar = { a: 1 };
+console.log(Object.is(foo, foo)); //	true
+console.log(Object.is(foo, bar));	//	false
+
+// Case 2: Signed zero		
+console.log(Object.is(0, -0));	//	false
+console.log(Object.is(+0, -0));	//	false
+console.log(Object.is(-0, -0));	//	true
+console.log(Object.is(0n, -0n));	//	true
+
+
+// Case 3: NaN 
+console.log(Object.is(NaN, 0/0));	//	true
+console.log(Object.is(NaN, Number.NaN));	//	true
