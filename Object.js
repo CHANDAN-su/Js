@@ -575,3 +575,274 @@ console.log(Object.is(0n, -0n));	//	true
 // Case 3: NaN 
 console.log(Object.is(NaN, 0/0));	//	true
 console.log(Object.is(NaN, Number.NaN));	//	true
+
+
+
+/***************************************************************Object.defineProperties()**************************************************/
+// The Object.defineProperties() method defines new or modifies existing properties directly on an object, returning the object.
+/*
+Syntax
+Object.defineProperties(obj, props)
+
+props
+configurable
+enumerable
+value
+writable
+get
+set
+*/
+
+const object5 = {};
+
+Object.defineProperties(object5,{
+  property1: {
+    value: 45,
+    writable: false
+  },
+  property2: {}
+});
+
+console.log(object5.property1);  //45
+
+var obj89 = {}; 
+
+Object.defineProperties(obj89, {
+  'property1': { value: true, writable: true
+  },
+  'property2': { value: 'Hello', writable: false
+  }
+  // etc. etc.
+});
+  
+console.log(obj89.property1);
+console.log(obj89.property2);
+
+
+
+/*************************************************************Object.defineProperty()***********************************************/
+// The static method Object.defineProperty() defines a new property directly on an object, or modifies an existing property on an object, and returns the object.
+/*
+Syntax
+Object.defineProperty(obj, prop, descriptor)
+*/
+
+const object6 = {};
+
+Object.defineProperty(object6 , 'property1', {
+  value: 56,  
+  writable: false
+});
+
+object6.property1 = 49;  //// throws an error in strict mode
+console.log(object6.property1);  //56  (writable: false h to 56 aayega out   writable: ture h to 49 aayega)
+
+
+// Object creation of 3 type
+
+// first:- var newObject = {};
+// ṣecind:- var newObject = Object.create();
+// third:- var newObject = new Object();
+
+var newObject = new Object();
+
+// first Set Property
+
+newObject.a = 1;
+console.log(newObject);  //{a:1}
+
+//Modifiying the  value of a property
+newObject.a = 0;
+console.log(newObject);  //{a:0}
+
+// Creating a new property
+newObject.b = 2
+console.log(newObject);  //{a: 0, b: 2}
+
+// Deleting a property
+console.log(delete newObject.b);  //true
+console.log(newObject);  //{a: 0}
+
+
+
+//second Set property
+Object.defineProperty(newObject,"a", {
+  value: 76,
+  writable: true,
+  enumerable: true,
+  configurable: true
+});
+// console.log(newObject);  //76
+
+
+// Object's enumerable property 
+
+// enumerable
+Object.defineProperty(newObject,"a",{
+  value: "some value",
+  enumerable: true
+});
+console.log(newObject);  //{a: 'some value'}
+
+for(let key in newObject){
+  console.log(key);
+};  //a ye string me value return karega 
+
+console.log(Object.keys(newObject)); //["a"] ye array me value return karega
+
+// Non enumerable
+
+Object.defineProperty(newObject,"a",{
+  value: "some value",
+  enumerable: false
+});
+console.log(newObject);  //{a: 'some value'}
+
+for(let key in newObject){
+  console.log(key);
+};  //undefined  return value undefined
+
+console.log(Object.keys(newObject)); //[] isme empty array return hoga 
+
+
+// Object's writable property 
+
+// writable 
+Object.defineProperty(newObject,"a",{
+  value: "some value",
+  writable: true
+});
+console.log(newObject);  //{a: 'some value'}
+
+newObject.a = "some other value";
+console.log(newObject)  //{a: 'some other value'}  isme a ka value change kar sakte h
+
+// Non-writable
+Object.defineProperty(newObject,"a",{
+  value: "some value",
+  writable: false
+});
+console.log(newObject);  //{a: 'some value'}
+
+newObject.a = "some other value";
+console.log(newObject)  //{a: 'some value'}
+
+
+// Object's configurable property 
+
+// configurable
+Object.defineProperty(newObject,"a",{
+  value: "some value",
+  configurable: true
+});
+console.log(newObject);  //{a: 'some value'}
+
+console.log(delete newObject.a);  //true
+
+console.log(newObject);  //{}
+
+// Non-configurable
+Object.defineProperty(newObject,"a",{
+  value: "some value",
+  configurable: false
+});
+console.log(newObject);  //{a: 'some value'}
+
+
+console.log(delete newObject.a);  //false
+
+console.log(newObject);  //{a: 'some value'}
+
+
+
+
+// being explicit 
+const Obj18 = new Object();
+
+Object.defineProperty(Obj18,"key", {
+  value:'static',
+  writable: false,
+  enumerable:false,
+  configurable:false
+}); console.log(Obj18);  //{key: 'static'}
+
+
+
+/************************************************************************Object.seal()***********************************************/
+// The Object.seal() method seals an object, 
+// preventing new properties from being added to it and marking all existing properties as non-configurable.
+/*
+Syntax
+Object.seal(obj)
+*/
+
+const object7 = {
+  name: "chandan"
+};
+
+Object.seal(object7);
+console.log(object7);  //{name: 'chandan'}
+object7.name = "Tilak";
+console.log(object7);  //{name: 'Tilak'}
+
+delete object7.name;
+console.log(object7);  //{name: 'Tilak'}
+
+
+/**********************************************************************************Object.isSealed()***************************************************/
+// The Object.isSealed() method determines if an object is sealed.
+/*
+Syntax
+Object.isSealed(obj)
+*/
+
+const object8 = {
+  name: "Monika"
+};
+
+console.log(Object.isSealed(object8));  //false
+
+Object.seal(object8);
+
+console.log(Object.isSealed(object8)); //true
+
+
+/**************************************************************************************Object.prototype.toString()*******************************************/
+// The toString() method returns a string representing the object.
+/*
+Syntax
+toString()
+*/
+
+
+function Dog(name){
+  this.name = name;
+};
+
+const Dog1 = new Dog("Cat");
+// console.log(Dog1.tostring());  //Uncaught TypeError: Dog1.tostring is not a function
+
+Dog.prototype.tostring = function dogsthing(){
+  return `${this.name}`;
+};
+console.log(Dog1.tostring());  //Cat
+
+
+/************************************************************************Object.prototype.valueOf()************************************************/
+// The valueOf() method returns the primitive value of the specified object.
+/*
+Syntax
+valueOf()
+*/
+
+function MYnumbertype(n){
+    return this.n = n;
+};
+
+MYnumbertype.prototype.valueOf = function (){
+  return `${this.n}`;
+};
+
+
+const mynumber = new MYnumbertype(456);
+console.log(mynumber.valueOf());  //valueOf 
