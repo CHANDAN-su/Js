@@ -138,3 +138,69 @@ console.log("/foo/".startsWith(regexp1));  //true
 
 console.log("/baz/".endsWith(regexp1));  //false
 
+/**************************************************************************Symbol.matchAll*****************************************************/
+// The Symbol.matchAll well-known symbol returns an iterator, that yields matches of the regular expression against a string.
+
+const re = /[0-9]+/g;
+
+const str = '2016-01-02|2019-03-07';
+const reult = re[Symbol.matchAll](str);
+
+console.log(Array.from(reult, x => x[0]));  //['2016', '01', '02', '2019', '03', '07']
+
+
+/*************************************************************************Symbol.description**********************************************/
+// The read-only description property is a string returning the optional description of Symbol objects.
+
+console.log(Symbol("desc").description);  //desc
+
+console.log(Symbol.iterator.description);  //Symbol.iterator
+
+console.log(Symbol.for('foo').description);  //foo
+
+console.log(`${Symbol('foo').description}bar`);  //foobar
+
+
+// Using description
+ 	 
+console.log(Symbol('desc').toString());	//	"Symbol(desc)"
+console.log(Symbol('desc').description);	//	"desc"
+console.log(Symbol('').description);	//	""
+console.log(Symbol().description);	//	undefined
+
+
+// well-known symbols		
+console.log(Symbol.iterator.toString());	//	"Symbol(Symbol.iterator)"
+console.log(Symbol.iterator.description);	//	"Symbol.iterator"
+
+//  global  symbols 
+console.log(Symbol.for('foo').toString()); // "Symbol(foo)" 
+console.log(Symbol.for('foo').description); // "foo"
+
+
+/**************************************************************************************Symbol.toString()**************************************************/
+// The toString() method returns a string representing the specified Symbol object.
+/*
+Syntax
+toString()
+*/
+
+console.log(Symbol('desc').toString()); // expected output: "Symbol(desc)"
+
+console.log(Symbol.iterator.toString()); // expected output: "Symbol(Symbol.iterator)
+
+console.log(Symbol.for('foo').toString()); // expected output: "Symbol(foo)"
+
+// console.log(Symbol('foo') + 'bar');  // expected output: Error: Can't convert symbol to string
+
+
+/****************************************************************Symbol.valueOf()************************************************/
+// The valueOf() method returns the primitive value of a Symbol object.
+/*
+Syntax
+valueOf()
+*/
+
+const sym21 = Symbol("example"); 
+sym21 === sym21.valueOf(); 
+console.log(sym21);  //Symbol(example)
