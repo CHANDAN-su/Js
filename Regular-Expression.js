@@ -196,3 +196,50 @@ console.log(regex7.test(BadInput));  //false
 
 
 // Multiline mode of anchors ^ $, flag "m"
+
+const str15 = `1st place: Winnie
+2nd place: Piglet
+3rd place: Eeyore`;
+
+const regex8 = /^\d/gm;
+console.log(str15.match(regex8));  //['1', '2', '3']
+
+// Without the flag m only the first digit is matched:
+
+let str16 = `1st place: Winnie
+2nd place: Piglet
+3rd place: Eeyore`;
+
+console.log( str16.match(/^\d/g) ); // 1
+
+// Searching at line end $
+let str19 = `Winnie: 1
+Piglet: 2
+Eeyore: 3`;
+
+console.log(str19.match(/\d$/gm));  //['1', '2', '3']
+
+// Searching for \n instead of ^ $
+let str20 = `Winnie: 1
+Piglet: 2
+Eeyore: 3`;
+
+console.log( str20.match(/\d\n/g) ); // 1\n,2\n
+
+
+
+// Word boundary: \b
+console.log("Hello , Java!".match(/\bJava\b/).join(""));  //Java
+console.log("Hello Javascript!".match(/\bJava\b/));  //null
+
+console.log( "Hello, Java!".match(/\bHello\b/) ); // Hello
+console.log( "Hello, Java!".match(/\bJava\b/) );  // Java
+console.log( "Hello, Java!".match(/\bHell\b/) );  // null (no match)
+console.log( "Hello, Java!".match(/\bJava!\b/) ); // null (no match)
+
+
+console.log("1 23 456 78 54".match(/\b\d\d\b/g));  //['23', '78', '54']
+console.log("12,34,54".match(/\b\d\d\b/g).join(","));  //12,34,54
+
+
+// Escaping, special characters
