@@ -243,3 +243,58 @@ console.log("12,34,54".match(/\b\d\d\b/g).join(","));  //12,34,54
 
 
 // Escaping, special characters
+
+// Escaping  \.
+console.log("Cheaper 5.1".match(/\d\.\d/).join(""));  //5.1
+// console.log("Cheapter 511".match(/\d\.\d/).join(""));  //null (looking for a real dot \.)
+
+// The example below looks for a string "g()"
+console.log("function g()".match(/\g\(\)/).join(""));  //g()
+
+console.log("1\\2".match(/\\/).join(""));  //  \
+
+
+// A slash
+
+// Here’s what a search for a slash '/' looks like:
+console.log("/".match(/\//));  //  "/"
+
+// a regexp using new RegExp
+console.log("/".match(new RegExp("/")));  //  "/
+
+// new RegExp
+let regex9 = new RegExp("\d\.\d");
+console.log("Chapter 5.1".match(regex9));  //null
+
+let regex10 = /\d\.\d/;
+console.log("Chapter 5.1".match(regex10));  //5.1
+
+// Here’s how “\d.\d” is perceived:
+console.log("\d\.\d");  //d.d
+
+let regex11 = "\\d\\.\\d";
+console.log(regex11); //\d\.\d
+
+let regex12 = new RegExp(regex11);
+
+console.log("Chapter 5.1".match(regex12));  //5.1
+
+
+
+// Sets and ranges [...]
+
+// Sets
+console.log("abc".match(/[abc]/g));  //['a', 'b', 'c']
+
+// find [t or m], and then "op"
+console.log("Mop top".match(/[tm]op/gi));  //['Mop', 'top']
+
+// find "V", then [o or i], then "la"
+console.log("Voila".match(/V[oi]la/));   //null\
+
+
+// Ranges
+
+console.log("Exception 0xAF".match(/x[0-9A-F][0-9A-F]/g));  //['xAF']
+
+
