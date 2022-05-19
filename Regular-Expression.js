@@ -283,6 +283,7 @@ console.log("Chapter 5.1".match(regex12));  //5.1
 
 // Sets and ranges [...]
 
+
 // Sets
 console.log("abc".match(/[abc]/g));  //['a', 'b', 'c']
 
@@ -293,8 +294,86 @@ console.log("Mop top".match(/[tm]op/gi));  //['Mop', 'top']
 console.log("Voila".match(/V[oi]la/));   //null\
 
 
-// Ranges
+const regex16 = /cha[^an]dan/;
+console.log("chagdan".match(regex16));  //['chagdan', index: 0, input: 'chagdan', groups: undefined]
 
+
+// Ranges
 console.log("Exception 0xAF".match(/x[0-9A-F][0-9A-F]/g));  //['xAF']
+
+
+// Excluding ranges
+const regex13 = /[^\dA-z]/gi;
+console.log("alice15@gmail.com".match(regex13).join(""));  //@.
+
+
+// In the example below the regexp [-().^+] looks for one of the characters -().^+:
+var regex14 = /[-().^+]/g;
+console.log("1+2-(".match(regex14));  //['+', '-', '(']
+
+regex14 = /[\-\(\)\.\^\+]/g;
+console.log("1+2-(".match(regex14));  //['+', '-', '(']
+
+// Java[^script]
+// We have a regexp /Java[^script]/.
+
+const regex15 = /Java[^script]/;
+
+console.log("Java".match(regex15));  //null
+
+console.log("JavaScript".match(regex15));    //'JavaS'
+
+// Find the time as hh:mm or hh-mm
+// Write a regexp to find time:
+var regexp17 = /your regexp/g;
+regexp17 = /\d\d[:-]\d\d/g
+
+console.log( "Breakfast at 09:00. Dinner at 21-30".match(regexp17) ); // 09:00, 21-30
+
+
+
+// Quantifiers +, *, ? and {n}
+
+// Quantity {n}
+// The exact count: {5}
+// \d{5} denotes exactly 5 digits, the same as \d\d\d\d\d.
+
+const regex17 = /\d{5}/;
+
+console.log("I'm 12345 years old".match(regex17).join(""));  //12345
+
+
+// The range: {3,5}, match 3-5 times
+console.log("I'm not 12, but 1234 years old".match(/\d{3,5}/));  //1234
+
+// Then a regexp \d{3,} looks for sequences of digits of length 3 or more:
+console.log("I'm not 12, but 34567887655689 years old".match(/\d{3,}/));  //34567887655689
+
+let str21 = "+7(903)-123-45-67";
+let number = str21.match(/\d{1,}/g);
+
+console.log(number.join(""));   //79031234567
+
+
+// Shorthands
+
+// + -> Means “one or more”, the same as {1,}.
+let str22 = "7(903)-123-45-67 Chanda Thakur";
+
+console.log(str22.match(/\d+/g));  //['7', '903', '123', '45', '67']
+console.log(str22.match(/\D+/g)) ;  // ['(', ')-', '-', '-', ' Chanda Thakur']
+
+let str23 = "cha@_$ dan";
+console.log(str23.match(/\w/g));   //['c', 'h', 'a', '_', 'd', 'a', 'n']
+
+
+//?   -> Means “zero or one”, the same as {0,1}. In other words, it makes the symbol optional.
+
+let str24 = "Should I write color or colour?";
+console.log(str24.match(/colou?r/g)); //['color', 'colour']
+
+
+//*   -> Means “zero or more”, the same as {0,}. That is, the character may repeat any times or be absent.
+
 
 
