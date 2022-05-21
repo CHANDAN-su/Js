@@ -375,5 +375,27 @@ console.log(str24.match(/colou?r/g)); //['color', 'colour']
 
 //*   -> Means “zero or more”, the same as {0,}. That is, the character may repeat any times or be absent.
 
+console.log("100 10 1".match(/\d0*/g));  // ['100', '10', '1']
+
+// Compare it with + (one or more):
+console.log("100 10 1".match(/\d0+/g));   //['100', '10']
+
+
+// More examples
+
+// Regexp for decimal fractions (a number with a floating point): \d+\.\d+
+console.log("0 1 123.345345ff6 7890".match(/\d+\.\d+/g));    //['123.345345']
+
+
+
+// Regexp for an “opening HTML-tag without attributes”, such as <span> or <p>.
+// The simplest one: /<[a-z]+>/i
+console.log("<body>......</body>".match(/<[a-z]+>/gi));  //['<body>']
+
+// Improved: /<[a-z][a-z0-9]*>/i
+console.log("<h1>Hi!</h1>".match(/<[a-z][a-z0-9]>/gi)); //['<h1>']
+
+// Regexp “opening or closing HTML-tag without attributes”: /<\/?[a-z][a-z0-9]*>/i
+console.log("<h1>Hi!</h1>".match(/<\/?[a-z][a-z0-9]*/gi));  //['<h1', '</h1']
 
 
