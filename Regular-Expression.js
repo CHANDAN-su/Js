@@ -399,3 +399,121 @@ console.log("<h1>Hi!</h1>".match(/<[a-z][a-z0-9]>/gi)); //['<h1>']
 console.log("<h1>Hi!</h1>".match(/<\/?[a-z][a-z0-9]*/gi));  //['<h1', '</h1']
 
 
+// Create a regexp to find ellipsis: 3 (or more?) dots in a row.
+const regex18 = /your regexp/g;
+const regex19 = /\.{3,}/g
+console.log( "Hello!... How goes?.....".match(regex19) ); // ..., .....
+
+
+// Create a regexp to search HTML-colors written as #ABCDEF: first # and then 6 hexadecimal characters.
+let regex20 = /...your regexp.../
+
+let regex21 = /#\d{6}/g
+let str25 = "color:#121212; background-color:#AA00ef bad-colors:f#fddee #fd2 #12345678";
+// alert( str.match(regexp) )  // #121212,#AA00ef
+console.log(str25.match(regex21));  //['#121212', '#123456']
+
+
+
+// Greedy and lazy quantifiers
+
+// Greedy search
+const regex22 = /".+"/g;
+const str26 = 'a "witch" and her "broom" is one';
+console.log(str26.match(regex22).join(""));  //"witch" and her "broom"
+
+
+// Lazy mode
+// Laziness is only enabled for the quantifier with ?.
+const regex23 = /".+?"/g;
+const str27 = 'a "witch" and her "broom" is one';
+console.log(str27.match(regex23).join(""));  //"witch""broom"
+
+
+
+// Other quantifiers remain greedy.
+console.log("123 456".match(/\d+ \d+?/g).join(""));  //123 4
+
+
+// Alternative approach
+// In our case we can find quoted strings without lazy mode using the regexp "[^"]+":
+
+const regex24 = /"[^"]+"/g;
+const str28 = 'a "witch" and her "broom" is one';
+console.log(str28.match(regex24).join(" "));  //"witch" "broom"
+
+
+// Let’s see an example where lazy quantifiers fail and this variant works right.
+
+// The first idea might be: /<a href=".*" class="doc">/g.
+
+const str29 = '...<a href="link" class="doc">...';
+const regex25 = /<a href=".*" class="doc">/g;
+console.log(str29.match(regex25));  //['<a href="link" class="doc">']
+
+const str30 = '...<a href="link1" class="doc">... <a href="link2" class="doc">...';
+const regex26 = /<a href=".*" class="doc">/g;
+console.log(str30.match(regex26));  //['<a href="link1" class="doc">... <a href="link2" class="doc">']
+
+
+// Let’s modify the pattern by making the quantifier .*? lazy:
+
+const str31 = '...<a href="link1" class="doc">... <a href="link2" class="doc">...';
+const regex27= /<a href=".*?" class="doc">/g;
+console.log(str31.match(regex27).join(" "));   //<a href="link1" class="doc"> <a href="link2" class="doc">
+
+
+
+let str32 = '...<a href="link1" class="wrong">... <p style="" class="doc">...';
+let str33 = '...<a href="link1" class="doc">... <a href="link2" class="doc">...';
+let regex28 = /<a href="[^"]*" class="doc">/g;
+
+// Works!
+console.log( str32.match(regex28) ); // null, no matches, that's correct
+console.log( str33.match(regex28) ); // <a href="link1" class="doc">, <a href="link2" class="doc">
+
+// A match for /d+? d+?/
+console.log("123 456".match(/\d+? \d+?/g));  //123 4
+
+
+// Find HTML comments
+let str34 = `... <!-- My -- comment
+ test --> ..  <!----> ..
+`;
+const regex29 = /<!--.*?-->/gs;
+console.log(str34.match(regex29).join(" "));   //<!-- My -- comment test --> <!---->
+
+
+// Find HTML tags
+const str35 = '<> <a href="/"> <input type="radio" checked> <b>';
+const regex30 = /<[^<>]+/g;
+console.log(str35.match(regex30).join(" "));  //<a href="/" <input type="radio" checked <b
+
+
+
+
+// Capturing groups
+// A part of a pattern can be enclosed in parentheses (...). 
+
+// Example: gogogo
+// Without parentheses, the pattern go+ means g character, followed by o repeated one or more times. For instance, goooo or gooooooooo.
+
+// Parentheses group characters together, so (go)+ means go, gogo, gogogo and so on.
+
+const regex31 = /(go)+/gi;
+const str36 = "Gogogo now!";
+console.log(str36.match(regex31).join(""));  //Gogogo
+
+// Example: domain
+// mail.com
+// users.mail.com
+// smith.users.mail.com
+// In regular expressions that’s (\w+\.)+\w+:
+
+// We can fix it by replacing \w with [\w-] in every word except the last one: ([\w-]+\.)+\w+.
+
+const str37 = "site.com my.site.com";
+console.log(str37.match(/(\w+\.)+\w+/g).join(" "));  //site.com my.site.com
+
+
+// Example: email
