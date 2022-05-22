@@ -517,3 +517,168 @@ console.log(str37.match(/(\w+\.)+\w+/g).join(" "));  //site.com my.site.com
 
 
 // Example: email
+// The email format is: name@domain. Any word can be the name, hyphens and dots are allowed. In regular expressions that’s [-.\w]+.
+// my@mail.com
+// his@site.com.uk
+
+const regex32 = /[-.\w]+@([\w-]+\.)+[\w]+/g
+
+console.log("my@mail.com @ his@site.com.uk".match(regex32));  //['my@mail.com', 'his@site.com.uk']
+
+// Parentheses contents in the match
+const str38 = '<h1>Hello, world!</h1>';
+const regex33 = str38.match(/<(.*?)>/g);
+
+// console.log(str38.match(regex33));  //['<h1>', '']
+console.log(regex33[0]);  //<h1>
+console.log(regex33[1]);  //</h1>
+
+
+
+// Nested groups
+
+const regex34 = /<(([a-z]+)\s*([^>]*))>/
+const str39 = '<span class="my">';
+
+const regex35 = str39.match(regex34);
+
+console.log(regex35[0]);  //<span class="my">
+console.log(regex35[1]);  //span class="my"
+console.log(regex35[2]);  //span
+console.log(regex35[3]);  //class="my"
+
+
+// Optional groups
+const match = "a".match(/a(z)?(c)?/);
+console.log(match.length);  //3
+console.log(match[0]); //a
+console.log(match[1]);  //undefined
+console.log(match[2]); //undefined
+
+// And here’s a more complex match for the string ac:
+const match1 = "ac".match(/a(z)?(c)?/);
+console.log(match1.length);  //3
+console.log(match1[0]); //a
+console.log(match1[1]);  //undefined
+console.log(match1[2]); //c
+
+
+// The array length is permanent: 3. But there’s nothing for the group (z)?, so the result is ["ac", undefined, "c"].
+
+// Searching for all matches with groups: matchAll
+// The method matchAll is not supported in old browsers.
+
+
+var results1 = "<h1> <h2>".matchAll(/<(.*?)>/gi);
+
+results1 = Array.from(results1);
+console.log(results1.join(""));  //<h1>,h1<h2>,h2
+
+console.log(results1[0].join(" "));  //<h1> h1
+console.log(results1[1].join(" ")); //<h2> h2
+
+
+for(let x of results1){
+    console.log(x.join(""));
+};  
+/*
+<h1>h1
+<h2>h2
+*/
+
+// …Or using destructuring:
+// let [tag1, tag2] = '<h1> <h2>'.matchAll(/<(.*?)>/gi);
+
+const regex36 = "<h1> <h2>".matchAll(/<(.*?)>/gi);
+
+let [tag1, tag2] = regex36;
+
+console.log(tag1[0]);  //<h1>
+console.log(tag1[1]);  //h1
+console.log(tag1.index);  //0
+console.log(tag1.input);  //<h1> <h2>
+
+
+// Named groups
+// That’s done by putting ?<name> immediately after the opening paren.
+
+
+const regex37 = /(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})/;
+const str40 = "2019-04-30";
+
+const group = str40.match(regex37).groups;
+
+console.log(group.year);  //2019
+console.log(group.month);  //04
+console.log(group.day);  //30
+
+
+const regex38 = /(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})/g;
+const str41 = "2019-10-30 2020-01-01";
+
+const result8 = str41.matchAll(regex38);
+
+for(let result  of result8){
+    let {year, month, day} = result .groups;
+
+    console.log(`${day} ${month} ${year}`);
+};
+/*
+30 10 2019
+01 01 2020
+*/
+
+
+// Capturing groups in replacement
+const str42 = "John Bull";
+const regex39 = /(\w+) (\w+)/;
+
+console.log(str42.replace(regex39, "$1,$2"));  //John,Bull
+
+
+// For example, let’s reformat dates from “year-month-day” to “day.month.year”:
+
+let regexp40 = /(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})/g;
+let str43 = "2019-10-30, 2020-01-01";
+
+console.log(str43.replace(regexp40,`$<day> $<month> $<year>`));  //30 10 2019, 01 01 2020
+
+// Non-capturing groups with ?:
+let str44 = "Gogogo John!";
+
+// ?: excludes 'go' from capturing
+let regex41 = /(?:go)+ (\w+)/i;
+
+let result9 = str44.match(regex41);
+
+console.log( result9[0] ); // Gogogo John (full match)
+console.log( result9[1] ); // John
+console.log( result9.length ); // 2 (no more items in the array)
+
+
+//Tast
+// Check MAC-address
+// For instance: '01:32:54:67:89:AB'.
+
+//Question
+// let regex42 = /your regexp/;
+// console.log( regex42.test('01:32:54:67:89:AB') ); // true
+// console.log( regex42.test('0132546789AB') ); // false (no colons)
+// console.log( regex42.test('01:32:54:67:89') ); // false (5 numbers, must be 6)
+// console.log( regex42.test('01:32:54:67:89:ZZ') ) // false (ZZ at the end)
+
+//Answer
+let regex42 = /^[0-9a-f]{2}(:[0-9a-f]{2}){5}$/gi;
+console.log( regex42.test('01:32:54:67:89:AB') ); // true
+console.log( regex42.test('0132546789AB') ); // false (no colons)
+console.log( regex42.test('01:32:54:67:89') ); // false (5 numbers, must be 6)
+console.log( regex42.test('01:32:54:67:89:ZZ') ) // false (ZZ at the end)
+
+
+// Find color in the format #abc or #abcdef
+//Question
+// let regex43 = /your regexp/g;
+// let str45 = "color: #3f3; background-color: #AA00ef; and: #abcd";
+// alert( str45.match(regex43) ); // #3f3 #AA00ef
+
+//Answer
