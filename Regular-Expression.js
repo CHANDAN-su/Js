@@ -682,3 +682,115 @@ console.log( regex42.test('01:32:54:67:89:ZZ') ) // false (ZZ at the end)
 // alert( str45.match(regex43) ); // #3f3 #AA00ef
 
 //Answer
+const regex43 = /#([a-f0-9]{3}){1,2}/gi;
+const str45 = "color: #3f3; background-color: #AA00ef; and: #abcd";
+
+console.log(str45.match(regex43));  // #3f3 #AA00ef #abc
+
+const regex44 = /#([a-f0-9]{3}){1,2}\b/gi;
+const str46 = "color: #3f3; background-color: #AA00ef; and: #abcd";
+
+console.log(str46.match(regex44));  //#3f3 #AA00ef
+
+
+// Find all numbers
+// let regexp = /your regexp/g
+// let str = "-1.5 0 2 -123.4.";
+// alert( str.match(regexp) ); // -1.5, 0, 2, -123.4
+ const regex45 = /-?\d+(\.\d+)?/g;
+ const str47 = "-1.5 0 2 -123.4";
+
+ console.log(str47.match(regex45));
+
+
+//  Parse an expression
+/*
+let [a, op, b] = parse("1.2 * 3.4");
+alert(a); // 1.2
+alert(op); // *
+alert(b); // 3.4
+*/
+
+const regex46 = /(-?\d+(\.\d+)?)\s*([-+*\/])\s*(-?\d+(\.\d+)?)/g;
+// let regex47 = /(-?\d+(\.\d+)?)\s*(([-+*\/]))\s*(-?\d+(\.\d+)?)/;
+const result10 = "1.2 + 12".match(regex46);
+console.log(result10);
+
+// The result includes:
+
+// result[0] == "1.2 + 12" (full match)
+// result[1] == "1.2" (first group (-?\d+(\.\d+)?) – the first number, including the decimal part)
+// result[2] == ".2" (second group(\.\d+)? – the first decimal part)
+// result[3] == "+" (third group ([-+*\/]) – the operator)
+// result[4] == "12" (forth group (-?\d+(\.\d+)?) – the second number)
+// result[5] == undefined (fifth group (\.\d+)? – the last decimal part is absent, so it’s undefined)
+
+function parse(expr) {
+    let regexp = /(-?\d+(?:\.\d+)?)\s*([-+*\/])\s*(-?\d+(?:\.\d+)?)/;
+  
+    let result = expr.match(regexp);
+  
+    if (!result) return [];
+    result.shift();
+  
+    return result;
+  }
+  
+console.log( parse("-1.23 * 3.45") );  // -1.23, *, 3.45
+
+
+// Backreferences in pattern: \N and \k<name>
+
+const str48 = `He said: "She's the one!".`;
+const regex47 = /['"](.*?)['"]/g;
+console.log(str48.match(regex47)); //[`"She'`]
+
+const regex48 = /(['"])(.*?)\1/g;
+console.log(str48.match(regex48));  //[`"She's the one!"`]
+
+
+
+const str49 = `He said: "She's the one!".`;
+const regex49 = /(?<quote>['"])(.*?)\k<quote>/g;
+
+console.log(str49.match(regex49));  //[`"She's the one!"`]
+
+
+
+// Alternation (OR) |
+// In a regular expression it is denoted with a vertical line character |.
+
+const str50 = "First HTML appeared, then CSS, then JavaScript";
+const regex50 = /html|css|php|java(script)?/gi;
+
+console.log(str50.match(regex50));  //['HTML', 'CSS', 'JavaScript']
+
+// Example: regexp for time
+let regex51 = /([01]\d|2[0-3]):[0-5]\d/g;
+
+console.log("00:00 10:10 23:59 25:99 1:2".match(regex51)); // 00:00,10:10,23:59
+
+// Find programming languages
+// let regexp = /your regexp/g;
+// alert("Java JavaScript PHP C++ C".match(regexp)); // Java JavaScript PHP C++ C
+
+const regex52 = /java|Javascript|PHP|C|C\+\+/gi;
+console.log("Java JavaScript PHP C++ C".match(regex52));   // Java JavaScript PHP C++ C
+
+// There are two solutions for that problem:
+// Change the order to check the longer match first: JavaScript|Java|C\+\+|C|PHP.
+// Merge variants with the same start: Java(Script)?|C(\+\+)?|PHP.
+
+const regex53 = /Java(Script)?|C(\+\+)?|PHP/g;
+console.log("Java, JavaScript, PHP, C, C++".match(regex53));  //['Java', 'JavaScript', 'PHP', 'C', 'C++']
+
+
+// Find bbtag pairs
+// Create a regexp to find all BB-tags with their contents.
+// The full pattern: \[(b|url|quote)\].*?\[/\1].
+
+const str51 = `[b]hello![/b][quote]  [url]http://google.com[/url] [/quote]`;
+const regex54 = /\[(b|url|quote).*?\[\/\1]/gs;
+// /\[(b|url|quote)].*?\[\/\1]/gs;
+console.log(str51.match(regex54));  // ['[b]hello![/b]', '[quote]  [url]http://google.com[/url] [/quote]']
+
