@@ -794,3 +794,173 @@ const regex54 = /\[(b|url|quote).*?\[\/\1]/gs;
 // /\[(b|url|quote)].*?\[\/\1]/gs;
 console.log(str51.match(regex54));  // ['[b]hello![/b]', '[quote]  [url]http://google.com[/url] [/quote]']
 
+//Question
+
+// Find quoted strings
+// Create a regexp to find strings in double quotes "...".
+
+let str52 = "Just like \"here\".";
+
+
+// Examples of strings to match:
+// .. "test me" ..
+// .. "Say \"Hello\"!" ... (escaped quotes inside)
+// .. "\\" ..  (double slash inside)
+// .. "\\ \"" ..  (double slash and an escaped quote inside)
+
+
+// In JavaScript we need to double the slashes to pass them right into the string, like this:
+
+let str53 = ' .. "test me" .. "Say \\"Hello\\"!" .. "\\\\ \\"" .. ';
+
+// the in-memory string
+console.log(str53); //  .. "test me" .. "Say \"Hello\"!" .. "\\ \"" ..
+
+
+// The solution: /"(\\.|[^"\\])*"/g.
+
+const regexp = /"(\\.|[^"\\])*"/g;
+const str54 = ' .. "test me" .. "Say \\"Hello\\"!" .. "\\\\ \\"" .. ';
+
+console.log(str54.match(regexp).join(""));  //"test me""Say \"Hello\"!""\\ \""
+
+// Find the full tag
+
+// let regexp1 = /your regexp/g;
+const regexp18 = /<style(>|\s.*>)/g;
+
+console.log( '<style> <styler> <style test="...">'.match(regexp18) ); // <style>, <style test="...">
+
+
+
+
+// Lookahead and lookbehind
+// There’s a special syntax for that, called “lookahead” and “lookbehind”, together referred to as “lookaround”.
+
+// Lookahead
+// The syntax is: X(?=Y), it means "look for X, but match only if followed by Y". 
+// There may be any pattern instead of X and Y.
+
+
+// For an integer number followed by €, the regexp will be \d+(?=€):
+
+const str55 = "1 turkey costs 30€";
+const regexp2 = /\d+(?=€)/g;
+
+console.log(str55.match(regexp2)); //30
+
+
+// For example, \d+(?=\s)(?=.*30) 
+// looks for \d+ that is followed by a space (?=\s), and there’s 30 somewhere after it (?=.*30):
+
+
+const regexp3 = /\d+(?=\s)(?=.*30)/g;
+console.log(str3.match(regexp3));  //1
+
+
+// Negative lookahead
+// The syntax is: X(?!Y), it means "search X, but only if not followed by Y".
+
+const str56 =  "2 turkeys cost 60€";
+const regexp4 = /\d+\b(?!€)/g;
+
+console.log(str56.match(regexp4));   //2
+
+
+
+// Lookbehind
+/*
+The syntax is:
+Positive lookbehind: (?<=Y)X, matches X, but only if there’s Y before it.
+Negative lookbehind: (?<!Y)X, matches X, but only if there’s no Y before it.
+*/
+
+const str57 = "1 turkey costs $30";
+const regexp5 = /(?<=\$)\d+/;
+
+console.log(str57.match(regexp5));  //30
+
+
+// And, if we need the quantity – a number, not preceded by $,
+// then we can use a negative lookbehind (?<!\$)\d+:
+
+const str58 = "2 turkeys cost $60";
+const regexp6 = /(?<!\$)\b\d+/g;
+
+console.log(str58.match(regexp6));  //2
+
+
+// In the example below the currency sign (€|kr) is captured, 
+// along with the amount:
+
+let str59 = "1 turkey costs 30€";
+let regexp7 = /\d+(?=(€|kr))/; // extra parentheses around €|kr
+
+console.log( str59.match(regexp7) ); // 30, €
+
+// And here’s the same for lookbehind:
+let str60 = "1 turkey costs $30";
+let regexp8 = /(?<=(\$|£))\d+/;
+
+console.log( str60.match(regexp8) ); // 30, $
+
+
+
+// Find non-negative integers
+
+// let regexp = /your regexp/g;
+// let str = "0 12 -5 123 -18";
+// alert( str.match(regexp) ); // 0, 12, 123
+
+const str61 = "0 12 -5 123 -18";
+const regexp9 = /(?<!-)\d+/g;
+
+console.log(str61.match(regexp9));  // ['0', '12', '123', '8']
+// As you can see, it matches 8, from -18. 
+
+const regexp10 = /(?<![-\d])\d+/g;
+console.log(str9.match(regexp10));  // ['0', '12', '123']
+
+
+// Insert After Head
+// let regexp11 = /your regular expression/;
+
+const regexp12 = /<body .*?>/g;
+
+const regexp13 = /(?<=<body .*?)>/g;
+
+let str62 = `
+<html>
+  <body style="height: 200px">
+  ...
+  </body>
+</html>
+`;
+
+console.log(str62.replace(regexp12, `$&<h1>Hello</h1>`)); 
+
+console.log(str62.replace(regexp13, `<h1>Hello</h1>`));
+
+
+// output
+/*
+<html>
+  <body style="height: 200px"> <h1>Hello</h1>
+  ...
+  </body>
+</html>*/
+
+
+
+// Catastrophic backtracking
+// Some regular expressions are looking simple, 
+// but can execute a veeeeeery long time, and even “hang” the JavaScript engine.
+
+
+let regexp14 = /^(\w+\s?)*$/;
+
+console.log("A good string".match(regexp14).join(" ")); //A good string string
+console.log("Bad characters: $@#".match(regexp14));  //null
+
+// will take a very long time
+// console.log("An input string that takes a long time or even makes this regexp hang!".match(regexp14));
