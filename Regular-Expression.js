@@ -964,3 +964,75 @@ console.log("Bad characters: $@#".match(regexp14));  //null
 
 // will take a very long time
 // console.log("An input string that takes a long time or even makes this regexp hang!".match(regexp14));
+
+
+// Sticky flag "y", searching at position
+// The flag y allows to perform the search at the given position in the source string.
+
+// Here’s an example of such calls:
+const str63 = 'let varName';
+const  regexp15 = /\w+/g;
+
+console.log(regexp15.lastIndex);  // 0 (initially lastIndex=0)
+
+const word1 = regexp15.exec(str63);  
+console.log(word1[0]);  //let 
+console.log(regexp15.lastIndex); //3
+
+const word2 = regexp15.exec(str63);
+console.log(word2[0]);  //varName
+console.log(regexp15.lastIndex);  //11
+
+const word3 = regexp.exec(str63);
+console.log(word3);  //null
+console.log(regexp15.lastIndex); //11
+
+// We can get all matches in the loop:
+let str64 = 'let varName';
+let regexp16 = /\w+/g;
+
+let result12;
+
+while (result12 = regexp16.exec(str64)) {
+    console.log(`Found ${result12[0]} at position ${result12.index} `);
+
+    // Found let at position 0, then
+   // Found varName at position 4
+
+}
+
+
+// We can manually set lastIndex to 4, to start the search from the given position!
+const str65 = 'let varName = "value"';
+const regexp19 = /\w+/g;
+
+regexp19.lastIndex = 4;
+const word4 = regexp19.exec(str65); 
+console.log(word4.join(""));  //varName
+
+
+/*
+let str = 'let varName = "value"';
+
+let regexp = /\w+/g;
+
+// start the search from position 3
+regexp.lastIndex = 3;
+
+let word = regexp.exec(str);
+// found the match at position 4
+alert(word[0]); // varName
+alert(word.index); // 4
+*/
+
+
+// The flag y makes regexp.exec to search exactly at position lastIndex, not “starting from” it.
+
+const str66 = 'let varName = "value"';
+const regexp20 = /\w+/y;
+
+regexp20.lastIndex = 3;
+console.log(regexp20.exec(str66));  // null (there's a space at position 3, not a word)
+
+regexp20.lastIndex = 4;
+console.log(regexp20.exec(str66).join(""));  //varName
