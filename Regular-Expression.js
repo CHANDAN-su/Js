@@ -1366,4 +1366,73 @@ const str79 = "abc";
 
 console.log(Array.from(str79.matchAll(regexp27), m => `${regexp27.lastIndex} ${m[0]}`)); //['1 b', '1 c']
 
+/*************************************String.search()****************************/
+// The search() method executes a search for a match between a regular expression and this String object.
+/*
+Syntax
+search(regexp)
+*/
 
+const paragraph2 = 'The quick brown fox jumps over the lazy dog. If the dog barked, was it really lazy?';
+const regexp28 = /[^\w\s]/g;
+
+console.log(paragraph2.search(regexp28));  //43
+
+console.log(paragraph2[paragraph2.search(regexp28)]); // .
+
+// Using search()
+const str80 = "hey JudE";
+const re5 = /[A-Z]/g;
+const re6 = /[.]/g;
+
+console.log(str80.search(re5));   //4
+console.log(str80.search(re6));  //-1
+
+
+/***************************String.replace()************************/
+// The replace() method returns a new string with some or all matches of a pattern replaced by a replacement.
+/*
+Syntax
+replace(regexp, newSubstr)
+replace(regexp, replacerFunction)
+replace(substr, newSubstr)
+replace(substr, replacerFunction)
+*/
+
+const str81 =  'The quick brown fox jumps over the lazy dog. If the dog barked, was it really lazy?';
+const re7 = /Dog/gi;
+
+console.log(str81.replace(re7,"Monky"));  //The quick brown fox jumps over the lazy Monky. If the Monky barked, was it really lazy?
+
+// The following example will set newString to 'abc - 12345 - #$*%':
+
+function replacer(match,p1,p2,p3,offset,string){
+  return [p1,p2,p3].join(" - ")
+};
+
+const str82 = 'abc12345#$*%'.replace(/([^\d]*)(\d*)([^\w]*)/g,replacer);
+
+console.log(str82);  //abc - 12345 - #$*% -  - 
+
+// Switching words in a string
+
+const str83 =  'John Smith';
+const re8 = /(\w+)\s(\w+)/;
+
+const newstr = str83.replace(re8, "$2 $1");
+console.log(newstr);  //Smith John
+
+/*****************************************String.replaceAll()***************************************/
+// The replaceAll() method returns a new string with all matches of a pattern replaced by a replacement.
+/*
+Syntax
+replaceAll(regexp, newSubstr)
+replaceAll(regexp, replacerFunction)
+replaceAll(substr, newSubstr)
+replaceAll(substr, replacerFunction)
+*/
+
+const str84 =  'The quick brown fox jumps over the lazy dog. If the dog barked, was it really lazy?';
+const re9 = /Dog/ig;
+
+console.log(str84.replaceAll(re9, "monky"));  //The quick brown fox jumps over the lazy monky. If the monky barked, was it really lazy?
