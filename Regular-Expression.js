@@ -1166,3 +1166,144 @@ console.log(text1.match(nonGreedyRegexp));  //"[I]"
 
 /******************************************************regular expressions in method *******************************************************/
 
+/***********************RegExp.exec()*************************/
+// The exec() method executes a search for a match in a specified string. Returns a result array, or null.
+/*
+Syntax
+exec(str)
+*/
+
+const regexp21 = /foo*/g;
+const str69 = 'table football, foosball';
+
+let array3;
+
+while ((array3 = regexp21.exec(str69)) !== null ) {
+  console.log(`Found ${array3[0]} . Next starts at ${regexp21.lastIndex}.`);
+   // expected output: "Found foo. Next starts at 9."
+  // expected output: "Found foo. Next starts at 19."
+};
+
+console.log(regexp21.exec(str69));  //['foo', index: 6, input: 'table football, foosball', groups: undefined]
+
+
+const re = /quick\s(brown).+?(jumps)/igd;
+
+const result11  = re.exec("'The Quick Brown Fox Jumps Over The Lazy Dog'");
+
+console.log(result11[0]);  //Quick Brown Fox Jumps
+
+console.log(result11[1]);  //Brown
+
+console.log(result11[2]);  //Jumps
+
+console.log(result11.index);  //5
+
+console.log(result11.indices[0]);  //[5, 26]
+
+console.log(result11.indices[1]); // [11, 16]
+
+console.log(result11.indices[2]); //[21, 26]
+
+console.log(result11.indices.groups); //undefine
+
+console.log(result11.indices.length);  //2 
+
+console.log(result11.input);  //'The Quick Brown Fox Jumps Over The Lazy Dog'
+
+// console.log(result11.source);  //quick\s(brown).+?(jumps)
+
+const re1 = /ab*/g;
+const str70 = 'abbcdefabh';
+
+let myarray;
+
+while ((myarray = re1.exec(str70)) !== null) {
+  let msg = "Found " + myarray[0] + " .";
+  msg += " Next Starts at " + re1.lastIndex + " ."
+
+  console.log(msg);
+  // Found abb . Next Starts at 3 .
+  // Found ab . Next Starts at 9 .
+
+};
+
+// Using exec() with RegExp literals
+let matches = /(hello \S+)/.exec('This is a hello world!');
+console.log(matches[1]);  //hello world!
+
+/******************************RegExp.test()********************************* */
+// The test() method executes a search for a match between a regular expression and a specified string. Returns true or false.
+/*
+Syntax
+test(str)
+*/
+const str71 = 'table football';
+
+const regexp22 = new RegExp("foo*");
+const globalRegex = new RegExp("foo*","g");
+
+console.log(regexp22.test(str71));  //true
+console.log(globalRegex.lastIndex);  //0
+console.log(globalRegex.test(str71));  //true
+console.log(globalRegex.lastIndex);  //9
+console.log(globalRegex.test(str71)); //false
+
+// Using test()
+const str72 = 'hello world!';
+const regexp23 = /^hello/g;
+
+console.log(regexp23.test(str72));  //trur
+
+// The following example logs a message which depends on the success of the test:
+
+function testInput(re,str){
+  let midstring;
+  if(re.test(str)){
+    midstring = "contains"
+  }else{
+    midstring = "Do not contains"
+  }
+  console.log(`${str} ${midstring} ${re.source}`);
+};
+
+testInput(/^Hello/g,"Hello World"); //Hello World contains ^Hello
+
+testInput(/^Hello/g,"Sello World"); //Hello World contains ^Hello
+
+
+
+/*******************************String.prototype.match()*****************/
+// The match() method retrieves the result of matching a string against a regular expression.
+/*
+Syntax
+match(regexp)
+*/
+
+
+const paragraph = 'The quick brown fox jumps over the lazy dog. It barked.';
+const regexp24 = /[A-Z]/g;
+const found1 = paragraph.match(regexp24);  
+
+console.log(found1);  //['T', 'I']
+
+
+const str73 =  'For more information, see Chapter 3.4.5.1';
+const re2 = /see (chapter \d+(\.\d)*)/i;
+const found2 = str73.match(re2); 
+
+console.log(found2);  //['see Chapter 3.4.5.1', 'Chapter 3.4.5.1', '.1', index: 22, input: 'For more information, see Chapter 3.4.5.1', groups: undefined]
+
+
+// Using global and ignore case flags with match()
+const str75 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+const re3 = /[A-E]/gi;
+const found3 = str75.match(re3); 
+
+console.log(found3);  //['A', 'B', 'C', 'D', 'E', 'a', 'b', 'c', 'd', 'e']
+
+const paragraph1 = 'The quick brown fox jumps over the lazy dog. It barked.';
+
+const capturingRegex = /(?<animal>fox|cat) jumps over/;
+const found = paragraph1.match(capturingRegex);
+console.log(found.groups); // {animal: "fox"}
