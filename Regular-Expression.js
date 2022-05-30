@@ -1036,3 +1036,133 @@ console.log(regexp20.exec(str66));  // null (there's a space at position 3, not 
 
 regexp20.lastIndex = 4;
 console.log(regexp20.exec(str66).join(""));  //varName
+
+
+// Looking for a series of digits
+
+var randomData =  "015 354 8787 687351 3512 8735";
+var regexpFourDigits = /\b\d{4}\b/g;
+
+console.table(randomData.match(regexpFourDigits));   // ['8787', '3512', '8735']
+
+// Looking for a word (from the latin alphabet) starting with A
+
+var aliceExcerpt = "I'm sure I'm not Ada,' she said, 'for her hair goes in such long ringlets, and mine doesn't go in ringlets at all.";
+var regexpWordStartingWithA  = /\b[aA]\w+/g;
+
+console.table(aliceExcerpt.match(regexpWordStartingWithA));   // ['Ada', 'and', 'at', 'all']
+
+
+var lookahead1 = /Jack(?=Sprat)/g;
+var str67 = "hi I am JackSprat";
+
+console.log(str67.match(lookahead1));  //['Jack']
+
+var lookahead2 = /Jack(?=Sprat|Frost)/g;
+var str68 = "hi I am JackFrost";
+
+console.log(str68.match(lookahead2));  //['Jack']
+
+console.log(/\d+(?!\.)/g.exec(3.141).join(""));  //141
+
+const aliceExcerpt1 = 'The Caterpillar and Alice looked at each other';
+const regexpWithoutE1 = /\b[a-df-z]+\b/gi;
+console.log(aliceExcerpt1.match(regexpWithoutE1));  // ['and', 'at']
+
+const imageDescription = 'This image has a resolution of 1440×900 pixels.';
+const regexpSize =  /([0-9]+)×([0-9]+)/gi;
+const match2= imageDescription.match(regexpSize);
+console.log(match2);  //['1440×900']
+
+
+// Counting vowels
+var aliceExcerpt2 = "There was a long silence after this, and Alice could only hear whispers now and then.";
+var regexpVowels  = /[AEIOUYaeiouy]/g;
+
+console.table("Number of vowels:",aliceExcerpt2.match(regexpVowels).length);  //Number of vowels: 26
+
+
+// Using groups
+let personList = `First_Name: John, Last_Name: Doe
+First_Name: Jane, Last_Name: Smith`;
+
+let regexpNames =  /First_Name: (\w+), Last_Name: (\w+)/mg;
+
+let match3 = regexpNames.exec(personList);
+
+do {
+
+  console.log(`Hello ${match3[1]} ${match3[2]}`);
+
+} while((match3 = regexpNames.exec(personList)) !== null);  
+/*
+Hello John Doe
+Hello Jane Smith
+*/
+
+// Using named groups
+let personList1 = `First_Name: John, Last_Name: Doe
+First_Name: Jane, Last_Name: Smith`;
+
+let regexpNames1 =  /First_Name: (?<firstname>\w+), Last_Name: (?<lastname>\w+)/mg;
+
+let match4 = regexpNames1.exec(personList1);
+do {
+
+  console.log(`Hello ${match4.groups.firstname} ${match4.groups.lastname}`);
+
+} while((match4 = regexpNames1.exec(personList1)) !== null);
+/*
+Hello John Doe
+Hello Jane Smith
+*/
+
+
+const ghostSpeak = 'booh boooooooh';
+const regexpSpooky = /bo{3,}h/g;
+console.log(ghostSpeak.match(regexpSpooky));   //['boooooooh']
+
+
+const modifiedQuote = '[He] ha[s] to go read this novel [Alice in Wonderland].';
+const regexpModifications = /\[.*?\]/g;
+console.log(modifiedQuote.match(regexpModifications));  //['[He]', '[s]', '[Alice in Wonderland]']
+
+
+// Repeated pattern
+var wordEndingWithAs = /\w+a+\b/;
+var delicateMessage = "This is Spartaaaaaaa";
+console.table(delicateMessage.match(wordEndingWithAs));  
+
+// Counting characters
+var sentence = "Why do I have to learn multiplication table?";
+
+var singleLetterWord  = /\b\w\b/g;
+console.log(sentence.match(singleLetterWord));  "I"
+
+var notSoLongWord = /\b\w{1,6}\b/g;
+console.log(sentence.match(notSoLongWord));  //['Why', 'do', 'I', 'have', 'to', 'learn', 'table']
+
+var loooongWord = /\b\w{13,}\b/g;
+console.log(sentence.match(loooongWord));  //['multiplication']
+
+
+// Optional character
+var regexpEnding = /\w+ou?r/g;
+
+var britishText =  "He asked his neighbour a favour.";
+console.log(britishText.match(regexpEnding));  //['neighbour', 'favour']
+
+var americanText = "He asked his neighbor a favor.";
+console.log(americanText.match(regexpEnding));  // ['neighbor', 'favor']
+
+// Greedy versus non-greedy
+var text1 = "I must be getting somewhere near the center of the earth.";
+var greedyRegexp = /[\w ]+/;
+console.log(text1.match(greedyRegexp)[0]);  //I must be getting somewhere near the center of the earth
+
+var nonGreedyRegexp = /[\w ]+?/; // Notice the question mark
+console.log(text1.match(nonGreedyRegexp));  //"[I]"
+
+
+/******************************************************regular expressions in method *******************************************************/
+
