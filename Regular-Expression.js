@@ -1307,3 +1307,63 @@ const paragraph1 = 'The quick brown fox jumps over the lazy dog. It barked.';
 const capturingRegex = /(?<animal>fox|cat) jumps over/;
 const found = paragraph1.match(capturingRegex);
 console.log(found.groups); // {animal: "fox"}
+
+
+/***************************************String.matchAll()*******************************/
+// The matchAll() method returns an iterator of all results matching a string against a regular expression, including capturing groups.
+/*
+Syntax
+matchAll(regexp)
+*/
+
+
+const str76 = 'test1test2';
+const re4 = /t(e)(st(\d?))/g;
+
+const array4 = [...str76.matchAll(re4)];  
+
+console.log(array4); 
+console.log(array4[0]); //['test1', 'e', 'st1', '1', index: 0, input: 'test1test2', groups: undefined]
+console.log(array4[1]); //['test2', 'e', 'st2', '2', index: 5, input: 'test1test2', groups: undefined]
+
+
+// Regexp.exec() and matchAll()
+
+
+const regexp25 = /foo*/g;
+const str77 = 'table football, foosball';
+
+let array5;
+
+while ((array5 = regexp25.exec(str77)) !== null ) {
+  console.log(`Found ${array5[0]}  starts = ${array5.index}  end = ${regexp25.lastIndex}.`);
+  //Found foo  starts = 6  end = 9.
+  //Found foo  starts = 16  end = 19.
+};
+
+// With matchAll available, you can avoid the while loop and exec with g.
+// by using matchAll, you get an iterator to use with the more convenient for...of, array spread, or Array.from() constructs:
+
+const regexp26 = /foo[a-z]*/g;
+const str78 = 'table football, foosball';
+const matchall = str78.matchAll(regexp26);
+
+for(let match of matchall){
+  console.log(`Found ${match[0]} start=${match.index} end=${match.index + match[0].length}.`);
+  // expected output: "Found football start=6 end=14."
+// expected output: "Found foosball start=16 end=24."
+};
+
+
+// Call matchAll again to create a new iterator
+console.log(Array.from(str78.matchAll(regexp26), m => m[0]));  //['football', 'foosball']
+
+
+const regexp27 = /[a-c]/g;
+regexp27.lastIndex = 1;
+
+const str79 = "abc";
+
+console.log(Array.from(str79.matchAll(regexp27), m => `${regexp27.lastIndex} ${m[0]}`)); //['1 b', '1 c']
+
+
