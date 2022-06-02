@@ -243,4 +243,111 @@ m[undefined] = baz
 undefined
 */
 
+/********************************************Map.prototype.get()***************************/
+// The get() method returns a specified element from a Map object.
+/*
+Syntax
+get(key)
+*/
+
+const mymap6 = new Map();
+
+mymap6.set(0,"hii");
+
+console.log(mymap6.get(0));  //hii
+console.log(mymap6.get(1));  //undefined
+
+
+/************************************************************Map.prototype.has()**************************************/
+// The has() method returns a boolean indicating whether an element with the specified key exists or not.
+/*
+Syntax
+has(key)
+*/
+
+
+const mymap7 = new Map();
+mymap7.set(0,"hii");
+
+console.log(mymap7.has(0));  //true
+console.log(mymap7.has(1));  //false
+
+/****************************************************Map.prototype.keys()************************/
+// The keys() method returns a new Iterator object that contains the keys for each element in the Map object in insertion order.
+/*
+Syntax
+keys()
+*/
+
+const mymap8 = new Map();
+mymap8.set(0,"foo");
+mymap8.set(1,"bar");
+
+const iterator2 = mymap8.keys();
+
+console.log(iterator2); //MapIterator {0, 1}
+
+console.log(iterator2.next().value);  //0
+console.log(iterator2.next().value);  //1
+console.log(iterator2.next().value);  //undefined
+
+
+
+/********************************************************Map.prototype.set()*************************************** */
+// The set() method adds or updates an element with a specified key and a value to a Map object.
+/*
+Syntax
+set(key, value)
+*/
+
+const mymap9 = new Map();
+
+// Add new elements to the map 
+mymap9.set("bar","foo");
+mymap9.set(1,"foobar");
+
+// Update an element in the map 
+mymap9.set("bar","baz");
+
+console.log(mymap9);  //{'bar' => 'baz', 1 => 'foobar'}
+
+
+// Using the set() with chaining1
+
+// Add new elements to the map with chaining. 
+mymap9.set(0,"zero")
+    .set(1,"one")
+    .set(2,"two");
+
+console.log(mymap9);  //{'bar' => 'baz', 1 => 'one', 0 => 'zero', 2 => 'two'}
+
+const mymap10 = new Map();
+
+mymap10.set("a","alpha");
+mymap10.set("b","beta");
+mymap10.set("g","gamma");
+
+console.log(mymap10.size);  //3
+
+/***********************************************Map.prototype.values()*********************************************/
+// The values() method returns a new Iterator object that contains the values for each element in the Map object in insertion order.
+/*
+Syntax
+values()
+*/
+
+const mymap11 = new Map();
+
+mymap11.set(0,"foo");
+mymap11.set(1,"bar");
+mymap11.set({},"baz");
+
+const iterator3 = mymap11.values();
+
+console.log(iterator3);  //MapIterator {'foo', 'bar', 'baz'}
+
+console.log(iterator3.next().value);  //foo
+console.log(iterator3.next().value);  //bar
+console.log(iterator3.next().value);  //baz
+
 
