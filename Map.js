@@ -138,3 +138,109 @@ console.log(merged.get(1)) // eins
 console.log(merged.get(2)) // dos
 console.log(merged.get(3)) // three
 
+/************************************************Map() constructor***********************************************/
+// The Map() constructor creates Map objects.
+/*
+Syntax
+new Map()
+new Map(iterable)
+*/
+
+let mymap2 = new Map([
+    ["a",1],
+    ["b",2],
+    ["c",3]
+]);
+console.log(mymap2);  //{'a' => 1, 'b' => 2, 'c' => 3}
+
+
+/**********************************************Map.prototype.clear()*************************************/
+// The clear() method removes all elements from a Map object.
+/*
+Syntax
+clear()
+*/
+
+const mymap3 = new Map();
+
+mymap3.set("bar","bazz");
+mymap3.set(1,"foo");
+
+console.log(mymap3.size);  //2
+console.log(mymap3.has("bar"));  //true
+
+mymap3.clear();
+
+console.log(mymap3.size); //0
+console.log(mymap3.has("bar"));   //false
+
+
+/*****************************************************Map.prototype.delete()*******************************/
+// The delete() method removes the specified element from a Map object by key.
+/*
+Syntax
+delete(key)
+*/
+
+const mymap4  = new Map();
+
+mymap4.set("bar","bar1");
+mymap4.set("foo","foo1");
+
+mymap4.delete("foo");
+
+console.log(mymap4);  //{'bar' => 'bar1'}
+
+/*************************************Map.prototype.entries()******************************************/
+const mymap5 = new Map();
+
+mymap5.set(0,"bar");
+mymap5.set(1,"foo");
+
+const iterator1  = mymap5.entries();
+console.log(iterator1);  //{0 => 'bar', 1 => 'foo'}
+
+console.log(iterator1.next().value);  // [0, 'bar']
+console.log(iterator1.next().value);  //[1, 'foo']
+console.log(iterator1.next().value);  //undefined
+
+
+/************************************************Map.prototype.forEach()***********************************************/
+// The forEach() method executes a provided function once per each key/value pair in the
+// Map object, in insertion order.
+
+// Syntax
+// Arrow function
+// forEach(() => { /* ... */ } )
+// forEach((value) => { /* ... */ } )
+// forEach((value, key) => { /* ... */ } )
+// forEach((value, key, map) => { /* ... */ } )
+
+// Callback 
+// function forEach(callbackFn) 
+// forEach(callbackFn, thisArg)
+ 
+// Inline callback 
+// function forEach(function() { /* ... */ }) 
+// forEach(function(value) { /* ... */ }) 
+// forEach(function(value, key) { /* ... */ })
+
+// forEach(function(value, key, map) { /* ... */ }) 
+// forEach(function(value, key, map) { /* ... */ }, thisArg)
+
+
+function logMapElements(key , value , map){
+    console.log(`m[${key}] = ${value}`);
+};
+
+const foreach1 = new Map([["foo",2],["bar",{}],["baz",undefined]]).forEach(logMapElements);
+
+console.log(foreach1);
+/*
+m[2] = foo
+m[[object Object]] = bar
+m[undefined] = baz
+undefined
+*/
+
+
