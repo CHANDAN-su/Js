@@ -351,3 +351,131 @@ console.log(iterator3.next().value);  //bar
 console.log(iterator3.next().value);  //baz
 
 
+/***********************************************************Set***************************************************/
+// The Set object lets you store unique values of any type, whether primitive values or object references.
+
+// Using the Set object
+const myset = new Set();
+
+console.log(myset.add(1));  //Set(1) {1}
+console.log(myset.add(5));  //Set(2) {1, 5}
+console.log(myset.add(5));  //Set(2) {1, 5}
+console.log(myset.add("some text"));  //Set(3) {1, 5, 'some text'}
+
+const o = {a:1,b:2};
+console.log(myset.add(o));  //Set(4) {1, 5, 'some text', {a:1,b:2}}
+
+console.log(myset.add({a:1,b:2}));  //Set(4) {1, 5, 'some text', {a:1,b:2},{a:1,b:2}}
+
+
+console.log(myset.has(1));  //true
+console.log(myset.has(3)); //false
+console.log(myset.has(5));  //true
+console.log(myset.has(Math.sqrt(25)));   //true
+console.log(myset.has("Some Text".toLowerCase()));  //true
+console.log(myset.has(o));   //true
+
+console.log(myset.size);  //5
+
+myset.delete(5);
+console.log(myset.has(5));  //false
+
+console.log(myset.size);  //4
+
+// Iterating Sets
+// iterate over items in set
+
+for(let item of myset){
+    console.log(item);
+};
+/*
+1
+some text
+{a: 1, b: 2}
+{a: 1, b: 2}
+*/
+
+for(let item of myset.keys()){
+    console.log(item);
+}
+/*
+1
+some text
+{a: 1, b: 2}
+{a: 1, b: 2}
+*/
+
+for(let item of myset.values()){
+    console.log(item);
+}
+/*
+1
+some text
+{a: 1, b: 2}
+{a: 1, b: 2}
+*/
+
+for(let [key,value] of myset.entries()){
+    console.log(key);
+};
+/*
+1
+some text
+{a: 1, b: 2}
+{a: 1, b: 2}
+*/
+
+const myaryy = Array.from(myset);
+console.log(myaryy);  //[1, "some text", {"a": 1, "b": 2}, {"a": 1, "b": 2}]
+
+// the following will also work if run in an HTML document 
+console.log(myset.add(document.body));   //Set(5) {1, 'some text', {…}, {…}, body}
+console.log(myset.has(document.querySelector('body'))); // true
+
+
+// converting between Set and Array 
+const myset1 = new Set([1,2,3,4]);
+console.log(myset1.size);  //4
+console.log([...myset1]);  //[1,2,3,4]
+
+// intersect can be simulated via
+const intersection = new Set([...myset].filter(x => myset1.has(x)));
+console.log(intersection);  
+
+// difference can be simulated via
+const difference = new Set([...myset].filter(x => !myset1.has(x)));
+console.log(difference);  //{'some text', {"a":1,"b":2}, {"a":1,"b":2}, body}
+
+
+// Iterate set entries with forEach() 
+myset1.forEach( function (value){
+    console.log(value);
+}); 
+/*1
+2
+3
+4
+*/
+
+// Relation with Array objects
+const myarray = ["value1","value2","value"];
+
+const myset2 = new Set(myarray);
+
+console.log([...myset2]); //['value1', 'value2', 'value']
+
+
+// Remove duplicate elements from the array
+const numbers = [2,3,4,4,2,3,3,4,4,5,5,6,6,7,5,32,3,4,5];
+
+console.log([...new Set(numbers)]);  //[2, 3, 4, 5, 6, 7, 32]
+
+// Relation with Strings
+const string = "India";
+
+const myset3 = new Set(string);
+console.log(myset3);  //Set(5) {'I', 'n', 'd', 'i', 'a'}
+
+//case sensitive & duplicate omission
+console.log(new Set("Firefox"));  //Set(7) {'F', 'i', 'r', 'e', 'f','o','x'}
+console.log(new Set("firefox"));  //Set(6) {'f', 'i', 'r', 'e', 'o','x'}
