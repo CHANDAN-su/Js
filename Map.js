@@ -479,3 +479,154 @@ console.log(myset3);  //Set(5) {'I', 'n', 'd', 'i', 'a'}
 //case sensitive & duplicate omission
 console.log(new Set("Firefox"));  //Set(7) {'F', 'i', 'r', 'e', 'f','o','x'}
 console.log(new Set("firefox"));  //Set(6) {'f', 'i', 'r', 'e', 'o','x'}
+
+
+
+/*************************************************************************WeakMap******************************************/
+// A WeakMap is a collection of key/value pairs whose keys must be objects
+// Keys of WeakMaps are of the type Object only.
+
+// Using WeakMap
+const wm1 = new WeakMap(),
+      wm2 = new WeakMap(),
+      wm3 = new WeakMap();
+
+const o1 = {},
+      o2 = function () {},
+      o3 = window
+
+
+wm1.set(o1,37);
+wm1.set(o2,"ravi");
+wm2.set(o1,o2);
+wm2.set(o3,undefined);
+wm2.set(wm1,wm2);
+
+console.log(wm1.get(o2));  //ravi
+console.log(wm2.get(o2));  //undefined
+console.log(wm2.get(o3));  //undefined
+
+console.log(wm1.has(o2));  //true
+console.log(wm2.has(o2)); //false
+console.log(wm2.has(o3));  //true
+
+wm3.set(o3,37);
+console.log(wm3.get(o3));  //37
+
+console.log(wm1.has(o1));  //true
+wm1.delete(o1);
+console.log(wm1.has(o1));  //false
+
+/****************************************************WeakMap() constructor****************************/
+// The WeakMap() constructor creates a WeakMap object, optionally based on a provided
+// Array or other iterable object.
+/*
+Syntax
+new WeakMap()
+new WeakMap(iterable)
+*/
+
+// Using WeakMap
+/*
+const wm1 = new WeakMap(),
+      wm2 = new WeakMap(),
+      wm3 = new WeakMap();
+
+const o1 = {},
+      o2 = function () {},
+      o3 = window
+
+
+wm1.set(o1,37);
+wm1.set(o2,"ravi");
+wm2.set(o1,o2);
+wm2.set(o3,undefined);
+wm2.set(wm1,wm2);
+
+console.log(wm1.get(o2));  //ravi
+console.log(wm2.get(o2));  //undefined
+console.log(wm2.get(o3));  //undefined
+
+console.log(wm1.has(o2));  //true
+console.log(wm2.has(o2)); //false
+console.log(wm2.has(o3));  //true
+
+wm3.set(o3,37);
+console.log(wm3.get(o3));  //37
+
+console.log(wm1.has(o1));  //true
+wm1.delete(o1);
+console.log(wm1.has(o1));  //false
+*/
+
+/***************************************WeakMap.prototype.delete()*********************************/
+// The delete() method removes the specified element from a WeakMap object.
+/*
+Syntax
+delete(key)
+*/
+
+const wm4 = new WeakMap();
+const obj1 = {};
+
+wm4.set(obj1,42);
+
+console.log(wm4.delete(obj1)); //true
+
+console.log(wm4.has(obj1));   //false
+
+/***************************************************WeakMap.prototype.get()********************************/
+// The get() method returns a specified element from a WeakMap object.
+/*
+Syntax
+get(key)
+*/
+
+const wm5 = new WeakMap();
+
+const obj2 = {};
+const obj3 = {};
+
+wm5.set(obj2,78);
+
+console.log(wm5.get(obj2));  //78
+console.log(wm5.get(obj3)); //undefined
+
+
+/*****************************************WeakMap.prototype.has()*********************************/
+// The has() method returns a boolean indicating whether an element with the specified key exists in the WeakMap object or not.
+/*
+Syntax
+has(key)
+*/
+
+const wm6 = new WeakMap();
+
+const obj4 = {};
+const obj5 = {};
+
+wm6.set(obj4,78);  
+
+console.log(wm6.has(obj4));  //true
+console.log(wm6.has(obj5));  //false
+
+
+/*********************************************************WeakSet*********************************8*/
+// The WeakSet object lets you store weakly held objects in a collection.
+
+const wm7 = new WeakSet();
+const obj6 = {};
+const obj8 = {};
+
+
+wm7.add(obj6);
+wm7.add(obj8);
+
+console.log(wm7.has(obj6));  //ture
+console.log(wm7.has(obj8));  //true
+
+wm7.delete(obj6);
+
+console.log(wm7.has(obj6));  //false
+console.log(wm7.has(obj8));  //true
+
