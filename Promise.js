@@ -127,3 +127,43 @@ Your answer: 2.5
 */
 
 
+
+
+//Basic Example
+
+const students = [
+    { Name: "Chandan", Lastname: "Thakur" },
+    { Name: "Ravi", Lastname: "Gupta" }
+]
+
+const enrollStudent = (student) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            students.push(student);
+            console.log("Student has been enrolled");
+            const error = false;
+            if (!error) {
+                resolve();
+            } else {
+                reject();
+            }
+        }, 2000);
+    })
+};
+
+
+function getstudents() {
+    setTimeout(() => {
+        let str = "";
+        students.forEach(function (student) {
+        str += `<li>${student.Name}</li>`
+        })
+        document.getElementById("spa").innerHTML = str;
+        console.log("Students have been fetched")
+
+    }, 5000);
+}
+
+let newstudent = { Name: "Kavi", Lastname: "Gupta" }
+
+enrollStudent(newstudent).then(getstudents).catch(() => console.log("Some error occured"));
