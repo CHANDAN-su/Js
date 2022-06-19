@@ -373,140 +373,325 @@
 
 
 // If it is resolved 
-const p6 = Promise.resolve("calling text");
+// const p6 = Promise.resolve("calling text");
 
-const p7 = p6.catch((reason) => {
-    //This is never called
-    console.error("catch p1!");
-    console.log(reason);
-});
-
-
-p7.then(function (value) {
-    console.log("next promise's onFulfilled"); /* next promise's onFulfilled */
-    console.log(value); /* calling next */
-}, function (reason) {
-    console.log("next promise's onRejected");
-    console.log(reason);
-});
+// const p7 = p6.catch((reason) => {
+//     //This is never called
+//     console.error("catch p1!");
+//     console.log(reason);
+// });
 
 
-/**************************************Promise.prototype.finally()**********************************************/
-// The finally() method of a Promise schedules a function, the callback function, to be called when the promise is settled. Like then() and catch()
+// p7.then(function (value) {
+//     console.log("next promise's onFulfilled"); /* next promise's onFulfilled */
+//     console.log(value); /* calling next */
+// }, function (reason) {
+//     console.log("next promise's onRejected");
+//     console.log(reason);
+// });
+
+
+// /**************************************Promise.prototype.finally()**********************************************/
+// // The finally() method of a Promise schedules a function, the callback function, to be called when the promise is settled. Like then() and catch()
+// /*
+// Syntax
+// promise.finally(onFinally);
+// promise.finally(() => {
+//    // Code that will run after promise is settled (fulfilled or rejected)
+// });
+// */
+
+
+// function checkmail(){
+//     return new Promise((resolve,reject) => {
+//         if(Math.random() < 5){
+//             resolve('Mail has arrived');
+//         }else{
+//             reject(new Error('Failed to arrive'));
+//         };
+//     });
+// };
+
+// checkmail().then((mail) => {
+//     console.log(mail);
+// }).catch((err) => {
+//     console.log(err);
+// }).finally(() =>{
+//     setTimeout(() => {
+//         console.log('Experiment completed');
+//     }, 3000);
+    
+// });
+
+
+// /***********************************************Promise.resolve()**********************************************/
+// // The Promise.resolve() method returns a Promise object that is resolved with a given value. 
+// /*
+// Syntax
+// Promise.resolve(value);
+// */
+
+
+// // Using the static Promise.resolve method
+// Promise.resolve("Success!").then((value) =>{
+//     console.log(value);  //Success!
+// }).catch((e) => {
+//     // not called
+//     console.log(e);
+// });
+
+
+// // Resolving an array
+// const promise8 = Promise.resolve([1,2,3]);
+// promise8.then((v) => {
+//     console.log(v[0]);  //1
+// });
+
+
+// // Resolving another Promise
+// const original = Promise.resolve(33);
+// const cast = Promise.resolve(original);
+// cast.then((v) =>{
+//     console.log(`Value: ${v}`);  //33
+// });
+
+// console.log('original === cast ? ' + (original === cast));  //original === cast ? true
+
+
+// // Resolving thenables and throwing Errors
+
+// // Resolving a thenable object
+// const p9 = Promise.resolve({
+//     then: function(onFulfill,onReject){
+//         onFulfill("fulfilled");
+//     }
+// });
+
+// p9.then((v) =>{
+//     console.log(v);  //fulfilled
+// }).catch((error) =>{
+//     console.log(error);
+// });
+
+// // Thenable throws before callback
+// // Promise rejects
+
+// const thenable = {then : function(resole){
+//     throw new TypeError('Throwing');
+//     console.log('Resolving');
+// }};
+
+// const promise9 = Promise.resole(thenable);
+// promise9.then(function(v) {
+//     // not called
+//   }, function(e) {
+//     console.error(e); // TypeError: Throwing
+//   });
+
+
+//   // Thenable throws after callback
+// // Promise resolves
+// const thenable1 = { then: function(resolve) {
+//     resolve('Resolving');
+//     throw new TypeError('Throwing');
+//   }};
+  
+//   const p10 = Promise.resolve(thenable1);
+//   p10.then(function(v) {
+//     console.log(v); // "Resolving"
+//   }, function(e) {
+//     // not called
+//   });
+
+
+//   let thenable2 = {
+//     then: (resolve, reject) => {
+//       resolve(thenable)
+//     }
+//   }
+// //   console.log(Promise.resolve(thenable2));  // Will lead to infinite recursion.
+
+
+
+/*********************************************Promise.reject()****************************************************/
+// The Promise.reject() method returns a Promise object that is rejected with a given reason.
 /*
 Syntax
-promise.finally(onFinally);
-promise.finally(() => {
-   // Code that will run after promise is settled (fulfilled or rejected)
-});
+Promise.reject(reason);
 */
 
 
-function checkmail(){
-    return new Promise((resolve,reject) => {
-        if(Math.random() < 5){
-            resolve('Mail has arrived');
-        }else{
-            reject(new Error('Failed to arrive'));
-        };
-    });
+// Using the static Promise.reject() method
+Promise.reject(new Error("fail")).then(function (){
+    console.log("resolved");
+},function (error){
+    console.log(error)
+});  //Error: fail
+
+
+function resolved(result){
+    console.log("Resoled");
 };
 
-checkmail().then((mail) => {
-    console.log(mail);
-}).catch((err) => {
-    console.log(err);
-}).finally(() =>{
-    setTimeout(() => {
-        console.log('Experiment completed');
-    }, 3000);
-    
-});
+function rejected(error){
+    console.log(error);
+};
+
+Promise.reject(new Error("Fail")).then(resolved,rejected);  //Error: fail
 
 
-/***********************************************Promise.resolve()**********************************************/
-// The Promise.resolve() method returns a Promise object that is resolved with a given value. 
+
+
+/******************************************Promise.all()?"*******************************************" */
+// The Promise.all() method takes an iterable of promises as an input, and returns a single Promise that resolves to an array of the results of the input promises. This returned promise will resolve when all of the input's
+//  promises have resolved, or if the input iterable contains no promises. 
 /*
 Syntax
-Promise.resolve(value);
+Promise.all(iterable);
 */
 
 
-// Using the static Promise.resolve method
-Promise.resolve("Success!").then((value) =>{
-    console.log(value);  //Success!
-}).catch((e) => {
-    // not called
-    console.log(e);
+
+const promise1 = Promise.resolve(3);
+const Promise2 = 42;
+const Promise3 = new Promise((resolve,reject) => {
+    setTimeout(() => {
+        resolve("foo");
+    }, 100);
 });
 
+Promise.all([promise1,Promise2,Promise3]).then((result) => 
+console.log(result));  //[3, 42, 'foo']
 
-// Resolving an array
-const promise8 = Promise.resolve([1,2,3]);
-promise8.then((v) => {
-    console.log(v[0]);  //1
+
+
+
+// If the iterable contains non-promise values, they will be ignored
+
+// this will be counted as if the iterable passed is empty, so it gets fulfilled
+const p11 = Promise.all([1,2,3]);
+
+// this will be counted as if the iterable passed contains only the resolved promise with value "444", so it gets fulfilled
+const p12= Promise.all([1,2,3,Promise.resolve(444)]);
+
+// this will be counted as if the iterable passed contains only the rejected promise with value "555", so it gets rejected
+const p13 = Promise.all([1,2,3,Promise.reject(555)]);
+
+
+// using setTimeout we can execute code after the stack is empty
+setTimeout(() => {
+ console.log(p11);
+ console.log(p12);
+ console.log(p13);
+});
+// logs
+// Promise { <state>: "fulfilled", <value>: Array[3] }
+// Promise { <state>: "fulfilled", <value>: Array[4] }
+// Promise { <state>: "rejected", <reason>: 555 }
+
+
+
+
+// Asynchronicity or synchronicity of Promise.all
+const resolvedPromisesArray = [Promise.resolve(33),Promise.resolve(44)];
+
+const p14 = Promise.all(resolvedPromisesArray);
+// immediately logging the value of p
+// console.log(p14);
+
+setTimeout(() => {
+    console.log('the stack is now empty');
+    console.log(p14);
+});
+// logs, in order:
+// Promise { <state>: "pending" }
+// the stack is now empty
+// Promise { <state>: "fulfilled", <value>: Array[2] }
+
+// The same thing happens if Promise.all rejects:
+const mixedPromisesArray  = [Promise.resolve(33),Promise.reject(44)];
+
+const p15 = Promise.reject(mixedPromisesArray);
+setTimeout(() => {
+    console.log("the stack is now empty")   ;
+    console.log(p15);
+});
+// logs
+// Promise { <state>: "pending" }
+// the stack is now empty
+// Promise { <state>: "rejected", <reason>: 44 }
+
+// But, Promise.all resolves synchronously if and only if the iterable passed is empty:
+const p16 = Promise.all([]); // will be immediately resolved
+const p17 = Promise.all([1337, "hi"]); // non-promise values will be ignored, but the evaluation will be done asynchronously
+console.log(p16);
+console.log(p17)
+setTimeout(function() {
+    console.log('the stack is now empty');
+    console.log(p16);
 });
 
+// logs
+// Promise { <state>: "fulfilled", <value>: Array[0] }
+// Promise { <state>: "pending" }
+// the stack is now empty
+// Promise { <state>: "fulfilled", <value>: Array[2] }
 
-// Resolving another Promise
-const original = Promise.resolve(33);
-const cast = Promise.resolve(original);
-cast.then((v) =>{
-    console.log(`Value: ${v}`);  //33
+
+
+// Promise.all fail-fast behavior
+const pr1 = new Promise((resolve,reject) =>{
+    setTimeout(() => {
+        resolve("one");
+    }, 1000);
 });
 
-console.log('original === cast ? ' + (original === cast));  //original === cast ? true
-
-
-// Resolving thenables and throwing Errors
-
-// Resolving a thenable object
-const p9 = Promise.resolve({
-    then: function(onFulfill,onReject){
-        onFulfill("fulfilled");
-    }
+const pr2 = new Promise((resolve,reject) =>{
+    setTimeout(() => {
+        resolve("two");
+    }, 2000);
 });
 
-p9.then((v) =>{
-    console.log(v);  //fulfilled
-}).catch((error) =>{
-    console.log(error);
+const pr3 = new Promise((resolve,reject) =>{
+    setTimeout(() => {
+        resolve("three");
+    }, 3000);
 });
 
-// Thenable throws before callback
-// Promise rejects
+const pr4 = new Promise((resolve,reject) =>{
+    setTimeout(() => {
+        resolve("four");
+    }, 4000);
+});
 
-const thenable = {then : function(resole){
-    throw new TypeError('Throwing');
-    console.log('Resolving');
-}};
+const pr5 = new Promise((resolve,reject) =>{
+        reject(new Error("reject"));
+});
 
-const promise9 = Promise.resole(thenable);
-promise9.then(function(v) {
-    // not called
-  }, function(e) {
-    console.error(e); // TypeError: Throwing
+// Using .catch:
+Promise.all([pr1,pr2,pr3,pr4,pr5]).then(value => {
+    console.log(value);
+}).catch(error => {
+    console.log(error.message);
+});
+////"reject"
+
+
+// It is possible to change this behavior by handling possible rejections:
+const p18 = new Promise((resolve, reject) => {
+    setTimeout(() => resolve('p1_delayed_resolution'), 1000);
   });
-
-
-  // Thenable throws after callback
-// Promise resolves
-const thenable1 = { then: function(resolve) {
-    resolve('Resolving');
-    throw new TypeError('Throwing');
-  }};
   
-  const p10 = Promise.resolve(thenable1);
-  p10.then(function(v) {
-    console.log(v); // "Resolving"
-  }, function(e) {
-    // not called
+  const p19 = new Promise((resolve, reject) => {
+    reject(new Error('p2_immediate_rejection'));
   });
+  
+  Promise.all([
+    p18.catch(error => { return error }),
+    p19.catch(error => { return error }),
+  ]).then(values => {
+    console.log(values[0]) // "p1_delayed_resolution"
+    console.error(values[1]) // "Error: p2_immediate_rejection"
+  })
 
 
-  let thenable2 = {
-    then: (resolve, reject) => {
-      resolve(thenable)
-    }
-  }
-//   console.log(Promise.resolve(thenable2));  // Will lead to infinite recursion.
