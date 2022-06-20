@@ -542,7 +542,7 @@ Promise.reject(new Error("Fail")).then(resolved,rejected);  //Error: fail
 
 
 
-/******************************************Promise.all()?"*******************************************" */
+/******************************************Promise.all()"*******************************************" */
 // The Promise.all() method takes an iterable of promises as an input, and returns a single Promise that resolves to an array of the results of the input promises. This returned promise will resolve when all of the input's
 //  promises have resolved, or if the input iterable contains no promises. 
 /*
@@ -695,3 +695,82 @@ const p18 = new Promise((resolve, reject) => {
   })
 
 
+
+/***************************************************************Promise.allSettled()***************************** */
+//   The Promise.allSettled() method returns a promise that resolves after all of the given promises have either fulfilled or rejected, 
+//   with an array of objects that each describes the outcome of each promise.
+/*
+Syntax
+Promise.allSettled(iterable);
+*/
+
+const promise10 = Promise.resolve(39);
+const promise11 = new Promise((resolve,reject) => {
+    setTimeout(() => {
+        reject("foo");
+    }, 1000);
+});
+
+const Promise12 = [promise10,promise11];
+
+Promise.allSettled(Promise12).then((result) =>{
+    result.forEach(result => {
+        console.log(result.status)
+    });
+});
+// expected output:
+// "fulfilled"
+// "rejected"
+
+Promise.allSettled(Promise12).then((result) =>{
+    console.log(result);
+});
+// {status: 'fulfilled', value: 39}
+// {status: 'rejected', reason: 'foo'}
+
+
+
+// Using Promise.allSettled
+Promise.allSettled([Promise.resolve(33), new Promise((resolv,reject) =>{
+    setTimeout(() => {
+        resolv(66);
+    }, 1000);}), Promise.resolve(99),
+    Promise.reject(new Error("an error"))
+]).then((result) => {
+    result.forEach((result) => console.log(result.status));
+});
+
+// [
+//   {status: "fulfilled", value: 33},
+//   {status: "fulfilled", value: 66},
+//   {status: "fulfilled", value: 99},
+//   {status: "rejected",  reason: Error: an error}
+// ]
+
+
+/*****************************************************Promise.race()*****************************8*/
+// The Promise.race() method returns a promise that fulfills or rejects as soon as one of the promises in an 
+// iterable fulfills or rejects, with the value or reason from that promise.
+/*
+Syntax
+Promise.race(iterable);
+*/
+
+const promise12 = new Promise((resolve,reject) =>{
+    setTimeout(() => {
+        resolve("one");
+    }, 6000);
+});
+
+
+const promise13 = new Promise((resolve,reject) =>{
+    setTimeout(() => {
+        resolve("two");
+    }, 2000);
+});
+
+Promise.race([promise12,promise13]).then((result) =>{
+    console.log(result);
+});
+
+//// expected output: "two"
