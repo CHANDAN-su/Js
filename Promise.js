@@ -1,485 +1,485 @@
-// console.log("Promise");
+console.log("Promise");
 
 
-// /*
-// const mypromise = new Promise();
+/*
+const mypromise = new Promise();
 
-// const mypromise1 = new Promise(function(){
+const mypromise1 = new Promise(function(){
 
+});
+
+const mypromise2 = new Promise(function (resolve,reject){
+
+});
+
+
+const mypromise3 = new Promise(function (resolve,reject){
+    if(condition){
+        resolve("Here is success");
+    }
+    else{
+        reject("Here is a failur");
+    }
+});
+
+const onfillment = (result) => {
+    console.log(result);
+};
+
+const onReject = (error) => {
+       console.log(error);
+};
+
+mypromise.than(onfillment);
+mypromise3.catch(onReject);
+
+*/
+
+
+const complete = true;
+
+const prom = new Promise(function (resolve, reject) {
+    if (complete) {
+        resolve("Here is success")
+    } else {
+        reject("Here is a failur")
+    }
+});
+
+console.log(prom);   //Promise {<fulfilled>: 'Here is success'}    jab complete ka value true ho
+// console.log(prom);   //Promise {<rejected>: 'Here is a failur'}    jab complete ka value false ho
+
+
+function prom1(complete) {
+    return new Promise(function (resolve, reject) {
+        if (complete) {
+            resolve("Here is success")
+        } else {
+            reject("Here is a failur")
+        }
+    });
+};
+
+console.log(prom1(true)); //Promise {<fulfilled>: 'Here is success'}
+// console.log(prom1(false));  //Promise {<rejected>: 'Here is a failur'}
+
+
+
+function prom2(complete) {
+    return new Promise(function (resolve, reject) {
+        if (complete) {
+            resolve("Here is success")
+        } else {
+            reject("Here is a failur")
+        }
+    });
+};
+
+let onFillment = result => console.log(result);
+let onReject = error => console.log(error);
+
+prom2(true).then(onFillment);  //Here is success
+prom2(false).catch(onReject);  //Here is a failur
+
+
+
+
+//setimeout use
+function prom3(complete) {
+    return new Promise(function (resolve, reject) {
+        console.log("Fetching data, Please wait");
+        setTimeout(() => {
+            if (complete) {
+                resolve("Here is success")
+            } else {
+                reject("Here is a failur")
+            }
+        }, 4000);
+    });
+};
+
+prom3(false).then(result => console.log(result)).catch(error => console.log(error));  
+/*
+Fetching data, Please wait
+Here is a failur
+*/
+
+
+//Exampole
+function prom4(a, b) {
+    return new Promise(function (resolve, reject) {
+        console.log("Fetching data, Please wait");
+        var c = a / b;
+        setTimeout(() => {
+            if (a, b) {
+                resolve(`Your answer: ${c}`)
+            } else {
+                reject("Failed calute")
+            }
+        }, 4000);
+    });
+};
+
+// prom4(5,2).then(result => console.log(result)).catch(error => console.log(error));  
+/*
+Fetching data, Please wait
+Your answer: 2.5
+*/
+
+
+
+
+//Basic Example
+
+const students = [
+    { Name: "Chandan", Lastname: "Thakur" },
+    { Name: "Ravi", Lastname: "Gupta" }
+]
+
+const enrollStudent = (student) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            students.push(student);
+            console.log("Student has been enrolled");
+            const error = false;
+            if (!error) {
+                resolve();
+            } else {
+                reject();
+            }
+        }, 2000);
+    })
+};
+
+
+function getstudents() {
+    setTimeout(() => {
+        let str = "";
+        students.forEach(function (student) {
+            str += `<li>${student.Name}</li>`
+        })
+        document.getElementById("spa").innerHTML = str;
+        console.log("Students have been fetched")
+
+    }, 5000);
+}
+
+let newstudent = { Name: "Kavi", Lastname: "Gupta" }
+
+// enrollStudent(newstudent).then(getstudents).catch(() => console.log("Some error occured"));
+
+//same work
+// enrollStudent(newstudent).then(getstudents, () => console.log("Some error occured"));
+
+
+/*******************************************Promise() constructor******************************** */
+/*
+Syntax
+new Promise(executor)
+*/
+
+
+const promise19 = new Promise((resole, reject) => {
+    setTimeout(() => {
+        resole("foo");
+    }, 500);
+});
+
+promise19.then((resut) => console.log(resut));  //foo
+
+/******************************************************************Promise.prototype.then()*************************************/
+// The then() method returns a Promise. It takes up to two arguments: callback functions for the success and failure cases of the Promise.
+
+/*
+Syntax
+p.then(onFulfilled[, onRejected]);
+
+p.then(value => {
+  // fulfillment
+}, reason => {
+  // rejection
+});
+*/
+
+const promise21 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("Success!")
+    }, 2000);
+});
+
+promise21.then((result) => console.log(result));  //Success
+
+
+const resolvedProm = Promise.resolve(33);
+
+const thenProm = resolvedProm.then((result) => {
+    console.log("this gets called after the end of the main stack. the value received and returned is: " + result);
+    return result;
+});
+
+console.log(thenProm);  //this gets called after the end of the main stack. the value received and returned is: 33
+
+setTimeout(() => {
+    console.log(thenProm);
+}, 2000);
+
+
+// Examples
+
+// When a value is returned from within a then handler
+const p1 = new Promise((resole, reject) => {
+    resole(1);
+});
+
+p1.then(function (value) {
+    console.log(value);    //1
+    return value + 1;
+}).then(function (value) {
+    console.log(value + "- A synchronous value works")  //2- A synchronous value works
+});
+
+p1.then(function (value) {
+    console.log(value);  //1
+});
+
+
+// A then call will return a rejected promise if the function throws an error or returns a rejected Promise.
+// Promise.resolve().then(() => {
+//     throw new Error("Oh no!");
+// }).then(() => {
+//     console.log('Not called.');
+// },error => {
+//     console.error('onRejected function called: ' + error.message);
 // });
 
-// const mypromise2 = new Promise(function (resolve,reject){
+Promise.reject().then(() => 99, () => 42)
+    .then(solution => console.log('Resolved with ' + solution));  //Resolved with 42
+
+// If onFulfilled returns a promise, the return value of then will be resolved/rejected by the promise.
 
-// });
+function resolveLater(resole, reject) {
+    setTimeout(() => {
+        resole(10);
+    }, 1000);
+};
 
+function rejectLater(resole, reject) {
+    setTimeout(() => {
+        reject(new Error("Error"));
+    }, 1000);
+};
 
-// const mypromise3 = new Promise(function (resolve,reject){
-//     if(condition){
-//         resolve("Here is success");
-//     }
-//     else{
-//         reject("Here is a failur");
-//     }
-// });
-
-// const onfillment = (result) => {
-//     console.log(result);
-// };
-
-// const onReject = (error) => {
-//     console.log(error);
-// };
+const p2 = Promise.resolve("foo");
+const p3 = p2.then(() => {
+    return new Promise(resolveLater);
+});
 
-// mypromise.than(onfillment);
-// mypromise3.catch(onReject);
+p3.then((v) => {
+    console.log("resolved", v);  //resolved 10
+}, (e) => {
+    //not called
+    console.log('rejected', e)
+});
 
-// */
 
 
-// const complete = true;
+// const p4 = promise.reject("bar");
 
-// const prom = new Promise(function (resolve, reject) {
-//     if (complete) {
-//         resolve("Here is success")
-//     } else {
-//         reject("Here is a failur")
-//     }
-// });
-
-// console.log(prom);   //Promise {<fulfilled>: 'Here is success'}    jab complete ka value true ho
-// // console.log(prom);   //Promise {<rejected>: 'Here is a failur'}    jab complete ka value false ho
-
-
-// function prom1(complete) {
-//     return new Promise(function (resolve, reject) {
-//         if (complete) {
-//             resolve("Here is success")
-//         } else {
-//             reject("Here is a failur")
-//         }
-//     });
-// };
-
-// console.log(prom1(true)); //Promise {<fulfilled>: 'Here is success'}
-// // console.log(prom1(false));  //Promise {<rejected>: 'Here is a failur'}
-
-
-
-// function prom2(complete) {
-//     return new Promise(function (resolve, reject) {
-//         if (complete) {
-//             resolve("Here is success")
-//         } else {
-//             reject("Here is a failur")
-//         }
-//     });
-// };
-
-// let onFillment = result => console.log(result);
-// let onReject = error => console.log(error);
-
-// prom2(true).then(onFillment);  //Here is success
-// prom2(false).catch(onReject);  //Here is a failur
+const p5 = p2.then(() => {
+    return new Promise(rejectLater);
+});
 
-
-
-
-// //setimeout use
-// function prom3(complete) {
-//     return new Promise(function (resolve, reject) {
-//         console.log("Fetching data, Please wait");
-//         setTimeout(() => {
-//             if (complete) {
-//                 resolve("Here is success")
-//             } else {
-//                 reject("Here is a failur")
-//             }
-//         }, 4000);
-//     });
-// };
-
-// // prom3(false).then(result => console.log(result)).catch(error => console.log(error));  
-// /*
-// Fetching data, Please wait
-// Here is a failur
-// */
-
-
-// //Exampole
-// function prom4(a, b) {
-//     return new Promise(function (resolve, reject) {
-//         console.log("Fetching data, Please wait");
-//         var c = a / b;
-//         setTimeout(() => {
-//             if (a, b) {
-//                 resolve(`Your answer: ${c}`)
-//             } else {
-//                 reject("Failed calute")
-//             }
-//         }, 4000);
-//     });
-// };
+p5.then((v) => {
+    console.log("resolved", v);   //not called
+}, (e) => {
+    console.log('rejected', e);  //rejected Error: Error
+});
 
-// // prom4(5,2).then(result => console.log(result)).catch(error => console.log(error));  
-// /*
-// Fetching data, Please wait
-// Your answer: 2.5
-// */
 
+/***********************************************************************Promise.reject()********************************************/
+// The Promise.reject() method returns a Promise object that is rejected with a given reason.
+/*
+Syntax
+p.catch(onRejected);
+p.catch(function(reason) {
+   // rejection
+});
+*/
 
+const promise31 = new Promise((resole, reject) => {
+    throw "Uh-oh!";
+});
 
+promise31.catch((error) => console.log(error));  //Uh-oh!
 
-// //Basic Example
+// Using and chaining the catch method
+const promise4 = new Promise((resole, reject) => {
+    resole("Success!");
+});
 
-// const students = [
-//     { Name: "Chandan", Lastname: "Thakur" },
-//     { Name: "Ravi", Lastname: "Gupta" }
-// ]
+promise4.then((value) => {
+    console.log(value);  //Success!
+    throw new Error("'oh, no!'");
+}).catch((e) => {
+    console.error(e.message); //Promise.js:324 'oh, no!'
+}).then(() => console.log('after a catch the chain is restored'),  //after a catch the chain is restored
+    () => console.log('Not fired due to the catch'));
 
-// const enrollStudent = (student) => {
-//     return new Promise((resolve, reject) => {
-//         setTimeout(() => {
-//             students.push(student);
-//             console.log("Student has been enrolled");
-//             const error = false;
-//             if (!error) {
-//                 resolve();
-//             } else {
-//                 reject();
-//             }
-//         }, 2000);
-//     })
-// };
-
-
-// function getstudents() {
-//     setTimeout(() => {
-//         let str = "";
-//         students.forEach(function (student) {
-//             str += `<li>${student.Name}</li>`
-//         })
-//         document.getElementById("spa").innerHTML = str;
-//         console.log("Students have been fetched")
 
-//     }, 5000);
-// }
+// The following behaves the same as above
+promise4.then(function (value) {
+    console.log(value); //Success!
+    return Promise.reject('oh, no!');
+}).catch((e) => console.error(e))  //Promise.js:324 'oh, no!'
+    .then(() => console.log('after a catch the chain is restored'),  //after a catch the chain is restored
+        () => console.log('Not fired due to the catch'));
 
-// let newstudent = { Name: "Kavi", Lastname: "Gupta" }
-
-// // enrollStudent(newstudent).then(getstudents).catch(() => console.log("Some error occured"));
-
-// //same work
-// // enrollStudent(newstudent).then(getstudents, () => console.log("Some error occured"));
-
-
-// /*******************************************Promise() constructor******************************** */
-// /*
-// Syntax
-// new Promise(executor)
-// */
-
-
-// const promise1 = new Promise((resole, reject) => {
-//     setTimeout(() => {
-//         resole("foo");
-//     }, 500);
-// });
 
-// promise1.then((resut) => console.log(resut));  //foo
 
-// /******************************************************************Promise.prototype.then()*************************************/
-// // The then() method returns a Promise. It takes up to two arguments: callback functions for the success and failure cases of the Promise.
+// Gotchas when throwing errors
 
-// /*
-// Syntax
-// p.then(onFulfilled[, onRejected]);
-
-// p.then(value => {
-//   // fulfillment
-// }, reason => {
-//   // rejection
-// });
-// */
+// Throwing an error will call the catch method most of the time
+const promise5 = new Promise(function (resole, reject) {
+    throw new Error('Uh-oh!');
+});
 
-// const promise2 = new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//         resolve("Success!")
-//     }, 2000);
-// });
-
-// promise2.then((result) => console.log(result));  //Success
-
-
-// const resolvedProm = Promise.resolve(33);
-
-// const thenProm = resolvedProm.then((result) => {
-//     console.log("this gets called after the end of the main stack. the value received and returned is: " + result);
-//     return result;
-// });
-
-// console.log(thenProm);  //this gets called after the end of the main stack. the value received and returned is: 33
-
-// setTimeout(() => {
-//     console.log(thenProm);
-// }, 2000);
-
-
-// // Examples
-
-// // When a value is returned from within a then handler
-// const p1 = new Promise((resole, reject) => {
-//     resole(1);
-// });
-
-// p1.then(function (value) {
-//     console.log(value);    //1
-//     return value + 1;
-// }).then(function (value) {
-//     console.log(value + "- A synchronous value works")  //2- A synchronous value works
-// });
-
-// p1.then(function (value) {
-//     console.log(value);  //1
-// });
-
-
-// // A then call will return a rejected promise if the function throws an error or returns a rejected Promise.
-// // Promise.resolve().then(() => {
-// //     throw new Error("Oh no!");
-// // }).then(() => {
-// //     console.log('Not called.');
-// // },error => {
-// //     console.error('onRejected function called: ' + error.message);
-// // });
+promise5.catch(function (e) {
+    console.error(e);  //Promise.js:347 Error: Uh-oh!
+});
 
-// Promise.reject().then(() => 99, () => 42)
-//     .then(solution => console.log('Resolved with ' + solution));  //Resolved with 42
-
-// // If onFulfilled returns a promise, the return value of then will be resolved/rejected by the promise.
 
-// function resolveLater(resole, reject) {
-//     setTimeout(() => {
-//         resole(10);
-//     }, 1000);
-// };
+// Errors thrown inside asynchronous functions will act like uncaught errors
+const promise6 = new Promise(function (resolve, reject) {
+    setTimeout(function () {
+        throw new Error('Uncaught Exception!');
+    }, 1000);
+});
 
-// function rejectLater(resole, reject) {
-//     setTimeout(() => {
-//         reject(new Error("Error"));
-//     }, 1000);
-// };
+promise6.catch(function (e) {
+    console.error(e); // This is never called  (output :- Uncaught Error: Uncaught Exception!)
+});
 
-// const p2 = Promise.resolve("foo");
-// const p3 = p2.then(() => {
-//     return new Promise(resolveLater);
-// });
 
-// p3.then((v) => {
-//     console.log("resolved", v);  //resolved 10
-// }, (e) => {
-//     //not called
-//     console.log('rejected', e)
-// });
 
+// Errors thrown after resolve is called will be silenced
+const promise7 = new Promise(function (resolve, reject) {
+    resolve();
+    throw new Error('Silenced Exception!');
+});
 
-
-// // const p4 = promise.reject("bar");
-
-// const p5 = p2.then(() => {
-//     return new Promise(rejectLater);
-// });
-
-// p5.then((v) => {
-//     console.log("resolved", v);   //not called
-// }, (e) => {
-//     console.log('rejected', e);  //rejected Error: Error
-// });
-
-
-// /***********************************************************************Promise.reject()********************************************/
-// // The Promise.reject() method returns a Promise object that is rejected with a given reason.
-// /*
-// Syntax
-// p.catch(onRejected);
-// p.catch(function(reason) {
-//    // rejection
-// });
-// */
-
-// const promise3 = new Promise((resole, reject) => {
-//     throw "Uh-oh!";
-// });
-
-// promise3.catch((error) => console.log(error));  //Uh-oh!
-
-// // Using and chaining the catch method
-// const promise4 = new Promise((resole, reject) => {
-//     resole("Success!");
-// });
-
-// promise4.then((value) => {
-//     console.log(value);  //Success!
-//     throw new Error("'oh, no!'");
-// }).catch((e) => {
-//     console.error(e.message); //Promise.js:324 'oh, no!'
-// }).then(() => console.log('after a catch the chain is restored'),  //after a catch the chain is restored
-//     () => console.log('Not fired due to the catch'));
-
-
-// // The following behaves the same as above
-// promise4.then(function (value) {
-//     console.log(value); //Success!
-//     return Promise.reject('oh, no!');
-// }).catch((e) => console.error(e))  //Promise.js:324 'oh, no!'
-//     .then(() => console.log('after a catch the chain is restored'),  //after a catch the chain is restored
-//         () => console.log('Not fired due to the catch'));
-
-
-
-// // Gotchas when throwing errors
-
-// // Throwing an error will call the catch method most of the time
-// const promise5 = new Promise(function (resole, reject) {
-//     throw new Error('Uh-oh!');
-// });
-
-// promise5.catch(function (e) {
-//     console.error(e);  //Promise.js:347 Error: Uh-oh!
-// });
-
-
-// // Errors thrown inside asynchronous functions will act like uncaught errors
-// const promise6 = new Promise(function (resolve, reject) {
-//     setTimeout(function () {
-//         throw new Error('Uncaught Exception!');
-//     }, 1000);
-// });
-
-// promise6.catch(function (e) {
-//     console.error(e); // This is never called  (output :- Uncaught Error: Uncaught Exception!)
-// });
-
-
-
-// // Errors thrown after resolve is called will be silenced
-// const promise7 = new Promise(function (resolve, reject) {
-//     resolve();
-//     throw new Error('Silenced Exception!');
-// });
-
-// promise7.catch(function (e) {
-//     console.error(e); // This is never called
-// });
+promise7.catch(function (e) {
+    console.error(e); // This is never called
+});
 
 
 // If it is resolved 
-// const p6 = Promise.resolve("calling text");
+const p6 = Promise.resolve("calling text");
 
-// const p7 = p6.catch((reason) => {
-//     //This is never called
-//     console.error("catch p1!");
-//     console.log(reason);
-// });
-
-
-// p7.then(function (value) {
-//     console.log("next promise's onFulfilled"); /* next promise's onFulfilled */
-//     console.log(value); /* calling next */
-// }, function (reason) {
-//     console.log("next promise's onRejected");
-//     console.log(reason);
-// });
+const p7 = p6.catch((reason) => {
+    //This is never called
+    console.error("catch p1!");
+    console.log(reason);
+});
 
 
-// /**************************************Promise.prototype.finally()**********************************************/
-// // The finally() method of a Promise schedules a function, the callback function, to be called when the promise is settled. Like then() and catch()
-// /*
-// Syntax
-// promise.finally(onFinally);
-// promise.finally(() => {
-//    // Code that will run after promise is settled (fulfilled or rejected)
-// });
-// */
+p7.then(function (value) {
+    console.log("next promise's onFulfilled"); /* next promise's onFulfilled */
+    console.log(value); /* calling next */
+}, function (reason) {
+    console.log("next promise's onRejected");
+    console.log(reason);
+});
 
 
-// function checkmail(){
-//     return new Promise((resolve,reject) => {
-//         if(Math.random() < 5){
-//             resolve('Mail has arrived');
-//         }else{
-//             reject(new Error('Failed to arrive'));
-//         };
-//     });
-// };
-
-// checkmail().then((mail) => {
-//     console.log(mail);
-// }).catch((err) => {
-//     console.log(err);
-// }).finally(() =>{
-//     setTimeout(() => {
-//         console.log('Experiment completed');
-//     }, 3000);
-    
-// });
+/**************************************Promise.prototype.finally()**********************************************/
+// The finally() method of a Promise schedules a function, the callback function, to be called when the promise is settled. Like then() and catch()
+/*
+Syntax
+promise.finally(onFinally);
+promise.finally(() => {
+   // Code that will run after promise is settled (fulfilled or rejected)
+});
+*/
 
 
-// /***********************************************Promise.resolve()**********************************************/
-// // The Promise.resolve() method returns a Promise object that is resolved with a given value. 
-// /*
-// Syntax
-// Promise.resolve(value);
-// */
+function checkmail(){
+    return new Promise((resolve,reject) => {
+        if(Math.random() < 5){
+            resolve('Mail has arrived');
+        }else{
+            reject(new Error('Failed to arrive'));
+        };
+    });
+};
+
+checkmail().then((mail) => {
+    console.log(mail);
+}).catch((err) => {
+    console.log(err);
+}).finally(() =>{
+    setTimeout(() => {
+        console.log('Experiment completed');
+    }, 3000);
+
+});
 
 
-// // Using the static Promise.resolve method
-// Promise.resolve("Success!").then((value) =>{
-//     console.log(value);  //Success!
-// }).catch((e) => {
-//     // not called
-//     console.log(e);
-// });
+/***********************************************Promise.resolve()**********************************************/
+// The Promise.resolve() method returns a Promise object that is resolved with a given value. 
+/*
+Syntax
+Promise.resolve(value);
+*/
 
 
-// // Resolving an array
-// const promise8 = Promise.resolve([1,2,3]);
-// promise8.then((v) => {
-//     console.log(v[0]);  //1
-// });
+// Using the static Promise.resolve method
+Promise.resolve("Success!").then((value) =>{
+    console.log(value);  //Success!
+}).catch((e) => {
+    // not called
+    console.log(e);
+});
 
 
-// // Resolving another Promise
-// const original = Promise.resolve(33);
-// const cast = Promise.resolve(original);
-// cast.then((v) =>{
-//     console.log(`Value: ${v}`);  //33
-// });
-
-// console.log('original === cast ? ' + (original === cast));  //original === cast ? true
+// Resolving an array
+const promise8 = Promise.resolve([1,2,3]);
+promise8.then((v) => {
+    console.log(v[0]);  //1
+});
 
 
-// // Resolving thenables and throwing Errors
+// Resolving another Promise
+const original = Promise.resolve(33);
+const cast = Promise.resolve(original);
+cast.then((v) =>{
+    console.log(`Value: ${v}`);  //33
+});
 
-// // Resolving a thenable object
-// const p9 = Promise.resolve({
-//     then: function(onFulfill,onReject){
-//         onFulfill("fulfilled");
-//     }
-// });
+console.log('original === cast ? ' + (original === cast));  //original === cast ? true
 
-// p9.then((v) =>{
-//     console.log(v);  //fulfilled
-// }).catch((error) =>{
-//     console.log(error);
-// });
 
-// // Thenable throws before callback
-// // Promise rejects
+// Resolving thenables and throwing Errors
 
-// const thenable = {then : function(resole){
-//     throw new TypeError('Throwing');
-//     console.log('Resolving');
-// }};
+// Resolving a thenable object
+const p9 = Promise.resolve({
+    then: function(onFulfill,onReject){
+        onFulfill("fulfilled");
+    }
+});
+
+p9.then((v) =>{
+    console.log(v);  //fulfilled
+}).catch((error) =>{
+    console.log(error);
+});
+
+// Thenable throws before callback
+// Promise rejects
+
+const thenable = {then : function(resole){
+    throw new TypeError('Throwing');
+    console.log('Resolving');
+}};
 
 // const promise9 = Promise.resole(thenable);
 // promise9.then(function(v) {
@@ -489,27 +489,27 @@
 //   });
 
 
-//   // Thenable throws after callback
-// // Promise resolves
-// const thenable1 = { then: function(resolve) {
-//     resolve('Resolving');
-//     throw new TypeError('Throwing');
-//   }};
-  
-//   const p10 = Promise.resolve(thenable1);
-//   p10.then(function(v) {
-//     console.log(v); // "Resolving"
-//   }, function(e) {
-//     // not called
-//   });
+  // Thenable throws after callback
+// Promise resolves
+const thenable1 = { then: function(resolve) {
+    resolve('Resolving');
+    throw new TypeError('Throwing');
+  }};
+
+  const p10 = Promise.resolve(thenable1);
+  p10.then(function(v) {
+    console.log(v); // "Resolving"
+  }, function(e) {
+    // not called
+  });
 
 
-//   let thenable2 = {
-//     then: (resolve, reject) => {
-//       resolve(thenable)
-//     }
-//   }
-// //   console.log(Promise.resolve(thenable2));  // Will lead to infinite recursion.
+  let thenable2 = {
+    then: (resolve, reject) => {
+      resolve(thenable)
+    }
+  }
+//   console.log(Promise.resolve(thenable2));  // Will lead to infinite recursion.
 
 
 
@@ -522,22 +522,22 @@ Promise.reject(reason);
 
 
 // Using the static Promise.reject() method
-Promise.reject(new Error("fail")).then(function (){
+Promise.reject(new Error("fail")).then(function () {
     console.log("resolved");
-},function (error){
+}, function (error) {
     console.log(error)
 });  //Error: fail
 
 
-function resolved(result){
+function resolved(result) {
     console.log("Resoled");
 };
 
-function rejected(error){
+function rejected(error) {
     console.log(error);
 };
 
-Promise.reject(new Error("Fail")).then(resolved,rejected);  //Error: fail
+Promise.reject(new Error("Fail")).then(resolved, rejected);  //Error: fail
 
 
 
@@ -552,16 +552,16 @@ Promise.all(iterable);
 
 
 
-const promise1 = Promise.resolve(3);
+const promise18 = Promise.resolve(3);
 const Promise2 = 42;
-const Promise3 = new Promise((resolve,reject) => {
+const Promise3 = new Promise((resolve, reject) => {
     setTimeout(() => {
         resolve("foo");
     }, 100);
 });
 
-Promise.all([promise1,Promise2,Promise3]).then((result) => 
-console.log(result));  //[3, 42, 'foo']
+Promise.all([promise18, Promise2, Promise3]).then((result) =>
+    console.log(result));  //[3, 42, 'foo']
 
 
 
@@ -569,20 +569,20 @@ console.log(result));  //[3, 42, 'foo']
 // If the iterable contains non-promise values, they will be ignored
 
 // this will be counted as if the iterable passed is empty, so it gets fulfilled
-const p11 = Promise.all([1,2,3]);
+const p11 = Promise.all([1, 2, 3]);
 
 // this will be counted as if the iterable passed contains only the resolved promise with value "444", so it gets fulfilled
-const p12= Promise.all([1,2,3,Promise.resolve(444)]);
+const p12 = Promise.all([1, 2, 3, Promise.resolve(444)]);
 
 // this will be counted as if the iterable passed contains only the rejected promise with value "555", so it gets rejected
-const p13 = Promise.all([1,2,3,Promise.reject(555)]);
+const p13 = Promise.all([1, 2, 3, Promise.reject(555)]);
 
 
 // using setTimeout we can execute code after the stack is empty
 setTimeout(() => {
- console.log(p11);
- console.log(p12);
- console.log(p13);
+    console.log(p11);
+    console.log(p12);
+    console.log(p13);
 });
 // logs
 // Promise { <state>: "fulfilled", <value>: Array[3] }
@@ -593,7 +593,7 @@ setTimeout(() => {
 
 
 // Asynchronicity or synchronicity of Promise.all
-const resolvedPromisesArray = [Promise.resolve(33),Promise.resolve(44)];
+const resolvedPromisesArray = [Promise.resolve(33), Promise.resolve(44)];
 
 const p14 = Promise.all(resolvedPromisesArray);
 // immediately logging the value of p
@@ -609,11 +609,11 @@ setTimeout(() => {
 // Promise { <state>: "fulfilled", <value>: Array[2] }
 
 // The same thing happens if Promise.all rejects:
-const mixedPromisesArray  = [Promise.resolve(33),Promise.reject(44)];
+const mixedPromisesArray = [Promise.resolve(33), Promise.reject(44)];
 
 const p15 = Promise.reject(mixedPromisesArray);
 setTimeout(() => {
-    console.log("the stack is now empty")   ;
+    console.log("the stack is now empty");
     console.log(p15);
 });
 // logs
@@ -626,7 +626,7 @@ const p16 = Promise.all([]); // will be immediately resolved
 const p17 = Promise.all([1337, "hi"]); // non-promise values will be ignored, but the evaluation will be done asynchronously
 console.log(p16);
 console.log(p17)
-setTimeout(function() {
+setTimeout(function () {
     console.log('the stack is now empty');
     console.log(p16);
 });
@@ -640,36 +640,36 @@ setTimeout(function() {
 
 
 // Promise.all fail-fast behavior
-const pr1 = new Promise((resolve,reject) =>{
+const pr1 = new Promise((resolve, reject) => {
     setTimeout(() => {
         resolve("one");
     }, 1000);
 });
 
-const pr2 = new Promise((resolve,reject) =>{
+const pr2 = new Promise((resolve, reject) => {
     setTimeout(() => {
         resolve("two");
     }, 2000);
 });
 
-const pr3 = new Promise((resolve,reject) =>{
+const pr3 = new Promise((resolve, reject) => {
     setTimeout(() => {
         resolve("three");
     }, 3000);
 });
 
-const pr4 = new Promise((resolve,reject) =>{
+const pr4 = new Promise((resolve, reject) => {
     setTimeout(() => {
         resolve("four");
     }, 4000);
 });
 
-const pr5 = new Promise((resolve,reject) =>{
-        reject(new Error("reject"));
+const pr5 = new Promise((resolve, reject) => {
+    reject(new Error("reject"));
 });
 
 // Using .catch:
-Promise.all([pr1,pr2,pr3,pr4,pr5]).then(value => {
+Promise.all([pr1, pr2, pr3, pr4, pr5]).then(value => {
     console.log(value);
 }).catch(error => {
     console.log(error.message);
@@ -680,19 +680,19 @@ Promise.all([pr1,pr2,pr3,pr4,pr5]).then(value => {
 // It is possible to change this behavior by handling possible rejections:
 const p18 = new Promise((resolve, reject) => {
     setTimeout(() => resolve('p1_delayed_resolution'), 1000);
-  });
-  
-  const p19 = new Promise((resolve, reject) => {
+});
+
+const p19 = new Promise((resolve, reject) => {
     reject(new Error('p2_immediate_rejection'));
-  });
-  
-  Promise.all([
+});
+
+Promise.all([
     p18.catch(error => { return error }),
     p19.catch(error => { return error }),
-  ]).then(values => {
+]).then(values => {
     console.log(values[0]) // "p1_delayed_resolution"
     console.error(values[1]) // "Error: p2_immediate_rejection"
-  })
+})
 
 
 
@@ -705,15 +705,15 @@ Promise.allSettled(iterable);
 */
 
 const promise10 = Promise.resolve(39);
-const promise11 = new Promise((resolve,reject) => {
+const promise11 = new Promise((resolve, reject) => {
     setTimeout(() => {
         reject("foo");
     }, 1000);
 });
 
-const Promise12 = [promise10,promise11];
+const Promise12 = [promise10, promise11];
 
-Promise.allSettled(Promise12).then((result) =>{
+Promise.allSettled(Promise12).then((result) => {
     result.forEach(result => {
         console.log(result.status)
     });
@@ -722,20 +722,19 @@ Promise.allSettled(Promise12).then((result) =>{
 // "fulfilled"
 // "rejected"
 
-Promise.allSettled(Promise12).then((result) =>{
+Promise.allSettled(Promise12).then((result) => {
     console.log(result);
 });
 // {status: 'fulfilled', value: 39}
 // {status: 'rejected', reason: 'foo'}
 
-
-
 // Using Promise.allSettled
-Promise.allSettled([Promise.resolve(33), new Promise((resolv,reject) =>{
+Promise.allSettled([Promise.resolve(33), new Promise((resolv, reject) => {
     setTimeout(() => {
         resolv(66);
-    }, 1000);}), Promise.resolve(99),
-    Promise.reject(new Error("an error"))
+    }, 1000);
+}), Promise.resolve(99),
+Promise.reject(new Error("an error"))
 ]).then((result) => {
     result.forEach((result) => console.log(result.status));
 });
@@ -747,30 +746,160 @@ Promise.allSettled([Promise.resolve(33), new Promise((resolv,reject) =>{
 //   {status: "rejected",  reason: Error: an error}
 // ]
 
-
 /*****************************************************Promise.race()*****************************8*/
 // The Promise.race() method returns a promise that fulfills or rejects as soon as one of the promises in an 
 // iterable fulfills or rejects, with the value or reason from that promise.
 /*
-Syntax
-Promise.race(iterable);
-*/
+// Syntax
+// Promise.race(iterable);
+// */
 
-const promise12 = new Promise((resolve,reject) =>{
+const promise12 = new Promise((resolve, reject) => {
     setTimeout(() => {
         resolve("one");
     }, 6000);
 });
 
-
-const promise13 = new Promise((resolve,reject) =>{
+const promise13 = new Promise((resolve, reject) => {
     setTimeout(() => {
         resolve("two");
     }, 2000);
 });
 
-Promise.race([promise12,promise13]).then((result) =>{
+Promise.race([promise12, promise13]).then((result) => {
     console.log(result);
 });
 
-//// expected output: "two"
+// expected output: "two"
+
+// Using Promise.race – examples with setTimeout
+const pro1 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("one");
+    }, 500);
+});
+
+const pro2 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("two");
+    }, 100);;
+});
+
+Promise.race([pro1, pro2]).then((resut) => {
+    console.log(resut);  //two
+});
+
+const pro3 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("three");
+    }, 100);
+});
+
+const pro4 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        reject(new Error("four"));
+    }, 500);
+});
+
+Promise.race([pro3, pro4]).then((resut) => {
+    console.log(resut);  //three
+}).catch((error) => {
+    console.log(error);  //not called
+});
+
+const pro5 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("five");
+    }, 500);
+});
+
+const pro6 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        reject(new Error("six"));
+    }, 100);
+});
+
+Promise.race([pro5, pro6]).then((result) => {
+    console.log(result);  //Not called
+}).catch((err) => {
+    console.log(err);  // "six"
+});
+
+// Comparison with Promise.any
+// Promise.race takes the first settled Promise.
+
+const pro7 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 500, 'one');
+});
+
+const pro8 = new Promise((resolve, reject) => {
+    setTimeout(reject, 100, 'two');
+});
+
+Promise.race([pro7, pro8]).then((value) => {
+    console.log('succeeded with value:', value);
+}).catch((reason) => {
+    // Only promise1 is fulfilled, but promise2 is faster
+    console.log('failed with reason:', reason);
+});
+// expected output: "failed with reason: two"
+
+//Promise.any takes the first fulfilled Promise.
+
+const pro9 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 500, 'one');
+});
+const pro10 = new Promise((resolve, reject) => {
+    setTimeout(reject, 100, 'two');
+});
+Promise.any([pro9, pro10]).then((value) => {
+    // Only promise1 is fulfilled, even though promise2 settled sooner
+    console.log('succeeded with value:', value);
+}).catch((reason) => {
+    console.log('failed with reason:', reason);
+});
+// expected output: "succeeded with value: one"
+
+/*******************************************************Promise.any()*********************************/
+// Promise.any() takes an iterable of Promise objects. It returns a single promise that resolves as soon as 
+// any of the promises in the iterable fulfills, with the value of the fulfilled promise.
+/*
+Syntax
+Promise.any(iterable);
+*/
+
+
+const promise1 = Promise.reject(0);
+const promise2 = new Promise((resolve) => setTimeout(resolve, 100, 'quick'));
+const promise3 = new Promise((resolve) => setTimeout(resolve, 500, 'slow'));
+
+const promises = [promise1, promise2, promise3];
+
+Promise.any(promises).then((value) => console.log(value));  // expected output: "quick"
+
+// First to fulfill
+const pErr = new Promise((resolve, reject) => {
+    reject("Always fails");
+});
+
+const pSlow = new Promise((resolve, reject) => {
+    setTimeout(resolve, 500, "Done eventually");
+});
+
+const pFast = new Promise((resolve, reject) => {
+    setTimeout(resolve, 100, "Done quick");
+});
+
+Promise.any([pErr, pSlow, pFast]).then((value) => {
+    console.log(value);
+    // pFast fulfills first
+});  // expected output: "Done quick"
+
+// Rejections with AggregateError
+const pErr1 = new Promise((resolve, reject) => {
+    reject('Always fails');
+});
+
+Promise.any([pErr1]).catch((err) => {
+    console.log(err);
+});  // expected output: "AggregateError: No Promise in Promise.any was resolved"
