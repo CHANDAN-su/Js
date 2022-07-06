@@ -117,7 +117,7 @@ console.log(iterator13.next());
 console.log(iterator13.next());
 
 //some built spread syntax
-// console.log([...somestring]); //['h', 'i']
+console.log([...somestring]); //['h', 'i']
 
 // //you can redefine the iterator
 const somestring1 = new String("hii");
@@ -144,26 +144,26 @@ console.log(somestring1 + "");  //hii
 
 
 // //same
-// const somestring2 = new String("hii");
+const somestring2 = new String("hii");
 
-// somestring2[Symbol.iterator] = function (){
-//     return {
-//         next : function (){
-//              if (this._first) {
-//                 return{
-//                     value: "bye",
-//                     done : (this._first = false)
-//                 }
-//             } else {
-//                 return{
-//                     done : true
-//                 }
-//             }
-//         },
-//         _first : true
-//     }
-// }
-// console.log([...somestring2]);
+somestring2[Symbol.iterator] = function (){
+    return {
+        next : function (){
+             if (this._first) {
+                return{
+                    value: "bye",
+                    done : (this._first = false)
+                }
+            } else {
+                return{
+                    done : true
+                }
+            }
+        },
+        _first : true
+    }
+}
+console.log([...somestring2]);
 
 
 // Iterable examples
@@ -239,36 +239,60 @@ function idMaker() {
   // ...
   
 
+// Syntaxes expecting iterables
+// Some statements and expressions expect iterables, for example the for...of loops, 
+// the spread operator), yield* , and destructuring assignment :
 
 
 
+//for...0f
+for(let valu of ["a","b","c"]){
+    console.log(valu);
+};
+/* 
+  a
+  b
+  c
+*/
+
+//spread operator
+console.log([..."abc"]); //[a,b,c]
+
+//yield*
+function* gen(){
+    yield* ["a","b","c"];  
+}
+
+console.log(gen().next());  //{ value: "a", done: false }
 
 
+// With a generator
+function* makeSimpleGenerator(array){
+    let index = 0;
+    while (index < array.length) {
+        yield array[index++];
+    }
+};
+
+const make = makeSimpleGenerator(["yo","ya"]);
+console.log(make.next().value);  //yo
+console.log(make.next().value); //ya 
+console.log(make.next().done);  //true
+
+function* idMaker(){
+    let index = 0;
+    while (true) {
+        yield index++;
+    }
+};
+
+let make1 =  idMaker();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+console.log(it.next().value);	//	0
+console.log(it.next().value);	//	1
+console.log(it.next().value); //	2
+// ...	
 
 
 
@@ -284,90 +308,102 @@ function* myGenerator(){
 }
 */
 
-// function mygenerator(){
-//     console.log("First Message");
-//     console.log("Second Message");
-// };
+function mygenerator(){
+    console.log("First Message");
+    console.log("Second Message");
+};
 
-// mygenerator();
-// /*
-// First Message
-// second Message
-// */
+mygenerator();
+/*
+First Message
+second Message
+*/
 
-// function* myGenerator1(){
-//     console.log("First Message");
-//     console.log("Second Message");
+function* myGenerator1(){
+    console.log("First Message");
+    console.log("Second Message");
+}
+
+let genter =  myGenerator1();
+console.log(genter);  //myGenerator1 {<suspended>}
+
+function* myGenerator1(){
+    console.log("First Message");
+    console.log("Second Message");
+}
+
+let genter1 =  myGenerator1();
+console.log(genter1.next());
+/*
+First Message
+Second Message
+{value: undefined, done: true}
+*/
+
+function* myGenerator2(){
+    console.log("First Message");
+    yield 'yield no 1';
+
+    console.log("Second Message");
+    yield 'yield no 2';
+};
+
+let g = myGenerator2();
+
+console.log(g.next());
+/*
+First Message
+{value: 'yield no 1', done: false}
+*/
+
+console.log(g.next());
+/*
+First Message
+ {value: 'yield no 1', done: false}
+Second Message
+{value: 'yield no 2', done: false}
+*/
+
+console.log(g.next());  //{value: undefined, done: true}
+
+function* myGenerator3(){
+    yield "yield no 1";
+    yield "yield no 2"
+    yield "yield no 3"
+};
+
+let g1 = myGenerator3();
+// console.log(g1.next().value); //yield no 1
+// g1.next()
+// console.log(g1.next().value); //yield no 3
+
+for(let valus of g1){
+    console.log(valus);
+    /*
+    yeild no 1
+    yeild no 2
+    yelid no 3
+    */
+};
+
+/*****************************************************************function* *************************/
+// The function* declaration ( function keyword followed by an asterisk) defines a generator function, which returns a Generator object.
+
+// Syntax
+
+// function* name([param[, param[, ... param]]]) { statements
 // }
 
-// let genter =  myGenerator1();
-// console.log(genter);
+function* generated(i){
+    yield i;
+    yield i + 10;
+};
 
 
-// function* myGenerator1(){
-//     console.log("First Message");
-//     console.log("Second Message");
-// }
+const gen1 = generated(10);
 
-// let genter1 =  myGenerator1();
-// console.log(genter1.next());
-// /*
-// First Message
-// Second Message
-// {value: undefined, done: true}
-// */
-
-// function* myGenerator2(){
-//     console.log("First Message");
-//     yield 'yield no 1';
-
-//     console.log("Second Message");
-//     yield 'yield no 2';
-// };
-
-// let g = myGenerator2();
-
-// console.log(g.next());
-// /*
-// First Message
-// {value: 'yield no 1', done: false}
-// */
-
-// console.log(g.next());
-// /*
-// First Message
-//  {value: 'yield no 1', done: false}
-// Second Message
-// {value: 'yield no 2', done: false}
-// */
-
-// console.log(g.next());  //{value: undefined, done: true}
-
-
-// function* myGenerator3(){
-//     yield "yield no 1";
-//     yield "yield no 2"
-//     yield "yield no 3"
-// };
-
-// let g1 = myGenerator3();
-// // console.log(g1.next().value); //yield no 1
-// // g1.next()
-// // console.log(g1.next().value); //yield no 3
-
-// for(let valus of g1){
-//     console.log(valus);
-//     /*
-//     yeild no 1
-//     yeild no 2
-//     yelid no 3
-//     */
-// };
-
-
-
-
-
+console.log(gen1.next().value);
+console.log(gen1.next().value);
 
 
 
