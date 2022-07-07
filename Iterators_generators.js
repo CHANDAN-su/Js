@@ -402,9 +402,85 @@ function* generated(i){
 
 const gen1 = generated(10);
 
-console.log(gen1.next().value);
-console.log(gen1.next().value);
+console.log(gen1.next().value); ///10
+console.log(gen1.next().value); //20
 
+
+
+function* idMaker() { var index = 0;
+    while (true)
+    yield index++;
+}
+    
+    
+var gen = idMaker();
+    
+    
+console.log(gen.next().value); // 0
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2
+console.log(gen.next().value); // 3
+// ...	
+    
+// Example with yield*
+function* anotherGenerator(i){
+    yield i + 1;
+    yield i + 2;
+    yield i + 3;
+};
+
+function* generator5(i){
+    yield i;
+    yield* anotherGenerator(i);
+    yield i + 10;
+};
+
+let gen2 = generator5(10);
+
+console.log(gen2.next().value); //10
+console.log(gen2.next().value); //11
+console.log(gen2.next().value); //12
+console.log(gen2.next().value); //13
+console.log(gen2.next().value);  //20
+
+// Passing arguments into Generators
+function* logGenerator(){
+    console.log(0);
+    console.log(1,yield);
+    console.log(2 , yield);
+};
+
+let gen3 = logGenerator();
+gen3.next();
+gen3.next("chandan");
+gen3.next("ravi");
+
+// Return statement in a generator
+function* yieldAndReturn(){
+    yield "Y";
+    return "R";
+    yield "unreachable";
+}
+
+let gen4 = yieldAndReturn();
+
+console.log(gen4.next()); // { value: "Y", done: false } 
+console.log(gen4.next()); // { value: "R", done: true }
+console.log(gen4.next());  // { value: undefined, done: true }
+
+// Generator as an object property
+const someobj = {
+    *generate(){
+        yield "a",
+        yield "b";
+    }
+}
+
+let gen5 = someobj.generate();
+
+console.log(gen5.next()); // { value: 'a', done: false } 
+console.log(gen5.next()); // { value: 'b', done: false }
+console.log(gen5.next()); // { value: undefined, done: true }
 
 
 
