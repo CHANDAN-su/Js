@@ -483,6 +483,182 @@ console.log(gen5.next()); // { value: 'b', done: false }
 console.log(gen5.next()); // { value: undefined, done: true }
 
 
+// Generator as an object method
+class foo{
+    *generate(){
+        yield 1;
+        yield 2;
+        yield 3;
+    }
+}
+
+const f = new foo();
+const gen10 = f.generate();
+
+console.log(gen10.next()); // { value: 1, done: false } 
+console.log(gen10.next()); // { value: 2, done: false } 
+console.log(gen10.next()); // { value: 3, done: false }
+console.log(gen10.next());  // { value: undefined, done: true }
+
+// Generator as a computed property
+class foo1 {
+    *[Symbol.iterator] (){
+        yield 1;
+        yield 2;
+    }
+};
+
+const SomeObj1 = {
+    *[Symbol.iterator] () { yield 'a';
+    yield 'b';
+    }
+}
+
+console.log(Array.from(new foo1));
+console.log(Array.from(SomeObj1))
+    
+
+// Generator defined in an expression
+const foo2 = function* () {
+    yield 10;
+    yield 20;
+};
+
+const bar = foo2();
+console.log(bar.next());  // {value: 10, done: false}
 
 
+// // Generator example
+// function* powers(n){
+//     //endless loop to generate
+//     for(let current =n;; current *= n){ yield current;
+//     }
+//     }
+    
+//     for(let power of powers(2)){
+//     //controlling generator if(power > 32) break;
+//     console.log(power)
+//     //2
+//     //4
+//     //8
+//     //16
+//     //32
+//     }
+    
+
+/******************************************************yield***********************************************/
+// The yield keyword is used to pause and resume a generator function.
+/*
+Syntax
+[rv] = yield [expression]
+*/
+
+function* foo3(n){
+    while (n < 2 ) {
+        yield n;
+        n++;
+    }
+};
+
+const yeild = foo3(0);
+console.log(yeild.next().value);  //0
+console.log(yeild.next().value); //1
+
+
+function* countAppleSales (){
+    let salelist = [3,5,7];
+
+    for (let index = 0; index < salelist.length; index++) {
+        yield salelist[index];
+    }
+};
+
+const apple = countAppleSales();
+
+console.log(apple.next());  // { value: 3, done: false } 
+console.log(apple.next()); // { value: 7, done: false } 
+console.log(apple.next()); // { value: 5, done: false }
+console.log(apple.next());  // { value: undefined, done: true }
+
+
+function* counter(value){
+    let step;
+
+    while (true) {
+        step = yield  value++;
+        if (step) {
+            value += step;
+        }
+    }
+}
+
+let generatorFunc = counter(0);
+console.log(generatorFunc.next().value);  //0
+console.log(generatorFunc.next().value); //1
+console.log(generatorFunc.next().value); //2
+console.log(generatorFunc.next().value); //3
+console.log(generatorFunc.next(10).value);   //14
+console.log(generatorFunc.next().value);  //15
+console.log(generatorFunc.next(10).value);  //26
+
+
+
+/***************************************************************yield*****************************************/
+// The yield* expression is used to delegate to another generator or iterable object.
+/*
+Syntax
+yield* expression
+*/
+
+function* fun1(){
+    yield 42;
+};
+
+function* fun2(){
+    yield* fun1();
+}
+
+const iterables1 = fun2();
+
+console.log(iterables1.next());  //value: 42, done: false}
+
+// Other Iterable objects
+function* g3() { 
+    yield* [1, 2];
+    yield* '34';
+    yield* Array.from(arguments);
+}
+    
+    
+const iterables2 = g3(5, 6);
+
+console.log(iterables2.next());  // {value: 1, done: false} 
+console.log(iterables2.next()); // {value: 2, done: false}
+console.log(iterables2.next());  // {value: "3", done: false} 
+console.log(iterables2.next()); // {value: "4", done: false} 
+console.log(iterables2.next()); // {value: 5, done: false}
+console.log(iterables2.next());  // {value: 6, done: false}
+console.log(iterables2.next());  // {value: undefined, done: true}
+
+
+// The value of yield* expression itself
+function* g4(){
+    yield* [1,2,3];
+    return "foo";
+};
+
+
+function* g5(){
+    const g4ReturnValue = yield* g4();
+    console.log(g4ReturnValue);
+    return g4ReturnValue;
+};
+
+
+const iterables3 = g5();
+
+console.log(iterables3.next());
+console.log(iterables3.next());
+console.log(iterables3.next());
+console.log(iterables3.next());
 
