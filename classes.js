@@ -146,6 +146,93 @@ const per1 = new Person1();
 console.log(per1.introduce1()); //Hello, my name ia Tilak
 
 
-// Using the constructor method
+// Creating a new class (declaration-form)
+class Polygon2 {
+    constructor(height,width){
+        this.name = "Polygon";
+        this.height = height;
+        this.width = width;
+    }
 
-fkgjbgvncxm,z
+    // Simple class instance methods using short-hand method
+    // declaration
+    sayName(){
+        console.log("Hi, I am a" , this.name + ".");
+    }
+
+    sayhistory(){
+        console.log('"Polygon" is derived from the Greek polus (many) ' +
+        'and gonia (angle).')
+    }
+
+    cal(){
+        return this.height * this.width;
+    }
+}
+
+
+let p = new Polygon2(300,400);
+console.log(p.sayName());  //Hi, I am a Polygon.
+console.log(p.sayhistory());  //"Polygon" is derived from the Greek polus (many) and gonia (angle).
+console.log(p.cal()); //120000
+
+
+
+// Example 2: Creating a new class (expression-form)
+const Mypoly = class poly{
+    getPolyName(){
+        console.log("Hi. I was created with a Class expression. My name is " + poly.name);
+    }
+};
+
+let inst = new Mypoly();
+console.log(inst.getPolyName());  //Hi. I was created with a Class expression. My name is poly
+
+
+
+// Example 3: Extending an existing class
+class Square extends Polygon2{
+    constructor(length){
+        super(length,length);
+
+        this.name = "Square";
+    }
+
+    get area(){
+        return this.height * this.width;
+    }
+
+    set area(values){
+        this.area = values;
+    }
+}
+
+let s = new Square(5);
+
+console.log(s.sayName());  //Hi, I am a Square.
+
+console.log(s.area);  //25
+
+
+
+// Example 4: Subclassing methods of a parent class
+class Rectangle  extends Polygon2{
+    constructor(height,width){
+        super(height,width);
+        this.name = "Rectangle";
+    }
+    sayName(){
+        console.log('Sup! My name is ', this.name + '.');
+        super.sayName();
+    }
+};
+
+let r = new Rectangle(50,50);
+console.log(r.sayName());  //Hi, I am a Rectangle.
+
+
+// Example 5: Defining static methods
+
+
+
+
