@@ -147,3 +147,5 @@ console.log(per1.introduce1()); //Hello, my name ia Tilak
 
 
 // Using the constructor method
+
+fkgjbgvncxm,z
