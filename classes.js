@@ -590,3 +590,148 @@ class Danser extends students{
 const st1 = new Danser("chandan",22,15,"Hiphop");
 
 console.log(st1.Danser_biodate());  //My name is chandan. My age is 22. I read in class 15 My fervite game Hiphop
+
+
+/************************************************Prototype methods***************************************/
+class Rectangle4 {
+     constructor(width,height){
+        this.width = width;
+        this.height = height;
+     }
+
+     get area(){
+        return this.calculate();
+     }
+
+     calculate(){
+        return this.width * this.height;
+     }
+}
+
+let square = new Rectangle4(20,20);
+
+console.log(square.area);  //400
+
+
+/*********************************************Generator methods*************************/
+class Polygon5 {
+    constructor(...sides){
+        this.sides = sides;
+    }
+
+    *getSides(){
+        for(const side of this.sides){
+            yield side;
+        }
+    }
+}
+
+const pentagon5 = new Polygon5(1,2,3,4,5);
+
+console.log([...pentagon5.getSides()]);  // [1 2 3 4 5]
+
+
+/***************************************************Static methods and properties******************************/
+class  Point {
+    constructor(x,y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    static displayName = "point";
+    static distance(a,b){
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+
+        return Math.hypot(dx , dy);
+    }
+}
+
+const p1 = new Point(5,5);
+const p2 = new Point(10,10);
+
+console.log(p1.displayName);  //undefine
+console.log(p1.distance); //undefine
+console.log(p2.displayName); //undefine
+console.log(p2.distance); //undefine
+
+
+console.log(Point.displayName);  //pointt
+console.log(Point.distance(p1,p2));  //7.0710678118654755
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/****************************************************features*****************************************/
+// Class fields are public by default, but private class members can be created by using a hash # prefix. The privacy encapsulation of these class features is enforced by JavaScript itself.
+/*
+Syntax
+class ClassWithPrivateField { 
+    #privateField;
+}
+
+
+class ClassWithPrivateMethod { 
+    #privateMethod() {
+    return 'hello world';
+}
+}
+
+class ClassWithPrivateStaticField { 
+    static #PRIVATE_STATIC_FIELD;
+}
+
+
+class ClassWithPrivateStaticMethod { 
+    static #privateStaticMethod() {
+    return 'hello world';
+}
+}
+*/
+
+//Example
+
+class User{
+    #salary = 4000;
+    constructor(name){
+        this.name = name;
+    }
+
+    Print(){
+        this.#getsalary;
+    }
+
+    #getsalary(){
+        console.log("salary is ->", this.#salary)
+    }
+
+}
+
+const UI = new User("chandan");
+// console.log(UI.Print()); //Uncaught SyntaxError: Invalid or unexpected token 
+
+console.log("Ui salary ->" , this.#salary);
+
+
+
+
