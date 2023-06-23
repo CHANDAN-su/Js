@@ -209,29 +209,6 @@ switch(action){
     break;
 }
 
-/*
-let action = "Say Hi";
-
-switch(action){
-    case "Say hello":{
-        let message = "Hello";
-        console.log(message);  //not run (condition false)
-    break;}
-
-    case "Say Hi": {
-        let message1 = "Hi";
-        console.log(message1); //Hi (condition false)
-    break;}
-
-    default:{
-        console.log("Empty action recvide"); //not run (condoition false)
-    break;}
-}
-*/
-
-
-
-
 //Block Statement
 
 var x = 6;
@@ -286,7 +263,6 @@ if(check === undefined){
     console.log("Data is not undefined"); //not run (condition false)
 }else{
     throw new ("This is undefined");  //Control flow and error handling.js:288 Uncaught TypeError: "This is undefined" is not a constructor (condition true)
-    // console.log;
 }
 
 
