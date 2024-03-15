@@ -113,10 +113,10 @@ foo();
 // console.log(b);  // Output  Cannot access 'b' before initialization
 
 
-let b = 8;
+// let b = 8;
 // console.log(b);  // Output 8
 
-let d = globalThis.hasOwnProperty('x'); 
+// let d = globalThis.hasOwnProperty('x'); 
 // console.log(d);
 
 
@@ -273,16 +273,16 @@ let x = "Chandan";
 let x = "Ravi";  
 // console.log(x);   //SyntaxError:
 
-let x = 1;
-switch (x) {
-    case 0:
-        let foo = "Chandan";
-        // console.log(foo);
-        break;
-    case 1:
-        let foo ="Ravi"; 
-        // console.log(foo);  // SyntaxError:
-}
+// let x = 1;
+// switch (x) {
+//     case 0:
+//         let foo = "Chandan";
+//         // console.log(foo);
+//         break;
+//     case 1:
+//         let foo ="Ravi"; 
+//         // console.log(foo);  // SyntaxError:
+// }
 
 var x = 6;
 var y = 5;
@@ -309,13 +309,13 @@ const x = "Chandan";
 x = "Ravi";
 // console.log(x);   //Output TypeError
 
-const MY_FAV = 7;
+// const MY_FAV = 7;
 MY_FAV = 8;
 // console.log(MY_FAV);   //Output TypeError
 //console.log(MY_FAV); //Output 7
 
 
-const MY_FAV = 9;
+// const MY_FAV = 9;
 // console.log(MY_FAV);  //Output SyntaxError
 
 var MY_FAV = 6;

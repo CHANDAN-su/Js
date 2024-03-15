@@ -18,7 +18,7 @@
 //         resolve("Here is success");
 //     }
 //     else{
-//         reject("Here is a failur");
+        // reject("Here is a failur");
 //     }
 // });
 

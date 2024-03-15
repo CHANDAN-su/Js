@@ -5,7 +5,6 @@ var Fruits = ["Apple","Banana"];
 console.log(Fruits);  //['Apple', 'Banana']
 console.log(Fruits.length);  //2
 
-
 // Access an Array item using the index position
 var Fruits = ["Apple","Banana","Kiwi","Mango","Orange"];
 
