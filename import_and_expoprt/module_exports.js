@@ -56,14 +56,14 @@ export { default, … } from …;
 // There are two different types of export, named and default. 
 
 //name exports
-export {myfunction , myvarible};
+// export {myfunction , myvarible};
 
-export let myvarible = Math.sqrt(2);
+// export let myvarible = Math.sqrt(2);
 
-export function myfunction(){
-    let name = `This is exports modula`;
-    console.log(name);
-}
+// export function myfunction(){
+//     let name = `This is exports modula`;
+//     console.log(name);
+// }
 
 /*
 // Default exports:
@@ -78,8 +78,8 @@ export default class { }
 
 
 // But a default export can be imported with any name for example:
-let k;
-export default k = 30;
+// let k;
+// export default k = 30;
 
 
 
