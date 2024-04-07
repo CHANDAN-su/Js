@@ -890,3 +890,16 @@ const newarr = new String("Foo");
 
 console.log(typeof newarr , newarr);  //object String {'Foo'}
 console.log(typeof newarr.valueOf() ,newarr);  //string String {'Foo'}
+
+
+
+function numCo(number , targetLength){
+  return number.toString().padStart(targetLength, "0")
+}
+
+let num = 123;
+
+let abcdef = numCo(num, 10);
+console.log(abcdef);
+
+// numCo(num, targetLength);
