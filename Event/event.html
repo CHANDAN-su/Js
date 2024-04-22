@@ -4,12 +4,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+
+        /* video player Example*/
+        .hidden{
+            display: none;
+            transition: .5s;
+        }
+
+         /* Event delegation Example */
+         .container{
+            width: 70%;
+            margin-top: 20px;
+         }
+
+         .container .tiles{
+            width: 120px;
+            height: 120px;
+            cursor: pointer;
+            float: left;
+         }
+
+    </style>
     
 </head>
 <body>
     <!-- An example: handling a click event -->
     <button id="btn">Click me!</button>
     <button id="btn2">Click me!</button>
+
+    <!-- Event handler properties -->
+    <button id="btn3">Click me -> </button>
+    <button id="btn4">Click me!</button>
+
+
+    <!-- inline event handler ---- don't use these -->
+    <button onclick="backgrounColor()" style="cursor: pointer;">Click me!</button>
+
+    <!-- Event object -->
+    <button id="btn5">Click me!</button>
+
+
+    <!-- Extra properties of event object -->
+    <input type="text" id="textbox">
+    <div id="output"></div>
+
+
+    <!-- Preventing default behavior -->
+    <form style="margin-top: 20px;">
+        <div style="margin-bottom: 10px;">
+            <label for="fname">First Name:</label>
+            <input type="text" id="fname">
+        </div>
+        <div>
+            <label for="lname">Last Name:</label>
+            <input type="text" id="lname">
+        </div>
+        <div style="margin-top: 10px;">
+            <button type="submit" id="submit">Submit</button>
+        </div>
+    </form>
+
+    <p id="para"></p>
+
+
+
+    <!-- video player example -->
+    <button class="vider_player">Display video</button>
+
+    <div class="hidden" style="margin-top: 20px; cursor: pointer;">
+        <video class="play">
+            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" type="video/webm"/>
+            <p>Your browser doesn't support HTML video. Here is a <a href="rabbit320.mp4">link to the video</a> instead.</p>
+        </video>
+    </div>
+
+
+    <!-- Event delegation Example -->
+    
+    <div class="container">
+        <div class="tiles"></div>
+        <div class="tiles"></div>
+        <div class="tiles"></div>
+        <div class="tiles"></div>
+        <div class="tiles"></div>
+        <div class="tiles"></div>
+        <div class="tiles"></div>
+        <div class="tiles"></div>
+        <div class="tiles"></div>
+        <div class="tiles"></div>
+        <div class="tiles"></div>
+        <div class="tiles"></div>
+        <div class="tiles"></div>
+        <div class="tiles"></div>
+        <div class="tiles"></div>
+        <div class="tiles"></div>
+        <div class="tiles"></div>
+        <div class="tiles"></div>
+        <div class="tiles"></div>
+        <div class="tiles"></div>
+        <div class="tiles"></div>
+        <div class="tiles"></div>
+        <div class="tiles"></div>
+        <div class="tiles"></div>
+    </div>
+
 
     <script src="/Event/event.js"></script>
 </body>
