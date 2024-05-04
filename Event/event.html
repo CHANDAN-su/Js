@@ -26,9 +26,23 @@
             float: left;
          }
 
+         #bt{
+            padding: 10px;
+            border: 2px solid blackk;
+            font-size: 18px;
+            background-color: whitesmoke;
+            display: inline-block;
+            font-family: sans-serif;
+            font-weight: 700;
+            border-radius: 5px;
+            cursor: pointer;
+         }
+
     </style>
     
 </head>
+
+<!-- oncontextmenu -->
 <body>
     <!-- An example: handling a click event -->
     <button id="btn">Click me!</button>
@@ -110,6 +124,13 @@
         <div class="tiles"></div>
     </div>
 
+    <!-- all mouse event -->
+
+    <!-- click event -->
+    <div class="click_event" id="bt">Click event</div>
+
+    <!-- dblclick -->
+    <div class="dblclick_event" id="bt">Dbl click event</div>
 
     <script src="/Event/event.js"></script>
 </body>

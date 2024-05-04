@@ -221,6 +221,111 @@ container.addEventListener("click", (event) => {
 
 
 
+// Mouse event in javascript
+
+// onclick: A user clicks on an element
+
+// Description: The onclick event occurs when the user clicks on an HTML element.
+
+const clickEvent = document.querySelector('.click_event')
+
+clickEvent.addEventListener("click", (event) => {
+        document.body.style.backgroundColor = "red";
+        document.body.style.color = "green";
+});
+
+// oncontextmenu: A user right-clicks on an element
+
+// Description: The oncontextmenu event occurs when the user right-clicks an HTML element to open the context menu.
+// disable use this method preventDefault()
+const body = document.querySelector("body");
+
+body.addEventListener("contextmenu", (e) => {
+    // console.log("Open contextmenu!!!");
+    e.preventDefault();
+});
+
+// ondblclick: A user double-clicks on an element
+
+// Description: The ondblclick event occurs when the user double-clicks on an HTML element.
+
+const dblclick = document.querySelector(".dblclick_event");
+
+dblclick.addEventListener("dblclick", () => { 
+    document.body.style.backgroundColor = "green";
+    document.body.style.color = "red";
+});
+
+// onmousedown: A mouse button is pressed over an element
+
+// Description: The onmousedown event occurs when a user presses a mouse button over an HTML element.
+
+// Events order for the left and middle mouse button:
+
+// 1. onmousedown
+// 2. onmouseup
+// 3. onclick
+
+// Events order for the right mouse button:
+
+// 1. onmousedown
+// 2. onmouseup
+// 3. oncontextmenu
+
+
+
+
+
+
+// onmouseup: A mouse button is released over an element
+// onmouseenter: The mouse pointer moves into an element
+// onmouseleave: The mouse pointer moves out of an element
+// onmousemove: The mouse pointer moves over an element
+// onmouseout: The mouse pointer moves out of an element
+// onmouseover: The mouse pointer moves onto an element
+
+
+
+// Mouse event properties
+// altKey: If the ALT key is pressed
+
+// Description: The altKey property returns true if the ALT key is pressed when a mouse event occurs. Otherwise it returns false.The altKey property is read-only.
+
+// Syntax: event.altKey
+
+// Return value: Boolean
+
+// const clickEvent = document.querySelector('.click_event')
+
+// clickEvent.addEventListener("click", (event) => {
+//     if(event.altKey){
+//         document.body.style.backgroundColor = "red";
+//         document.body.style.color = "green";
+//     }else{
+//         console.log("alt key not pressed!!");
+//     }
+// });
+
+
+// button: Which mouse button is pressed
+
+// Description: 
+
+
+// buttons: Which mouse buttons were pressed
+// clientX: The X coordinate of the mouse pointer (window relative)
+// clientY: The Y coordinate of the mouse pointer (window relative)
+// ctrlKey: If the CTRL key is pressed
+// detail: The details about an event
+// metaKey: If the META key is pressed
+// offsetX: The X coordinate of the mouse pointer (target relative)
+// offsetY: The Y coordinate of the mouse pointer (target relative)
+// pageX: The X coordinate of the mouse pointer (document relative)
+// pageY: The Y coordinate of the mouse pointer (document relative)
+// relatedTarget: The element that triggered the mouse event
+// screenX: The X coordinate of the mouse pointer (screen relative)
+// screenY: The Y coordinate of the mouse pointer (screen relative)
+// shiftKey: If the SHIFT key is pressed
 
 
 // https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events 
