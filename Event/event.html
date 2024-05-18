@@ -1,103 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
     <style>
+      /* video player Example*/
+      .hidden {
+        display: none;
+        transition: 0.5s;
+      }
 
-        /* video player Example*/
-        .hidden{
-            display: none;
-            transition: .5s;
-        }
+      /* Event delegation Example */
+      .container {
+        width: 70%;
+        margin-top: 20px;
+      }
 
-         /* Event delegation Example */
-         .container{
-            width: 70%;
-            margin-top: 20px;
-         }
+      .container .tiles {
+        width: 120px;
+        height: 120px;
+        cursor: pointer;
+        float: left;
+      }
 
-         .container .tiles{
-            width: 120px;
-            height: 120px;
-            cursor: pointer;
-            float: left;
-         }
+      #bt {
+        padding: 10px;
+        border: 2px solid blackk;
+        font-size: 18px;
+        background-color: whitesmoke;
+        display: inline-block;
+        font-family: sans-serif;
+        font-weight: 700;
+        border-radius: 5px;
+        cursor: pointer;
+      }
 
-         #bt{
-            padding: 10px;
-            border: 2px solid blackk;
-            font-size: 18px;
-            background-color: whitesmoke;
-            display: inline-block;
-            font-family: sans-serif;
-            font-weight: 700;
-            border-radius: 5px;
-            cursor: pointer;
-         }
+      /* mouseenter and mouseleave enevt */
+      .mouseenter_mouseleave {
+        border: 1px solid red;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        margin: 20px auto;
+      }
 
+      .box {
+        width: 150px;
+        height: 100px;
+        border: 1px solid black;
+        margin: 10px;
+        padding: 5px;
+        text-align: center;
+        background-color: lightgray;
+      }
     </style>
-    
-</head>
+  </head>
 
-<!-- oncontextmenu -->
-<body>
+  <!-- oncontextmenu -->
+  <body>
     <!-- An example: handling a click event -->
     <button id="btn">Click me!</button>
     <button id="btn2">Click me!</button>
 
     <!-- Event handler properties -->
-    <button id="btn3">Click me -> </button>
+    <button id="btn3">Click me -></button>
     <button id="btn4">Click me!</button>
 
-
     <!-- inline event handler ---- don't use these -->
-    <button onclick="backgrounColor()" style="cursor: pointer;">Click me!</button>
+    <button onclick="backgrounColor()" style="cursor: pointer">
+      Click me!
+    </button>
 
     <!-- Event object -->
     <button id="btn5">Click me!</button>
 
-
     <!-- Extra properties of event object -->
-    <input type="text" id="textbox">
+    <input type="text" id="textbox" />
     <div id="output"></div>
 
-
     <!-- Preventing default behavior -->
-    <form style="margin-top: 20px;">
-        <div style="margin-bottom: 10px;">
-            <label for="fname">First Name:</label>
-            <input type="text" id="fname">
-        </div>
-        <div>
-            <label for="lname">Last Name:</label>
-            <input type="text" id="lname">
-        </div>
-        <div style="margin-top: 10px;">
-            <button type="submit" id="submit">Submit</button>
-        </div>
+    <form style="margin-top: 20px">
+      <div style="margin-bottom: 10px">
+        <label for="fname">First Name:</label>
+        <input type="text" id="fname" />
+      </div>
+      <div>
+        <label for="lname">Last Name:</label>
+        <input type="text" id="lname" />
+      </div>
+      <div style="margin-top: 10px">
+        <button type="submit" id="submit">Submit</button>
+      </div>
     </form>
 
     <p id="para"></p>
 
-
-
     <!-- video player example -->
     <button class="vider_player">Display video</button>
 
-    <div class="hidden" style="margin-top: 20px; cursor: pointer;">
-        <video class="play">
-            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" type="video/webm"/>
-            <p>Your browser doesn't support HTML video. Here is a <a href="rabbit320.mp4">link to the video</a> instead.</p>
-        </video>
+    <div class="hidden" style="margin-top: 20px; cursor: pointer">
+      <video class="play">
+        <source
+          src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm"
+          type="video/webm"
+        />
+        <p>
+          Your browser doesn't support HTML video. Here is a
+          <a href="rabbit320.mp4">link to the video</a> instead.
+        </p>
+      </video>
     </div>
-
 
     <!-- Event delegation Example -->
-    
-    <div class="container">
+
+    <!-- <div class="container">
         <div class="tiles"></div>
         <div class="tiles"></div>
         <div class="tiles"></div>
@@ -122,7 +140,7 @@
         <div class="tiles"></div>
         <div class="tiles"></div>
         <div class="tiles"></div>
-    </div>
+    </div> -->
 
     <!-- all mouse event -->
 
@@ -132,6 +150,83 @@
     <!-- dblclick -->
     <div class="dblclick_event" id="bt">Dbl click event</div>
 
+    <!-- mousedown and mouseup event -->
+    <div class="mousedown_mouseup">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita minima
+      distinctio eos alias cumque magnam tempore ut voluptatem perferendis
+      molestias.
+    </div>
+
+    <!-- mouseenter and mouseleave event -->
+    <div class="mouseenter_mouseleave"></div>
+
+    <!-- mousemove event -->
+
+    <h1>HTML DOM Events</h1>
+    <h3>The onmouseenter Event</h3>
+    <p>
+      This example demonstrates the difference between onmousemove, onmouseenter
+      and onmouseover.
+    </p>
+
+    <div onmousemove="myMovefunction()" class="box">
+      <p>onmousemove</p>
+      <p id="demo1">Mouse over me</p>
+    </div>
+    <div onmouseenter="myEnterfunction()" class="box">
+      <p>onmouseenter</p>
+      <p id="demo2">Mouse over me</p>
+    </div>
+    <div onmouseover="myOverfunction()" class="box">
+      <p>onmouseover</p>
+      <p id="demo3">Mouse over me</p>
+    </div>
+
+    <p>
+      The onmousemove event occurs every time the mouse pointer is moved over an
+      element.
+    </p>
+    <p>
+      The mouseenter event only occurs when the mouse pointer enters an element.
+    </p>
+    <p>
+      The onmouseover event occurs when the mouse pointer enters an div element.
+    </p>
+
+    <h1>HTML DOM Events</h1>
+    <h2>The onmouseleave Event</h2>
+
+    <p>
+      This example demonstrates the difference between onmousemove, onmouseleave
+      and onmouseout.
+    </p>
+
+    <div onmousemove="myMove1function()" class="box">
+      <p>onmousemove</p>
+      <p id="demo4">Mouse over and leave me!</p>
+    </div>
+    <div onmouseleave="myLeave1function()" class="box">
+      <p>onmouseleave</p>
+      <p id="demo5">Mouse over and leave me!</p>
+    </div>
+    <div onmouseout="myOut1function()" class="box">
+      <p>onmouseout</p>
+      <p id="demo6">Mouse over and leave me!</p>
+    </div>
+
+    <p>
+      The onmousemove event occurs every time the mouse pointer is moved over an
+      div element.
+    </p>
+    <p>
+      The mouseleave event only occurs when the mouse pointer is moved out of an
+      element.
+    </p>
+    <p>
+      The onmouseout event occurs when the mouse pointer is moved out of an
+      element.
+    </p>
+
     <script src="/Event/event.js"></script>
-</body>
+  </body>
 </html>

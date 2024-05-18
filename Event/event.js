@@ -211,11 +211,11 @@ function tilesColor(){
     return bgcolor;
 }
 
-const container = document.querySelector(".container");
+// const container = document.querySelector(".container");
 
-container.addEventListener("click", (event) => {
-    event.target.style.backgroundColor = tilesColor();
-});
+// container.addEventListener("click" , (event) => {
+//     event.target.style.backgroundColor = tilesColor();
+// });
 
 // Note: In this example, we're using event.target to get the element that was the target of the event (that is, the innermost element). If we wanted to access the element that handled this event (in this case the container) we could use event.currentTarget.
 
@@ -256,9 +256,13 @@ dblclick.addEventListener("dblclick", () => {
     document.body.style.color = "red";
 });
 
-// onmousedown: A mouse button is pressed over an element
 
+
+// onmousedown: A mouse button is pressed over an element
 // Description: The onmousedown event occurs when a user presses a mouse button over an HTML element.
+
+// onmouseup: A mouse button is released over an element
+// Description: The onmouseup event occurs when a mouse button is released over an element.
 
 // Events order for the left and middle mouse button:
 
@@ -273,20 +277,95 @@ dblclick.addEventListener("dblclick", () => {
 // 3. oncontextmenu
 
 
+// Example: 
+
+const mouse = document.querySelector(".mousedown_mouseup");
+
+mouse.addEventListener("mousedown", () => {
+    mouse.style.color = "red";
+});
+
+mouse.addEventListener("mouseup", () =>{
+    mouse.style.color = "yellow";
+});
 
 
 
-
-// onmouseup: A mouse button is released over an element
 // onmouseenter: The mouse pointer moves into an element
-// onmouseleave: The mouse pointer moves out of an element
-// onmousemove: The mouse pointer moves over an element
-// onmouseout: The mouse pointer moves out of an element
-// onmouseover: The mouse pointer moves onto an element
 
+// Decription: The onmouseenter event occurs when the mouse pointer enters an element. The onmouseenter event is often used together with the onmouseleave event, which occurs when the mouse pointer leaves an element.
+
+
+// onmouseleave: The mouse pointer moves out of an element
+
+// Decriptipn: The onmouseleave event occurs when the mouse pointer leaves an element. The onmouseleave event is often used together with the onmouseenter event, which occurs when the mouse pointer enters an element.
+
+
+// Example:
+
+const mouseenter_leave = document.querySelector(".mouseenter_mouseleave");
+
+console.log(mouseenter_leave);
+
+mouseenter_leave.addEventListener("mouseenter", () => {
+    mouseenter_leave.style.width = "80px";
+    mouseenter_leave.style.height = "80px";
+});
+
+mouseenter_leave.addEventListener("mouseleave", () => {
+    mouseenter_leave.style.width = "30px";
+    mouseenter_leave.style.height = "30px";
+});
+
+
+// onmousemove: The mouse pointer moves over an element
+// Decription: The onmousemove event occurs when the pointer moves over an element.
+
+// onmouseout: The mouse pointer moves out of an element
+// Decription: The onmouseout event occurs when the mouse pointer moves out of an element.  The onmouseout event is often used together with the onmouseover event, which occurs when the pointer is moved over an element.
+
+// onmouseover: The mouse pointer moves onto an element
+// Decription: The onmouseover event occurs when the mouse pointer enters an element.  The onmouseover event is often used together with the onmouseout event, which occurs when the mouse pointer leaves the element.
+
+let x = 0;
+let y = 0;
+let z = 0;
+
+const a = document.querySelector("#demo1");
+const b = document.querySelector("#demo2");
+const c = document.querySelector("#demo3");
+
+function myMovefunction(){
+    a.innerHTML = x+=1;
+}
+
+function myEnterfunction(){
+    b.innerHTML = y+=1;
+}
+
+function myOverfunction(){
+    c.innerHTML = z+=1;
+}
+
+const d = document.querySelector("#demo4");
+const e = document.querySelector("#demo5");
+const f = document.querySelector("#demo6");
+
+function myMove1function(){
+    d.innerHTML = x+=1;
+}
+
+function myLeave1function(){
+    e.innerHTML = y+=1;
+}
+
+function myOut1function(){
+    f.innerHTML = z+=1;
+}
 
 
 // Mouse event properties
+
 // altKey: If the ALT key is pressed
 
 // Description: The altKey property returns true if the ALT key is pressed when a mouse event occurs. Otherwise it returns false.The altKey property is read-only.
