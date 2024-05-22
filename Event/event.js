@@ -388,23 +388,53 @@ function myOut1function(){
 
 // button: Which mouse button is pressed
 
-// Description: 
+// Description:  The button property returns which mouse button is pressed when a mouse event occurs. The button property is mostly used with the onmousedown event. The button property is read-only.
 
+// Return value: A number
+                //   Which mouse button that was pressed:
+                //   0 = left button
+                //   1 = wheel or middle button (pressed)
+                //   2 = right button
+
+const button = document.querySelector(".button");
+const output1 = document.querySelector(".demo7");
+
+button.addEventListener("mousedown", (event) => {
+    let h = event.button;
+    output1.innerHTML = h;
+    console.log(h);
+});
 
 // buttons: Which mouse buttons were pressed
-// clientX: The X coordinate of the mouse pointer (window relative)
-// clientY: The Y coordinate of the mouse pointer (window relative)
+
+// Description:  The buttons property returns which mouse buttons are pressed when a mouse event occurs. The buttons property is mostly used with the onmousedown event. The buttons property is read-only.
+
+
+// Return value: A Number.
+//             The mouse buttons that were pressed when the mouse event occured. If more than one button is pressed, the values are added.
+
+//             1 : Left mouse button
+//             2 : Right mouse button
+//             4 : Wheel or middle button
+//             8 : Fourth button (Browser Back)
+//             16 : Fifth button (Browser Forward)
+
 // ctrlKey: If the CTRL key is pressed
 // detail: The details about an event
 // metaKey: If the META key is pressed
-// offsetX: The X coordinate of the mouse pointer (target relative)
-// offsetY: The Y coordinate of the mouse pointer (target relative)
-// pageX: The X coordinate of the mouse pointer (document relative)
-// pageY: The Y coordinate of the mouse pointer (document relative)
 // relatedTarget: The element that triggered the mouse event
+// shiftKey: If the SHIFT key is pressed
+
+
+// Coordinate properties
 // screenX: The X coordinate of the mouse pointer (screen relative)
 // screenY: The Y coordinate of the mouse pointer (screen relative)
-// shiftKey: If the SHIFT key is pressed
+// clientX: The X coordinate of the mouse pointer (window relative)
+// clientY: The Y coordinate of the mouse pointer (window relative)
+// pageX: The X coordinate of the mouse pointer (document relative)
+// pageY: The Y coordinate of the mouse pointer (document relative)
+// offsetX: The X coordinate of the mouse pointer (target relative)
+// offsetY: The Y coordinate of the mouse pointer (target relative)
 
 
 // https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events 
