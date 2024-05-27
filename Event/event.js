@@ -419,22 +419,224 @@ button.addEventListener("mousedown", (event) => {
 //             8 : Fourth button (Browser Back)
 //             16 : Fifth button (Browser Forward)
 
+const buttons = document.querySelector(".buttons");
+const output2 = document.querySelector(".demo8");
+
+buttons.addEventListener("mousedown" , (event) => {
+    let h = event.buttons;
+    output2.innerHTML = h;
+    console.log(h);
+});
+
 // ctrlKey: If the CTRL key is pressed
+
+// Description: The ctrlKey property returns true if the CTRL key is pressed when a mouse event occurs. Otherwise it returns  alse. The ctrlKey property is read-only.
+
+// Return value: boolean
+
+const clrt = document.querySelector(".lctrkey");
+
+clrt.addEventListener("mousedown", (event) => {
+     if(event.ctrlKey){
+        console.log("hii");
+     }else{
+        console.log("not");
+     }
+})
+
+
 // detail: The details about an event
+
+// Description: The detail property returns details about an event. The detail property is read-only.
+
+// Return value: click count from click and dblclick events. click count + 1 from mousedown and mouseup events. 2 for a dblclick event. 0 for all other events.
+
+const details = document.querySelector(".details");
+
+details.addEventListener("click", (event) => {
+    let h = event.detail;
+
+    if(h === 2){
+        body.style.backgroundColor = "red";
+    }
+
+    if(h === 1){
+        body.style.backgroundColor = "green";
+    }
+
+    console.log(h);
+})
+
+
 // metaKey: If the META key is pressed
-// relatedTarget: The element that triggered the mouse event
+
+// Description: The metaKey property returns true if the META key is pressed when a mouse event is triggered, otherwise it returns false. The metaKey property is read-only.
+
+// Notes: Not all keyboards have a META key. On Windows it is the Window ⊞ key. On Mac machines it is the Cmd ⌘ key.
+
+// Return value: A Boolean
+
+const metakey = document.querySelector(".metakey");
+
+
+metakey.addEventListener("mousedown", (e) => {
+    if(e.metaKey){
+        console.log("Click on window key");
+    }
+});
+
 // shiftKey: If the SHIFT key is pressed
+
+// Descripiton: The shiftKey property returns true if the shift key is pressed when a mouse event is triggered, otherwise it returns false.  The shiftKey property is read-only.
+
+// Return value: A Boolean
+
+const shiftkey = document.querySelector(".shiftkey");
+
+shiftkey.addEventListener("mousedown", (e) => {
+    if(e.shiftKey){
+        console.log("Click on mouse + shift key");
+    }else{
+        console.log("Not click on shift key");
+    }
+});
 
 
 // Coordinate properties
+
 // screenX: The X coordinate of the mouse pointer (screen relative)
+
+// Descripition: The screenX property returns the horizontal screen coordinate of the mouse pointer when a mouse event is  triggered. The screenX property is read-only.
+
+// Return value: A number
+
 // screenY: The Y coordinate of the mouse pointer (screen relative)
+
+// Descripition: The screenY property returns the vertical screen coordinate of the mouse pointer when a mouse event occurs. The screenY property is read-only.
+
+// Return value: A number
+
 // clientX: The X coordinate of the mouse pointer (window relative)
+
+// Description: The clientX property returns the horizontal client coordinate of the mouse pointer when a mouse event occurs. The clientX property is read-only. The client area is the current window.
+
+// Return value: A number
+
 // clientY: The Y coordinate of the mouse pointer (window relative)
+
+// Description: The clientY property returns the vertical client coordinate of the mouse pointer when a mouse event occurs. The clientY property is read-only. The client area is the current window.
+
+// Return value: A number
+
 // pageX: The X coordinate of the mouse pointer (document relative)
+
+// Description: The pageX property returns the document relative X coordinate of the mouse pointer when a mouse event occurs. The pageX property is read-only. The document is the web page.
+
+// Return value: A number
+
 // pageY: The Y coordinate of the mouse pointer (document relative)
+
+// Description: The pageY property returns the document relative coordinate the mouse pointer when a mouse event occurs. The pageY property is read-only. The document is the web page.
+
+// Return value: A number
+
 // offsetX: The X coordinate of the mouse pointer (target relative)
+
+// Description: The offsetX property returns the relative horizontal coordinate of the mouse pointer when a mouse event occurs. The offsetX property is read-only.
+
+// Return value: A number
+
 // offsetY: The Y coordinate of the mouse pointer (target relative)
+
+// Description: The offsetY property returns the relative vertical coordinate of the mouse pointer when a mouse event occurs. The offsetY property is read-only.
+
+// Return value: A number
+
+// All code
+
+const screen = document.querySelector(".screen");
+
+screen.addEventListener("click", (event) => {
+    let a = event.screenX;
+    let b = event.screenY;
+
+    let c = event.clientX;
+    let d = event.clientY;
+
+    let e = event.pageX;
+    let f = event.pageY
+
+    let g = event.offsetX;
+    let h = event.offsetY;
+
+    console.log(`screenX: ${a} and screenY: ${b} \nclientX: ${c} clientY: ${d} \npageX: ${e} pageY: ${f} \noffsetX: ${g} offsetY: ${h}`);
+});
+
+
+// Keybard Event in javascript
+
+// The KeyboardEvent Object handles events that occur when a user presses a key on the keyboard.
+
+
+// 1. onkeydown / keydown
+
+// Description: The onkeydown event occurs when the user presses a key on the keyboard.
+
+const keydown = document.querySelector(".keydown");
+
+keydown.addEventListener("keydown", (e) =>{
+    // console.log("Keydown now");
+    // document.getElementById("test").style.backgroundColor = "red";
+
+    if(e.altKey){
+        const date = new Date();
+        console.log(date);
+    }
+
+});
+
+// 2. onkeypress / keypress
+
+// Description: The onkeypress event occurs when the user presses a key on the keyboard.
+
+keydown.addEventListener("keypress", (e) => {
+    let a = e.target.value;
+    console.log(a);
+});
+
+// 3. onkeyup / keyup
+
+// Description: The onkeyup event occurs when the user releases a key on the keyboard.
+
+keydown.addEventListener("keyup", () => {
+    // document.getElementById("test").style.backgroundColor = "green";
+});
+
+
+// Keyboard event properties
+
+// 1. altKey
+
+// Description: The altKey property returns true if the ALT key is pressed when a keyboard event occurs. Otherwise it returns false. The altKey property is read-only.
+
+// 2. code
+// 3. ctrlKey
+// 4. isComposing
+// 5. Key
+// 6. KeyCode
+// 7. location
+// 8. metaKey
+// 9. repeat
+// 10. shiftKey
+
+
+
+
+
+
+
+
+
 
 
 // https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events 
