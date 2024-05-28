@@ -619,16 +619,93 @@ keydown.addEventListener("keyup", () => {
 
 // Description: The altKey property returns true if the ALT key is pressed when a keyboard event occurs. Otherwise it returns false. The altKey property is read-only.
 
-// 2. code
-// 3. ctrlKey
-// 4. isComposing
-// 5. Key
-// 6. KeyCode
-// 7. location
-// 8. metaKey
-// 9. repeat
-// 10. shiftKey
+// Return value: A Boolean
 
+const keyboard_altKey = document.querySelector("#test1");
+
+keyboard_altKey.addEventListener("keydown", (e) => {
+
+    // console.log("hii");
+
+    if(e.altKey){
+        console.log("Click alt key:-");
+    }else{
+        console.log("Not click alt key:-");
+    }
+});
+
+// 2. code
+
+// Description: The code property returns the key code when a keyboard event occurs. The code property is read-only.
+
+// Return value: A string representing the key that was pressed
+
+keyboard_altKey.addEventListener("keydown", (e) => {
+
+    let h = e.code;
+
+    let a = e.target.value;
+
+    if(h === "Enter"){
+        console.log(new Date());
+        console.log(a);
+    }
+})
+
+// 3. ctrlKey
+
+// Description: The ctrlKey property returns true if the CTRL key is pressed when a mouse event is triggered, otherwise it returns false. The ctrlKey property is read-only.
+
+// Return value: A boolean value
+
+keyboard_altKey.addEventListener("keydown" , (e) => {
+        if(e.ctrlKey){
+        console.log("Click ctrl key:-");
+    }else{
+        console.log("Not click ctrl key:-");
+    }
+});
+
+// 5. Key
+
+// Description: The key property returns the key that was pressed when the event occured. The key property is read-only. 
+
+// The return value can be:
+// A single character ("a", "W", "4", "+", "$")
+// Multiple characters ("F1", "Enter", "HOME", "CAPS LOCK")
+
+keyboard_altKey.addEventListener("keypress", (e) =>{
+    let h = e.key;
+    console.log(h);
+});
+
+// 6. metaKey
+
+// Description: The metaKey property returns true if the META key is pressed when a mouse event is triggered, otherwise it returns false. The metaKey property is read-only.
+
+// Return value: A boolean value
+
+keyboard_altKey.addEventListener("keydown" , (e) => {
+    if(e.metaKey){
+    console.log("Click meta key:-");
+}else{
+    console.log("Not click meta key:-");
+}
+});
+
+// 9. shiftKey
+
+// Description: The shiftKey property returns true if the shift key is pressed when a mouse event is triggered, otherwise it returns false. The altKey property is read-only.
+
+// Return value: A boolean value
+
+keyboard_altKey.addEventListener("keydown" , (e) => {
+    if(e.shiftKey){
+    console.log("Click shift key:-");
+}else{
+    console.log("Not click shift key:-");
+}
+});
 
 
 
