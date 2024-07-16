@@ -391,6 +391,21 @@ const obj18 = Object.fromEntries(arr1);
 console.log(obj18); // { 0: "a", 1: "b", 2: "c" }
 
 
+// object transformation
+// all price me 10% increase karna 
+
+const transObject = {
+  a_price: 100,
+  b_price: 120,
+  c_price: 90,
+  d_price: 220,
+  e_price: 293,
+  f_price: 220
+}
+
+const transA = Object.fromEntries(Object.entries(transObject).map(([a,b]) => [a,Math.floor(b+b*12/100)]));
+
+console.log(transA);
 
 /**********************************************************************Object.freeze()**********************************************************/
 // The Object.freeze() method freezes an object. 
