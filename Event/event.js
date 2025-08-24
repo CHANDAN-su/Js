@@ -708,13 +708,65 @@ keyboard_altKey.addEventListener("keydown" , (e) => {
 });
 
 
+// Clipboard event
+
+// The ClipboardEvent Object handles events that occur when the clipboard is modified.
+
+// 1. oncopy / copy event
+
+// Description: The oncopy event occurs when the user starts a copy process in the browser. The oncopy event occurs when the user copies element content (like a text copy). The oncopy event also occurs when the user copies a whole element (like an image).
+
+// 3 ways to copy
+
+// 1. Press Ctrl + C
+// 2. Select "Copy" from the Edit menu in your browser
+// 3. Right click to display the context menu, and select "Copy"
+
+// 2. oncut / cut event
+
+// Description: The oncut event occurs when the user cuts the content of an element. The oncut event is mostly used on <input> elements with type="text".
+
+// 3 Ways to Cut:
+// 1. Press Ctrl + X
+// 2. Select "Cut" from the Edit menu in your browser
+// 3. Right click to display the context menu, and select "Cut"
 
 
+// 3. onpaste / paste event
 
+// Description: The onpaste event occurs when the user pastes some content into an element. The onpaste event is mostly used on <input> elements with type="text".
 
+// 3 Ways to Paste:
+// 1. Press Ctrl + V
+// 2. Select "Paste" from the Edit menu in your browser
+// 3. Right click to display the context menu, and select "Paste"
 
+function mycopyfunction(){
+    console.log("This text copyed!");
+}
 
+function mycutfunction(){
+    console.log("This text cuted!");
+}
 
+function mypastefunction(){
+    console.log("This text pasted!");
+}
+
+const container = document.querySelector(".container");
+
+container.addEventListener("copy", () => {
+    document.querySelector(".container").style.backgroundColor = "yellow";
+    console.log("copyed");
+});
+
+container.addEventListener("cut", () => {
+    container.style.backgroundColor = "red";
+});
+
+container.addEventListener("paste", () => {
+    container.style.backgroundColor = "green";
+});
 
 // https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events 
 // https://www.codeguage.com/courses/js/events-event-objects

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Double Click to Copy Table</title>
+    <style>
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 50%;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<table id="myTable">
+    <thead>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Kavi</td>
+            <td>CT</td>
+            <td>RT Shoulder</td>
+            <td>Pain</td>
+            <td>20:03:45</td>
+            <td>VHPL DH GUNA</td>
+            <td>Pending</td>
+            <td></td>
+            <td>Chandan</td>
+        </tr>imgTagWrapperId
+    </tbody>
+</table>
+
+<script>
+
+    // function copyTableContent() {
+    
+    //     const table = document.getElementById("myTable");
+    //     let tableData = '';
+
+    //     // Loop through the table rows and cells to create a plain text format
+    //     for (let i = 0; i < table.rows.length; i++) {
+    //         let row = table.rows[i];
+    //         let rowData = [];
+
+    //         // Loop through each cell in the row
+    //         for (let j = 0; j < row.cells.length; j++) {
+    //             rowData.push(row.cells[j].innerText);  // Get the text content of each cell
+    //         }
+
+    //         // Join the row's cells with tabs and add a newline after each row
+    //         tableData += rowData.join('\t') + '\n';
+    //     }
+
+    //     // Use the Clipboard API to copy the table data
+    //     navigator.clipboard.writeText(tableData).then(function() {
+    //         const caption = document.createElement("caption");
+    //         caption.innerHTML = "copied";
+    //         table.appendChild(caption);
+    //     }).catch(function(err) {
+    //         console.error("Error copying table content: ", err);
+    //     });
+    // }
+
+    // // Add event listener for double-click on the table
+    // document.getElementById("myTable").addEventListener("click", copyTableContent);
+
+    
+    function copyTableContent() {
+    const table = document.getElementById("myTable");
+    let tableData = '';
+
+    // Loop through the table rows and cells to create a plain text format
+    for (let i = 0; i < table.rows.length; i++) {
+        let row = table.rows[i];
+        let rowData = [];
+
+        // Loop through each cell in the row
+        for (let j = 0; j < row.cells.length; j++) {
+            rowData.push(row.cells[j].innerText); // Get the text content of each cell
+        }
+
+        // Join the row's cells with tabs and add a newline after each row
+        tableData += rowData.join('\t') + '\n';
+    }
+
+    // Try to copy using the Clipboard API
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(tableData).then(function() {
+            // Show a confirmation message
+            const caption = document.createElement("caption");
+            caption.innerHTML = "Copied!";
+            caption.style.color = "green";
+            table.appendChild(caption);
+
+            // Remove the caption after 2 seconds
+            setTimeout(() => table.removeChild(caption), 2000);
+        }).catch(function(err) {
+            console.error("Error copying table content: ", err);
+        });
+    } else {
+        // Fallback for unsupported browsers
+        const textarea = document.createElement("textarea");
+        textarea.value = tableData;
+        document.body.appendChild(textarea);
+        textarea.select();
+
+        try {
+            document.execCommand("copy");
+            console.log("Table content copied using fallback method.");
+        } catch (err) {
+            console.error("Fallback: Failed to copy table content.", err);
+        }
+
+        document.body.removeChild(textarea);
+
+        // Show a confirmation message
+        const caption = document.createElement("caption");
+        caption.innerHTML = "Copied (Fallback)!";
+        caption.style.color = "blue";
+        table.appendChild(caption);
+
+        // Remove the caption after 2 seconds
+        setTimeout(() => table.removeChild(caption), 2000);
+    }
+}
+
+// Add event listener for double-click on the table
+document.getElementById("myTable").addEventListener("dblclick", copyTableContent);
+
+</script>
+
+</body>
+</html>
